@@ -1,0 +1,2603 @@
+{
+  "total": 50,
+  "categories": {
+    "human hunting": [
+      6,
+      10,
+      11,
+      14,
+      23,
+      33,
+      34,
+      37,
+      39,
+      47
+    ],
+    "trap horror": [
+      1,
+      15,
+      21,
+      25,
+      41
+    ],
+    "captivity thriller": [
+      1,
+      6,
+      27
+    ],
+    "revenge horror": [
+      2,
+      6,
+      14
+    ],
+    "serial killer": [
+      3,
+      15,
+      16
+    ],
+    "cannibalism": [
+      21,
+      24,
+      25
+    ],
+    "torture horror": [
+      3,
+      8
+    ],
+    "death game": [
+      11,
+      40
+    ],
+    "possession horror": [
+      12,
+      40
+    ],
+    "kidnapping horror": [
+      23,
+      38
+    ]
+  },
+  "recommendations": [
+    {
+      "rank": 1,
+      "taste_match_score": 0.546,
+      "tmdb_id": 756999,
+      "title": "The Black Phone",
+      "year": 2022,
+      "overview": "Finney Blake, a shy but clever 13-year-old boy, is abducted by a sadistic killer and trapped in a soundproof basement where screaming is of little use. When a disconnected phone on the wall begins to ring, Finney discovers that he can hear the voices of the killer’s previous victims. And they are dead set on making sure that what happened to them doesn’t happen to Finney.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/p9ZUzCyy9wRTDuuQexkQ78R2BgF.jpg",
+      "backdrop_path": "/AfvIjhDu9p64jKcmohS4hsPG95Q.jpg",
+      "director": "Scott Derrickson",
+      "cast": [
+        "Mason Thames",
+        "Madeleine McGraw",
+        "Ethan Hawke",
+        "Jeremy Davies",
+        "E. Roger Mitchell"
+      ],
+      "runtime": 103,
+      "tagline": "Never talk to strangers.",
+      "tmdb_rating": 7.531,
+      "tmdb_votes": 5728,
+      "streaming": [
+        {
+          "name": "Netflix",
+          "url": ""
+        },
+        {
+          "name": "YouTube TV",
+          "url": ""
+        },
+        {
+          "name": "USA Network",
+          "url": ""
+        },
+        {
+          "name": "Netflix Standard with Ads",
+          "url": ""
+        },
+        {
+          "name": "Fandango at Home Free",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "trap horror",
+        "captivity thriller"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "trap horror",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "subgenre: captivity thriller",
+          "url": "https://letterboxd.com/film/the-black-phone/"
+        },
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/the-black-phone/"
+        },
+        {
+          "source": "TMDB Reviews",
+          "claim": "subgenre: captivity thriller",
+          "url": "https://www.themoviedb.org/movie/756999/reviews"
+        },
+        {
+          "source": "TMDB Reviews",
+          "claim": "high intensity/quality",
+          "url": "https://www.themoviedb.org/movie/756999/reviews"
+        },
+        {
+          "source": "TMDB Reviews",
+          "claim": "fast paced",
+          "url": "https://www.themoviedb.org/movie/756999/reviews"
+        }
+      ],
+      "validated": true
+    },
+    {
+      "rank": 2,
+      "taste_match_score": 0.355,
+      "tmdb_id": 238636,
+      "title": "The Purge: Anarchy",
+      "year": 2014,
+      "overview": "One night per year, the government sanctions a 12-hour period in which citizens can commit any crime they wish -- including murder -- without fear of punishment or imprisonment. Leo, a sergeant who lost his son, plans a vigilante mission of revenge during the mayhem. However, instead of a death-dealing avenger, he becomes the unexpected protector of four innocent strangers who desperately need his help if they are to survive the night.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/qwqHHZLZSUvMkAMQ47ymtfjEifY.jpg",
+      "backdrop_path": "/blfZnm6StMPnTY35kaooPBCsSVp.jpg",
+      "director": "James DeMonaco",
+      "cast": [
+        "Frank Grillo",
+        "Carmen Ejogo",
+        "Zach Gilford",
+        "Michael Kenneth Williams",
+        "Kiele Sanchez"
+      ],
+      "runtime": 103,
+      "tagline": "",
+      "tmdb_rating": 6.628,
+      "tmdb_votes": 6655,
+      "streaming": [
+        {
+          "name": "USA Network",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "revenge horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "revenge horror",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/the-purge-anarchy/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 3,
+      "taste_match_score": 0.343,
+      "tmdb_id": 38410,
+      "title": "The Poughkeepsie Tapes",
+      "year": 2007,
+      "overview": "When hundreds of videotapes showing torture, murder and dismemberment are found in an abandoned house, they reveal a serial killer's decade-long reign of terror and become the most disturbing collection of evidence homicide detectives have ever seen.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/8ppkhu3pO3fnXr05YeE7ryKloVd.jpg",
+      "backdrop_path": "/tAi9xQKBgYJVkBTfAtZ0OHEaXfb.jpg",
+      "director": "John Erick Dowdle",
+      "cast": [
+        "Stacy Chbosky",
+        "Ben Messmer",
+        "Lou George",
+        "Ivar Brogger",
+        "Michael Lawson"
+      ],
+      "runtime": 81,
+      "tagline": "The Terror is Real",
+      "tmdb_rating": 6.556,
+      "tmdb_votes": 734,
+      "streaming": [
+        {
+          "name": "fuboTV",
+          "url": ""
+        },
+        {
+          "name": "MGM+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "MGM Plus Roku Premium Channel",
+          "url": ""
+        },
+        {
+          "name": "MGM Plus",
+          "url": ""
+        },
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "Kanopy",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "torture horror",
+        "serial killer"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "torture horror",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "subgenre: torture horror",
+          "url": "https://letterboxd.com/film/the-poughkeepsie-tapes/"
+        },
+        {
+          "source": "Letterboxd",
+          "claim": "subgenre: serial killer",
+          "url": "https://letterboxd.com/film/the-poughkeepsie-tapes/"
+        },
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/the-poughkeepsie-tapes/"
+        }
+      ],
+      "validated": true
+    },
+    {
+      "rank": 4,
+      "taste_match_score": 0.337,
+      "tmdb_id": 801937,
+      "title": "Silent Night, Deadly Night",
+      "year": 2025,
+      "overview": "After witnessing his parents' brutal murder on Christmas Eve, Billy transforms into a Killer Santa, delivering a yearly spree of calculated, chilling violence. This year, his blood-soaked mission collides with love, as a young woman challenges him to confront his darkness.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/xCdSd7NnRdnL8DGLVhI95WhUNoi.jpg",
+      "backdrop_path": "/kv8kCuvfhSQ50YxjowqpVn1QqhJ.jpg",
+      "director": "Mike P. Nelson",
+      "cast": [
+        "Rohan Campbell",
+        "Ruby Modine",
+        "Mark Acheson",
+        "David Lawrence Brown",
+        "David Tomlinson"
+      ],
+      "runtime": 96,
+      "tagline": "Santa's gonna slay.",
+      "tmdb_rating": 6.23,
+      "tmdb_votes": 102,
+      "streaming": [
+        {
+          "name": "Hoopla",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/silent-night-deadly-night/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 5,
+      "taste_match_score": 0.326,
+      "tmdb_id": 968051,
+      "title": "The Nun II",
+      "year": 2023,
+      "overview": "In 1956 France, a priest is violently murdered, and Sister Irene begins to investigate. She once again comes face-to-face with a powerful evil.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg",
+      "backdrop_path": "/aX3Od8NVLgM7pMYgRpTPkwSrbSC.jpg",
+      "director": "Michael Chaves",
+      "cast": [
+        "Taissa Farmiga",
+        "Anna Popplewell",
+        "Jonas Bloquet",
+        "Storm Reid",
+        "Katelyn Rose Downey"
+      ],
+      "runtime": 110,
+      "tagline": "Confess your sins.",
+      "tmdb_rating": 6.65,
+      "tmdb_votes": 2427,
+      "streaming": [
+        {
+          "name": "HBO Max",
+          "url": ""
+        },
+        {
+          "name": "Cinemax Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Cinemax Apple TV Channel",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 6,
+      "taste_match_score": 0.324,
+      "tmdb_id": 1381216,
+      "title": "Lake Jesup: Bonecrusher's Revenge",
+      "year": 2024,
+      "overview": "In 2003, Lake Jesup became the stage for a real-life horror story, as a monstrous alligator escaped from captivity and began a reign of terror. As the body count rose, a desperate hunt ensued to stop the creature.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/1Z1TgGXS1MD4DDfIkBNloM43vvj.jpg",
+      "backdrop_path": "/3Vq8otoGevbhcZAKY2devVbPs6L.jpg",
+      "director": "Michael Houston King",
+      "cast": [
+        "Derek Russo",
+        "Jeff Benninghofen",
+        "Michael Houston King",
+        "Essex O'Brien",
+        "Sarah Voigt"
+      ],
+      "runtime": 87,
+      "tagline": "He's a big sumbitch.",
+      "tmdb_rating": 6.179,
+      "tmdb_votes": 28,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Screambox Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "Kanopy",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        },
+        {
+          "name": "The Roku Channel",
+          "url": ""
+        },
+        {
+          "name": "Fandango at Home Free",
+          "url": ""
+        },
+        {
+          "name": "Xumo Play",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "captivity thriller",
+        "revenge horror",
+        "human hunting"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "captivity thriller",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "subgenre: captivity thriller",
+          "url": "https://letterboxd.com/film/lake-jesup-bonecrushers-revenge/"
+        },
+        {
+          "source": "r/horror",
+          "claim": "subgenre: captivity thriller",
+          "url": "https://www.reddit.com/r/horror/comments/1oxb6na/tubi_us_horror_movie_list/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 7,
+      "taste_match_score": 0.297,
+      "tmdb_id": 1202306,
+      "title": "Hell House LLC: Lineage",
+      "year": 2025,
+      "overview": "After a near-death experience, Vanessa Shepherd faces nightmares in Abaddon. As mysterious deaths occur around her, she discovers her connection to the Abaddon Hotel, Carmichael Manor, and decades of unexplained murders.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/vFZo2cUEF16gsY5lhewOLFA7CBC.jpg",
+      "backdrop_path": "/lKGUaVHu6QX4vnfjxXIWcogeUR1.jpg",
+      "director": "Stephen Cognetti",
+      "cast": [
+        "Elizabeth Vermilyea",
+        "Searra Sawka",
+        "Mike Sutton",
+        "Joe Bandelli",
+        "Cayla Berejikian"
+      ],
+      "runtime": 108,
+      "tagline": "A blood bond rooted in evil.",
+      "tmdb_rating": 4.5,
+      "tmdb_votes": 35,
+      "streaming": [
+        {
+          "name": "AMC+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Shudder",
+          "url": ""
+        },
+        {
+          "name": "Shudder Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Shudder Apple TV Channel",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 8,
+      "taste_match_score": 0.272,
+      "tmdb_id": 15356,
+      "title": "The Girl Next Door",
+      "year": 2007,
+      "overview": "In a quiet suburban town in the summer of 1958, two recently orphaned sisters are placed in the care of their mentally unstable Aunt Ruth. But Ruth's depraved sense of discipline will soon lead to unspeakable acts of abuse and torture that involve her young sons, the neighborhood children, and one 12-year-old boy whose life will be changed forever.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/dXjLp7k7ILyg22T0s9VvpPKc9jn.jpg",
+      "backdrop_path": "/9M7CfAYjhdXJk7em6khWH2aUjq7.jpg",
+      "director": "Gregory Wilson",
+      "cast": [
+        "Blythe Auffarth",
+        "Daniel Manche",
+        "Michael Zegen",
+        "Catherine Mary Stewart",
+        "Grant Show"
+      ],
+      "runtime": 91,
+      "tagline": "In this town, murder became the neighborhood game.",
+      "tmdb_rating": 6.643,
+      "tmdb_votes": 772,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        },
+        {
+          "name": "The Roku Channel",
+          "url": ""
+        },
+        {
+          "name": "Fandango at Home Free",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video Free with Ads",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "torture horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "torture horror",
+      "validations": [
+        {
+          "source": "r/horror",
+          "claim": "subgenre: torture horror",
+          "url": "https://www.reddit.com/r/horror/comments/1luiyic/the_girl_next_door_2007_vs_eden_lake_2008_which/"
+        },
+        {
+          "source": "r/horror",
+          "claim": "fast paced",
+          "url": "https://www.reddit.com/r/horror/comments/1luiyic/the_girl_next_door_2007_vs_eden_lake_2008_which/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 9,
+      "taste_match_score": 0.265,
+      "tmdb_id": 1352774,
+      "title": "Piglet",
+      "year": 2025,
+      "overview": "On Kate's 21st birthday camping trip, her friends encounter Piglet, a monstrous human-pig hybrid who brutally murders one of them. They uncover Piglet's origins and Kate must confront her past to survive the relentless killer.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/mW7PYDUeWYwTdbtzThqLMfdNa56.jpg",
+      "backdrop_path": "/tehewlwOPFDDf4syutyopaY23AY.jpg",
+      "director": "Andrea M. Catinella",
+      "cast": [
+        "Alina Desmond",
+        "Alex Butler",
+        "Shayli Reagan",
+        "Lauren Staerck",
+        "Valery Danko"
+      ],
+      "runtime": 83,
+      "tagline": "This pork will chop you up.",
+      "tmdb_rating": 6.5,
+      "tmdb_votes": 50,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "The Roku Channel",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 10,
+      "taste_match_score": 0.26,
+      "tmdb_id": 357096,
+      "title": "I Spit on Your Grave III: Vengeance Is Mine",
+      "year": 2015,
+      "overview": "Jennifer Hills is still tormented by the brutal sexual assault she endured years ago. She’s changed identities and cities, reluctantly joining a support group where she begins to piece together a new life. But when her new friend’s murderer goes free and the tales of serial rapists haunt her, Jennifer will hunt down the men responsible and do what the system won’t – make them pay for their crimes in the most horrific ways imaginable. Only this time, no jury may be able to save her.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/qosIFCddpZjoMdsrkcQWB4UGm3o.jpg",
+      "backdrop_path": "/ts2CQBbdPYRoq7yTovmDoRw7sTX.jpg",
+      "director": "Richard Schenkman",
+      "cast": [
+        "Sarah Butler",
+        "Jennifer Landon",
+        "Jeff Branson",
+        "Harley Jane Kozak",
+        "Karen Strassman"
+      ],
+      "runtime": 91,
+      "tagline": "This Time It Gets Even More Brutal.",
+      "tmdb_rating": 5.781,
+      "tmdb_votes": 1046,
+      "streaming": [
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        },
+        {
+          "name": "Fawesome",
+          "url": ""
+        },
+        {
+          "name": "Fandango at Home Free",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "human hunting"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "human hunting",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/i-spit-on-your-grave-iii-vengeance-is-mine/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 11,
+      "taste_match_score": 0.259,
+      "tmdb_id": 1266127,
+      "title": "Ready or Not: Here I Come",
+      "year": 2026,
+      "overview": "Moments after surviving an all-out attack from the Le Domas family, Grace discovers she’s reached the next level of the nightmarish game — and this time with her estranged sister Faith at her side. Grace has one chance to survive, keep her sister alive, and claim the High Seat of the Council that controls the world. Four rival families are hunting her for the throne, and whoever wins rules it all.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/jRf89HVEtBZiSnOXXWDhZOfuTwW.jpg",
+      "backdrop_path": "/waUDWpsm3oCrzU9P4XnsBAh2cso.jpg",
+      "director": "Matt Bettinelli-Olpin",
+      "cast": [
+        "Samara Weaving",
+        "Kathryn Newton",
+        "Elijah Wood",
+        "Sarah Michelle Gellar",
+        "Shawn Hatosy"
+      ],
+      "runtime": 108,
+      "tagline": "Double or nothing.",
+      "tmdb_rating": 7.5,
+      "tmdb_votes": 64,
+      "streaming": [],
+      "nano_genres": [
+        "death game",
+        "human hunting"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "death game",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 12,
+      "taste_match_score": 0.25,
+      "tmdb_id": 434555,
+      "title": "The Possession of Hannah Grace",
+      "year": 2018,
+      "overview": "When a cop who is just out of rehab takes the graveyard shift in a city hospital morgue, she faces a series of bizarre, violent events caused by an evil entity in one of the corpses.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/hDDb0H0uJp2wjoJBbBHbKlYRbug.jpg",
+      "backdrop_path": "/kkdymnbzSR5qUfpwKDZ5csitfv1.jpg",
+      "director": "Diederik Van Rooijen",
+      "cast": [
+        "Shay Mitchell",
+        "Kirby Johnson",
+        "Grey Damon",
+        "Stana Katic",
+        "Louis Herthum"
+      ],
+      "runtime": 86,
+      "tagline": "Death is only the beginning.",
+      "tmdb_rating": 5.6,
+      "tmdb_votes": 1471,
+      "streaming": [
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "possession horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "possession horror",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/the-possession-of-hannah-grace/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 13,
+      "taste_match_score": 0.246,
+      "tmdb_id": 1130276,
+      "title": "Succubus",
+      "year": 2024,
+      "overview": "A new father going through a marital separation joins a dating app and matches with a beautiful but mysterious young woman... whose powers of seduction and manipulation entangle him in a mystery more horrifying than he could have ever imagined.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/7AfBMebJS8mEtSV5ymdxEPpgvXb.jpg",
+      "backdrop_path": "/84h6avqHvW2TgLfERuqYkQwzjp1.jpg",
+      "director": "R.J. Daniel Hanna",
+      "cast": [
+        "Brendan Bradley",
+        "Rachel Cook",
+        "Olivia Grace Applegate",
+        "Derek Smith",
+        "Emily Kincaid"
+      ],
+      "runtime": 103,
+      "tagline": "",
+      "tmdb_rating": 8.655,
+      "tmdb_votes": 222,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "Shout! Factory Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        },
+        {
+          "name": "Fawesome",
+          "url": ""
+        },
+        {
+          "name": "The Roku Channel",
+          "url": ""
+        },
+        {
+          "name": "Shout! Factory TV",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 14,
+      "taste_match_score": 0.243,
+      "tmdb_id": 1049942,
+      "title": "Bambi: The Reckoning",
+      "year": 2025,
+      "overview": "After a mother and son get in a car wreck, they soon become hunted by Bambi, a mutated grief-stricken deer on a deadly rampage seeking revenge for the death of his mother and wife.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/8oBbWxWDJrrDtNkmd0OzZpPFFUR.jpg",
+      "backdrop_path": "/tG5ZSx57zkijfK975aENinlOdIy.jpg",
+      "director": "Dan Allen",
+      "cast": [
+        "Roxanne McKee",
+        "Tom Mulheron",
+        "Adrian Relph",
+        "Nicola Wright",
+        "Alex Cooke"
+      ],
+      "runtime": 80,
+      "tagline": "Welcome to his stomping grounds.",
+      "tmdb_rating": 5.6,
+      "tmdb_votes": 142,
+      "streaming": [
+        {
+          "name": "Peacock Premium",
+          "url": ""
+        },
+        {
+          "name": "Peacock Premium Plus",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "revenge horror",
+        "human hunting"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "revenge horror",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/bambi-the-reckoning/"
+        },
+        {
+          "source": "TMDB Reviews",
+          "claim": "fast paced",
+          "url": "https://www.themoviedb.org/movie/1049942/reviews"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 15,
+      "taste_match_score": 0.242,
+      "tmdb_id": 1514364,
+      "title": "Kill Me Again",
+      "year": 2025,
+      "overview": "Charlie, a notorious serial killer known as the Midnight Mangler finds himself trapped, reliving the same violent night over and over. Initially embracing his grisly urges, Charlie soon becomes desperate to escape the endless nightmare.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/tPUC1q4zfxxoAPvz9ssF5QQ0sYk.jpg",
+      "backdrop_path": "/dzfPFqBQmlWhgRtw8SVNWRQOYH.jpg",
+      "director": "Keith Jardine",
+      "cast": [
+        "Brendan Fehr",
+        "Majandra Delfino",
+        "Raoul Max Trujillo",
+        "Keith Jardine",
+        "Tait Fletcher"
+      ],
+      "runtime": 108,
+      "tagline": "Some nightmares never end",
+      "tmdb_rating": 6.0,
+      "tmdb_votes": 28,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "Kanopy",
+          "url": ""
+        },
+        {
+          "name": "The Roku Channel",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "serial killer",
+        "trap horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "serial killer",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 16,
+      "taste_match_score": 0.24,
+      "tmdb_id": 1169210,
+      "title": "The Mannequin",
+      "year": 2025,
+      "overview": "A stylist assistant investigates her sister's death in a historic LA building, only to face a vengeful ghost of a serial killer who dismembered victims decades ago. She must escape before she's next.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/oFTpB1gzS02LtrsenTWxOKbsMpM.jpg",
+      "backdrop_path": "/z6Pi72HrGhc50GDhDdREUTEh2xm.jpg",
+      "director": "John Berardo",
+      "cast": [
+        "Isabella Gómez",
+        "Lindsay LaVanchy",
+        "Shireen Lai",
+        "Maxwell Hamilton",
+        "Gabriella Rivera"
+      ],
+      "runtime": 85,
+      "tagline": "She likes to watch.",
+      "tmdb_rating": 5.5,
+      "tmdb_votes": 22,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "Fawesome",
+          "url": ""
+        },
+        {
+          "name": "The Roku Channel",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "serial killer"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "serial killer",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 17,
+      "taste_match_score": 0.238,
+      "tmdb_id": 790509,
+      "title": "The Fear Footage 3AM",
+      "year": 2021,
+      "overview": "Dennis Rosen disappeared on September 19th, 2020, while filming an episode for his urban exploration channel ‘Dennis the Explorer.’ He was exploring Darkbluff, Maryland — a town that authorities discovered abandoned during their search for Dennis. They also discovered a camera. This footage was on that camera.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/oYDXXAYl24RaXsgF5voMaLxcTEw.jpg",
+      "backdrop_path": "/hy2I6MwNPVZpyWXTfl7zOG0Rj6a.jpg",
+      "director": "Ricky Umberger",
+      "cast": [
+        "Ricky Umberger",
+        "Dennis Frazier",
+        "Alex Ahmer"
+      ],
+      "runtime": 70,
+      "tagline": "You've witnessed the tape... You've witnessed the curse... Now witness the end.",
+      "tmdb_rating": 7.7,
+      "tmdb_votes": 41,
+      "streaming": [],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 18,
+      "taste_match_score": 0.223,
+      "tmdb_id": 696393,
+      "title": "Cold Storage",
+      "year": 2026,
+      "overview": "When a mutating, highly contagious fungus escapes a sealed facility, two employees – joined by a grizzled bioterror operative – must survive the wildest night shift ever to save humanity from extinction.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/pfqkETJ2A3zXZJuNcufZbAJNnKA.jpg",
+      "backdrop_path": "/puqQGxK9HYITUKhCdREg3XOLlZd.jpg",
+      "director": "Jonny Campbell",
+      "cast": [
+        "Joe Keery",
+        "Georgina Campbell",
+        "Liam Neeson",
+        "Lesley Manville",
+        "Sosie Bacon"
+      ],
+      "runtime": 99,
+      "tagline": "If it spreads, you're dead.",
+      "tmdb_rating": 6.719,
+      "tmdb_votes": 270,
+      "streaming": [],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "TMDB Reviews",
+          "claim": "fast paced",
+          "url": "https://www.themoviedb.org/movie/696393/reviews"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 19,
+      "taste_match_score": 0.22,
+      "tmdb_id": 9035,
+      "title": "Slither",
+      "year": 2006,
+      "overview": "A small town is taken over by an alien plague, turning residents into zombies and all forms of mutant monsters.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/zNlJvCY3Pz7SE09Lf4G7uPs5XFZ.jpg",
+      "backdrop_path": "/kUpD6EnpnQBi3mjYxmiM4xvuh8g.jpg",
+      "director": "James Gunn",
+      "cast": [
+        "Nathan Fillion",
+        "Michael Rooker",
+        "Elizabeth Banks",
+        "Gregg Henry",
+        "Tania Saulnier"
+      ],
+      "runtime": 96,
+      "tagline": "Horror has a new face.",
+      "tmdb_rating": 6.542,
+      "tmdb_votes": 1690,
+      "streaming": [],
+      "nano_genres": [
+        "undead"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "subgenre: undead",
+          "url": "https://letterboxd.com/film/slither/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 20,
+      "taste_match_score": 0.219,
+      "tmdb_id": 20182,
+      "title": "Alien Abduction: Incident in Lake County",
+      "year": 1998,
+      "overview": "After a mysterious blackout, a son goes out to investigate and captures footage of actual aliens. When the aliens follow he and his brothers back to their home all hell breaks lose.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/ix6kUUS6UkbzzTb3gVzHk9QcNxY.jpg",
+      "backdrop_path": "/gHsz9q4OXw4dBfh3aDvnCkKzsRb.jpg",
+      "director": "Dean Alioto",
+      "cast": [
+        "Benz Antoine",
+        "Kristian Ayre",
+        "Gillian Barber",
+        "Michael Buie",
+        "Emmanuelle Chriqui"
+      ],
+      "runtime": 93,
+      "tagline": "We are not alone",
+      "tmdb_rating": 7.4,
+      "tmdb_votes": 185,
+      "streaming": [],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 21,
+      "taste_match_score": 0.218,
+      "tmdb_id": 71672,
+      "title": "Wrong Turn 4: Bloody Beginnings",
+      "year": 2011,
+      "overview": "A group of friends take refuge in a deserted sanatorium after they are left stranded in a snowstorm. Later, the place becomes a death trap when man-eating cannibals surround them.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/l1vD4GY7tlT420KJ3xWTzyQ2Aa9.jpg",
+      "backdrop_path": "/8xyJcJnYbupkPPMvwTEJaUwjxDI.jpg",
+      "director": "Declan O'Brien",
+      "cast": [
+        "Jennifer Pudavick",
+        "Tenika Davis",
+        "Terra Vnesa",
+        "Kristen Harris",
+        "Kaitlyn Leeb"
+      ],
+      "runtime": 93,
+      "tagline": "Frost Is Not The Only Thing That Bites In the Snow!",
+      "tmdb_rating": 5.726,
+      "tmdb_votes": 1199,
+      "streaming": [],
+      "nano_genres": [
+        "cannibalism",
+        "trap horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "cannibalism",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 22,
+      "taste_match_score": 0.211,
+      "tmdb_id": 270303,
+      "title": "It Follows",
+      "year": 2015,
+      "overview": "A young woman is followed by an unknown supernatural force after a sexual encounter.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/iwnQ1JH1wdWrGYkgWySptJ5284A.jpg",
+      "backdrop_path": "/ikaRI4yMxKOje5SmOlAhOBUnicL.jpg",
+      "director": "David Robert Mitchell",
+      "cast": [
+        "Maika Monroe",
+        "Keir Gilchrist",
+        "Daniel Zovatto",
+        "Jake Weary",
+        "Olivia Luccardi"
+      ],
+      "runtime": 101,
+      "tagline": "It doesn't think. It doesn't feel. It doesn't give up.",
+      "tmdb_rating": 6.583,
+      "tmdb_votes": 6845,
+      "streaming": [
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "MovieSphere+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Kanopy",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 23,
+      "taste_match_score": 0.21,
+      "tmdb_id": 38321,
+      "title": "Priest",
+      "year": 2011,
+      "overview": "In an alternate world, humanity and vampires have warred for centuries. After the last Vampire War, the veteran Warrior Priest lives in obscurity with other humans inside one of the Church's walled cities. When the Priest's niece is kidnapped by vampires, the Priest breaks his vows to hunt them down. He is accompanied by the niece's boyfriend, who is a wasteland sheriff, and a former Warrior Priestess.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/fYHiA7LPGl9DG7m3DUs0Td1VMcO.jpg",
+      "backdrop_path": "/srrzHjAzhYzUulBbllQCNekgnQb.jpg",
+      "director": "Scott Stewart",
+      "cast": [
+        "Paul Bettany",
+        "Karl Urban",
+        "Lily Collins",
+        "Maggie Q",
+        "Stephen Moyer"
+      ],
+      "runtime": 87,
+      "tagline": "The war is eternal. His mission is just the beginning.",
+      "tmdb_rating": 5.9,
+      "tmdb_votes": 2482,
+      "streaming": [
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "human hunting",
+        "kidnapping horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "human hunting",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 24,
+      "taste_match_score": 0.206,
+      "tmdb_id": 347423,
+      "title": "The Cannibal in the Jungle",
+      "year": 2015,
+      "overview": "An American scientist who was convicted of killing and cannibalizing two colleagues in the jungles of Flores, Indonesia in 1977.  Branded \"The American Cannibal\" by the press during his trial, Dr. Timothy Darrow defended himself by claiming a mythic human-ape creature was responsible for the murders.  The news outlet documented an indigenous tribe on Flores, the very same island where the hobbit remains were discovered, which had its own accounts of little wild men that stood just over three feet tall, climbed trees, walked on two feet and thrived on cannibalism. And according to the local legend, those creatures may never have died out at all.  Follow an expedition team deep into the heart of Flores Island to investigate Dr. Timothy Darrow's claims and find out once and for all if hobbits still exist in the deepest, most remote realms of the Indonesian jungle.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/6UVXRYZQfbb1ssFufdanwwYji3Z.jpg",
+      "backdrop_path": "/jvkkVt3ZU4Aw2JmgUkAWPduNXEw.jpg",
+      "director": "George Simon",
+      "cast": [
+        "Richard Brake",
+        "Jim Sturgeon",
+        "Tim Ahern",
+        "Neil D'Souza",
+        "Simon Ginty"
+      ],
+      "runtime": 84,
+      "tagline": "",
+      "tmdb_rating": 7.0,
+      "tmdb_votes": 21,
+      "streaming": [],
+      "nano_genres": [
+        "cannibalism"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "cannibalism",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "subgenre: cannibalism",
+          "url": "https://letterboxd.com/film/the-cannibal-in-the-jungle/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 25,
+      "taste_match_score": 0.205,
+      "tmdb_id": 23823,
+      "title": "Wrong Turn 3: Left for Dead",
+      "year": 2009,
+      "overview": "A group of people find themselves trapped in the backwoods of West Virginia, fighting for their lives against a group of vicious and horribly disfigured inbred cannibals.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/84s4LMWuGbm4xPWW5PSbHyQhh33.jpg",
+      "backdrop_path": "/8568C7FeSsjmqLGuObSB0oB6kOU.jpg",
+      "director": "Declan O'Brien",
+      "cast": [
+        "Tom Frederic",
+        "Janet Montgomery",
+        "Louise Cliffe",
+        "Jack Gordon",
+        "Emma Clifford"
+      ],
+      "runtime": 91,
+      "tagline": "What you don't see will kill you.",
+      "tmdb_rating": 5.69,
+      "tmdb_votes": 1258,
+      "streaming": [],
+      "nano_genres": [
+        "cannibalism",
+        "trap horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "cannibalism",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 26,
+      "taste_match_score": 0.204,
+      "tmdb_id": 384798,
+      "title": "Kill Command",
+      "year": 2016,
+      "overview": "Set in a near future, technology-reliant society that pits man against killing machines. Against this backdrop an elite army unit is helicoptered to a remote, off-the-grid island training facility. What starts out as a simple training exercise for Captain Bukes and his tight-knit unit, descends into a terrifying battle to the death, as the marines discover the island is overrun by an enemy that transcends the human concept of evil.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/xn6t1nYJaUMmudnHHiK390AORNu.jpg",
+      "backdrop_path": "/bJzWrOYHu1kF4eUiEa1DX4OrQvi.jpg",
+      "director": "Steven Gomez",
+      "cast": [
+        "Vanessa Kirby",
+        "Thure Lindhardt",
+        "David Ajala",
+        "Tom McKay",
+        "Deborah Rosan"
+      ],
+      "runtime": 99,
+      "tagline": "You can't fight the future.",
+      "tmdb_rating": 5.654,
+      "tmdb_votes": 634,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "Hoopla",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        },
+        {
+          "name": "Fandango at Home Free",
+          "url": ""
+        },
+        {
+          "name": "Pluto TV",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video Free with Ads",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/kill-command/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 27,
+      "taste_match_score": 0.204,
+      "tmdb_id": 13008,
+      "title": "An American Crime",
+      "year": 2007,
+      "overview": "The true story of suburban housewife Gertrude Baniszewski, who kept a teenage girl locked in the basement of her Indiana home during the 1960s.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/bLsE0sMI1bycBxZX7QNYghy5iyi.jpg",
+      "backdrop_path": "/7Ww2p8mXVVOyj3RLKRg6GzeYIAv.jpg",
+      "director": "Tommy O'Haver",
+      "cast": [
+        "Elliot Page",
+        "Catherine Keener",
+        "Hayley McFarland",
+        "Nick Searcy",
+        "Romy Rosemont"
+      ],
+      "runtime": 97,
+      "tagline": "The true story of a child's punishment that became a woman's crime.",
+      "tmdb_rating": 7.3,
+      "tmdb_votes": 762,
+      "streaming": [
+        {
+          "name": "fuboTV",
+          "url": ""
+        },
+        {
+          "name": "The CW",
+          "url": ""
+        },
+        {
+          "name": "Kanopy",
+          "url": ""
+        },
+        {
+          "name": "Hoopla",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        },
+        {
+          "name": "Fawesome",
+          "url": ""
+        },
+        {
+          "name": "The Roku Channel",
+          "url": ""
+        },
+        {
+          "name": "Fandango at Home Free",
+          "url": ""
+        },
+        {
+          "name": "Pluto TV",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "captivity thriller"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "captivity thriller",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "subgenre: captivity thriller",
+          "url": "https://letterboxd.com/film/an-american-crime/"
+        },
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/an-american-crime/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 28,
+      "taste_match_score": 0.202,
+      "tmdb_id": 168098,
+      "title": "Cell",
+      "year": 2016,
+      "overview": "When a strange signal pulsates through all cell phone networks worldwide, it starts a murderous epidemic of epic proportions when users become bloodthirsty creatures, and a group of people in New England are among the survivors to deal with the ensuing chaos after.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/c5N6Pw3P6TqQnGcqiVkhO9u85KB.jpg",
+      "backdrop_path": "/pprNvcLi63ATKIGMipUwH0xQIJg.jpg",
+      "director": "Tod Williams",
+      "cast": [
+        "John Cusack",
+        "Samuel L. Jackson",
+        "Isabelle Fuhrman",
+        "Owen Teague",
+        "Clark Sarullo"
+      ],
+      "runtime": 98,
+      "tagline": "When everyone is connected no one is safe.",
+      "tmdb_rating": 4.7,
+      "tmdb_votes": 1125,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "MovieSphere+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Kanopy",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        },
+        {
+          "name": "Fawesome",
+          "url": ""
+        },
+        {
+          "name": "The Roku Channel",
+          "url": ""
+        },
+        {
+          "name": "Fandango at Home Free",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video Free with Ads",
+          "url": ""
+        },
+        {
+          "name": "Xumo Play",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 29,
+      "taste_match_score": 0.2,
+      "tmdb_id": 442062,
+      "title": "Goosebumps 2: Haunted Halloween",
+      "year": 2018,
+      "overview": "Be careful what you wish for. With their after school junk business, best friends Sonny and Sam hope to find treasure in other people’s trash. But when cleaning out the old Stine house, they open a locked book that frees a supernatural nightmare – Slappy! Now, with the help of Sonny’s sister Sarah, they’re in a race against time to get the sinister dummy and all the creatures he’s brought to life back into the pages before he unleashes total pandemonium!",
+      "poster_url": "https://image.tmdb.org/t/p/w500/t2wy38iiMpB8WsgJi3lYeDnGh2H.jpg",
+      "backdrop_path": "/h5BvesqaxL7V3vl1CmaR8waGyiM.jpg",
+      "director": "Ari Sandel",
+      "cast": [
+        "Madison Iseman",
+        "Jeremy Ray Taylor",
+        "Caleel Harris",
+        "Wendi McLendon-Covey",
+        "Ken Jeong"
+      ],
+      "runtime": 90,
+      "tagline": "Halloween comes to life.",
+      "tmdb_rating": 6.097,
+      "tmdb_votes": 1613,
+      "streaming": [
+        {
+          "name": "Netflix",
+          "url": ""
+        },
+        {
+          "name": "Netflix Standard with Ads",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "demonic"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "subgenre: demonic",
+          "url": "https://letterboxd.com/film/goosebumps-2-haunted-halloween/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 30,
+      "taste_match_score": 0.197,
+      "tmdb_id": 346672,
+      "title": "Underworld: Blood Wars",
+      "year": 2016,
+      "overview": "Vampire death dealer Selene fends off brutal attacks from both the Lycan clan and the Vampire faction that betrayed her. With her only allies, David and his father Thomas, she must stop the eternal war between Lycans and Vampires, even if it means she has to make the ultimate sacrifice.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/v1ciDCWMG47gdT4kMyjyQbnLQQn.jpg",
+      "backdrop_path": "/b5QnSrjDRHUFg3hpjmwBwsJfzyP.jpg",
+      "director": "Anna Foerster",
+      "cast": [
+        "Kate Beckinsale",
+        "Theo James",
+        "Tobias Menzies",
+        "Lara Pulver",
+        "Bradley James"
+      ],
+      "runtime": 91,
+      "tagline": "Protect the Bloodline",
+      "tmdb_rating": 5.912,
+      "tmdb_votes": 3904,
+      "streaming": [],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "TMDB Reviews",
+          "claim": "fast paced",
+          "url": "https://www.themoviedb.org/movie/346672/reviews"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 31,
+      "taste_match_score": 0.194,
+      "tmdb_id": 1198994,
+      "title": "Send Help",
+      "year": 2026,
+      "overview": "Two colleagues become stranded on a deserted island, the only survivors of a plane crash. On the island, they must overcome past grievances and work together to survive, but ultimately, it's a battle of wills and wits to make it out alive.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/mjkS2iAgWj3ik1DTjvI15nHZ7yl.jpg",
+      "backdrop_path": "/gCmfeKmEAZBP5gcXpiqb0gii9rS.jpg",
+      "director": "Sam Raimi",
+      "cast": [
+        "Rachel McAdams",
+        "Dylan O'Brien",
+        "Edyll Ismail",
+        "Dennis Haysbert",
+        "Xavier Samuel"
+      ],
+      "runtime": 113,
+      "tagline": "Meet Linda Liddle... She's from strategy and planning. She's the boss now.",
+      "tmdb_rating": 7.065,
+      "tmdb_votes": 693,
+      "streaming": [],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/send-help/"
+        },
+        {
+          "source": "r/horror",
+          "claim": "fast paced",
+          "url": "https://www.reddit.com/r/horror/comments/1rybwfn/who_do_you_think_is_the_ultimate_lesser_of_the/"
+        },
+        {
+          "source": "r/moviesuggestions",
+          "claim": "fast paced",
+          "url": "https://www.reddit.com/r/MovieSuggestions/comments/1r8o36e/movies_like_the_beginning_of_send_help/"
+        }
+      ],
+      "validated": true
+    },
+    {
+      "rank": 32,
+      "taste_match_score": 0.193,
+      "tmdb_id": 1084187,
+      "title": "Pretty Lethal",
+      "year": 2026,
+      "overview": "A troupe of ballerinas find themselves fighting for survival as they attempt to escape from a remote inn after their bus breaks down on the way to a dance competition.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/znTPnXCK3lEQJgqXCvP7e5FUz6f.jpg",
+      "backdrop_path": "/6GuqUJ33BnWDAoVPZP55gDr5G55.jpg",
+      "director": "Vicky Jewson",
+      "cast": [
+        "Maddie Ziegler",
+        "Lana Condor",
+        "Iris Apatow",
+        "Millicent Simmonds",
+        "Avantika"
+      ],
+      "runtime": 88,
+      "tagline": "Blood, sweat and tutus.",
+      "tmdb_rating": 6.819,
+      "tmdb_votes": 119,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "survival horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "subgenre: survival horror",
+          "url": "https://letterboxd.com/film/pretty-lethal/"
+        },
+        {
+          "source": "r/horror",
+          "claim": "fast paced",
+          "url": "https://www.reddit.com/r/horror/comments/1s4oreu/pretty_lethal_2026_was_fun_wish_read_or_not_2_had/"
+        },
+        {
+          "source": "r/moviesuggestions",
+          "claim": "subgenre: survival horror",
+          "url": "https://www.reddit.com/r/MovieSuggestions/comments/pe2se1/what_is_the_most_80s_movie/"
+        },
+        {
+          "source": "r/moviesuggestions",
+          "claim": "fast paced",
+          "url": "https://www.reddit.com/r/MovieSuggestions/comments/pe2se1/what_is_the_most_80s_movie/"
+        }
+      ],
+      "validated": true
+    },
+    {
+      "rank": 33,
+      "taste_match_score": 0.193,
+      "tmdb_id": 1026819,
+      "title": "The Hunted",
+      "year": 2024,
+      "overview": "After their boat capsizes in the Mediterranean Sea, a group of refugees are rescued by rich Europeans who offer them shelter on an idyllic island. But the miracle soon becomes a nightmare when the saviors turn into ruthless manhunters.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/zgx7I0JfmHbGcbveNk4EK3jFuMk.jpg",
+      "backdrop_path": "/cCekicSVtEVHnLjPHlxT9DPOPF5.jpg",
+      "director": "Louis Lagayette",
+      "cast": [
+        "Lily Banda",
+        "Alec Newman",
+        "Raj Bajaj",
+        "Vassilis Koukalani",
+        "Kostis Kallivretakis"
+      ],
+      "runtime": 95,
+      "tagline": "",
+      "tmdb_rating": 7.1,
+      "tmdb_votes": 103,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "ALLBLK Apple TV channel",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "ALLBLK Amazon channel ",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "human hunting"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "human hunting",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 34,
+      "taste_match_score": 0.192,
+      "tmdb_id": 1214140,
+      "title": "Monster Island",
+      "year": 2025,
+      "overview": "In the Pacific, 1944, a Japanese soldier and a British prisoner of war are stranded on a deserted island, hunted by a deadly creature. Two mortal enemies must come together to survive the unknown.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/BCEYcclrfWWLcsTzhweSVFb8tO.jpg",
+      "backdrop_path": "/fxKC10HQliVA3Tn5smOclqzL96N.jpg",
+      "director": "Mike Wiluan",
+      "cast": [
+        "Dean Fujioka",
+        "Callum Woodhouse",
+        "Alan Maxson",
+        "Kazushi Kato",
+        "Teruhiko Kameoka"
+      ],
+      "runtime": 83,
+      "tagline": "",
+      "tmdb_rating": 5.995,
+      "tmdb_votes": 100,
+      "streaming": [
+        {
+          "name": "AMC Plus Apple TV Channel ",
+          "url": ""
+        },
+        {
+          "name": "AMC+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "AMC+",
+          "url": ""
+        },
+        {
+          "name": "Shudder",
+          "url": ""
+        },
+        {
+          "name": "Shudder Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Shudder Apple TV Channel",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "human hunting"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "human hunting",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 35,
+      "taste_match_score": 0.189,
+      "tmdb_id": 254472,
+      "title": "Stung",
+      "year": 2015,
+      "overview": "A fancy garden party turns into upper class prey when a colony of killer wasps mutates into seven foot tall predators.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/tcVeFuvxqnWlvoMEWevaeVO0Mm6.jpg",
+      "backdrop_path": "/nxRNNjxvvshFaEoeODmjdA8ihln.jpg",
+      "director": "Benni Diez",
+      "cast": [
+        "Matt O'Leary",
+        "Jessica Cook",
+        "Lance Henriksen",
+        "Clifton Collins Jr.",
+        "David Masterson"
+      ],
+      "runtime": 87,
+      "tagline": "Get inside, get away, just don't get stung.",
+      "tmdb_rating": 5.3,
+      "tmdb_votes": 209,
+      "streaming": [
+        {
+          "name": "AMC Plus Apple TV Channel ",
+          "url": ""
+        },
+        {
+          "name": "AMC+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "AMC+",
+          "url": ""
+        },
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "Sundance Now",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 36,
+      "taste_match_score": 0.189,
+      "tmdb_id": 1519168,
+      "title": "The Jester 2",
+      "year": 2025,
+      "overview": "When teen magician Max crosses paths with the sinister Jester on Halloween night, she must outsmart a supernatural killer whose magic is all too real and whose tricks always end up in blood.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/47dsw1jSOV0Be5zmy7CtLhYpqU.jpg",
+      "backdrop_path": "/yZtnGzfZER0QU7ZG4r4RaZAaXJH.jpg",
+      "director": "Colin Krawchuk",
+      "cast": [
+        "Michael Sheffield",
+        "Kaitlyn Trentham",
+        "Dingani Beza",
+        "Hassen Kacem",
+        "Jessica Ambuehl"
+      ],
+      "runtime": 87,
+      "tagline": "You can't cheat death twice.",
+      "tmdb_rating": 6.255,
+      "tmdb_votes": 53,
+      "streaming": [
+        {
+          "name": "AMC Plus Apple TV Channel ",
+          "url": ""
+        },
+        {
+          "name": "AMC+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "AMC+",
+          "url": ""
+        },
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "Shudder",
+          "url": ""
+        },
+        {
+          "name": "Shudder Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Shudder Apple TV Channel",
+          "url": ""
+        },
+        {
+          "name": "Kanopy",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 37,
+      "taste_match_score": 0.188,
+      "tmdb_id": 1193501,
+      "title": "Whistle",
+      "year": 2026,
+      "overview": "A misfit group of unwitting high school students stumble upon a cursed object, an ancient Aztec Death Whistle. They discover that blowing the whistle and the terrifying sound it emits will summon their future deaths to hunt them down.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/eGxPyseSnEZBMJaopGfRUO9HSYx.jpg",
+      "backdrop_path": "/yJi6g0CnsqANLNuVaRX28tZxeHX.jpg",
+      "director": "Corin Hardy",
+      "cast": [
+        "Dafne Keen",
+        "Sophie Nélisse",
+        "Sky Yang",
+        "Jhaleil Swaby",
+        "Alissa Skovbye"
+      ],
+      "runtime": 100,
+      "tagline": "Don't blow it.",
+      "tmdb_rating": 5.992,
+      "tmdb_votes": 199,
+      "streaming": [],
+      "nano_genres": [
+        "human hunting"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "human hunting",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 38,
+      "taste_match_score": 0.188,
+      "tmdb_id": 207768,
+      "title": "I Spit on Your Grave 2",
+      "year": 2013,
+      "overview": "Broke, and in desperate need to update her portfolio, New York City model Katie calls a number from a tear-off flyer offering free photos. But this innocent attempt quickly turns into an unthinkable kidnapping nightmare where she's ripped away from everyone and everything she knows.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/wit1VRI9sAbCstuwm3KPgxfYYqo.jpg",
+      "backdrop_path": "/rmYAHOJoA55EKP2t4WQAntPTjMY.jpg",
+      "director": "Steven R. Monroe",
+      "cast": [
+        "Jemma Dallender",
+        "Joe Absolom",
+        "Aleksandar Aleksiev",
+        "Yavor Baharov",
+        "Mary Stockley"
+      ],
+      "runtime": 106,
+      "tagline": "The Terror. The Bloodshed. The Revenge.",
+      "tmdb_rating": 6.271,
+      "tmdb_votes": 1401,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "MovieSphere+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        },
+        {
+          "name": "Fawesome",
+          "url": ""
+        },
+        {
+          "name": "Fandango at Home Free",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video Free with Ads",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "kidnapping horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "kidnapping horror",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/i-spit-on-your-grave-2/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 39,
+      "taste_match_score": 0.187,
+      "tmdb_id": 11237,
+      "title": "Anacondas: The Hunt for the Blood Orchid",
+      "year": 2004,
+      "overview": "A scientific expedition sets out for Borneo to seek a flower called the Blood Orchid, which could grant extended life. Meanwhile, they run afoul of snakes and each other.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/apAZ6o1SyYgcC8R2LqTCYnBe1lK.jpg",
+      "backdrop_path": "/bMNHiwzjlg9FJNyxZ1zNFKZ9MTT.jpg",
+      "director": "Dwight H. Little",
+      "cast": [
+        "Johnny Messner",
+        "KaDee Strickland",
+        "Matthew Marsden",
+        "Nicholas Gonzalez",
+        "Eugene Byrd"
+      ],
+      "runtime": 96,
+      "tagline": "The hunters will become the hunted.",
+      "tmdb_rating": 5.5,
+      "tmdb_votes": 1083,
+      "streaming": [
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "human hunting"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "human hunting",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 40,
+      "taste_match_score": 0.185,
+      "tmdb_id": 1107325,
+      "title": "Witchboard",
+      "year": 2025,
+      "overview": "A cursed Witchboard awakens dark forces, dragging a young couple into a deadly game of possession, deception, and supernatural terror in New Orleans.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/8RcN5FHkJVNJdOaL6WtTePU7CyF.jpg",
+      "backdrop_path": "/sQqdvDQET5pr7PbVAtPsYYucZoR.jpg",
+      "director": "Chuck Russell",
+      "cast": [
+        "Madison Iseman",
+        "Aaron Dominguez",
+        "Mel Jarnson",
+        "Charlie Tahan",
+        "Antonia Desplat"
+      ],
+      "runtime": 113,
+      "tagline": "Dare to play.",
+      "tmdb_rating": 5.9,
+      "tmdb_votes": 53,
+      "streaming": [],
+      "nano_genres": [
+        "possession horror",
+        "death game"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "possession horror",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 41,
+      "taste_match_score": 0.184,
+      "tmdb_id": 1412598,
+      "title": "Killer Whale",
+      "year": 2026,
+      "overview": "Follows best friends Maddie and Trish as they find themselves trapped in a remote lagoon with the dangerous killer whale named Ceto.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/xC6zdIoIHjhOIFmjNyGgtzhuhiF.jpg",
+      "backdrop_path": "/ykigHs1OIyqqV04zfFqIlSHp546.jpg",
+      "director": "Jo-Anne Brechin",
+      "cast": [
+        "Virginia Gardner",
+        "Mel Jarnson",
+        "Mitchell Hope",
+        "Isaac Crawley",
+        "Scott James George"
+      ],
+      "runtime": 89,
+      "tagline": "It's feeding time.",
+      "tmdb_rating": 5.6,
+      "tmdb_votes": 67,
+      "streaming": [],
+      "nano_genres": [
+        "trap horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "trap horror",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 42,
+      "taste_match_score": 0.184,
+      "tmdb_id": 49018,
+      "title": "Insidious",
+      "year": 2011,
+      "overview": "A family discovers that dark spirits have invaded their home after their son inexplicably falls into an endless sleep. When they reach out to a professional for help, they learn things are a lot more personal than they thought.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/1egpmVXuXed58TH2UOnX1nATTrf.jpg",
+      "backdrop_path": "/yZP6GyrgzdpjH1AxPHlb8ACLkiA.jpg",
+      "director": "James Wan",
+      "cast": [
+        "Patrick Wilson",
+        "Rose Byrne",
+        "Lin Shaye",
+        "Ty Simpkins",
+        "Barbara Hershey"
+      ],
+      "runtime": 102,
+      "tagline": "It's not the house that's haunted.",
+      "tmdb_rating": 6.941,
+      "tmdb_votes": 7235,
+      "streaming": [
+        {
+          "name": "HBO Max",
+          "url": ""
+        },
+        {
+          "name": "HBO Max Amazon Channel",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/insidious/"
+        },
+        {
+          "source": "r/horror",
+          "claim": "fast paced",
+          "url": "https://www.reddit.com/r/horror/comments/1j05hql/i_watched_100_modern_horror_movies_over_the_last/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 43,
+      "taste_match_score": 0.182,
+      "tmdb_id": 1116201,
+      "title": "Iron Lung",
+      "year": 2026,
+      "overview": "The stars are gone. The planets have disappeared. Only individuals aboard space stations or starships were left to give the end a name -- The Quiet Rapture. After decades of decay and crumbling infrastructure, the Consolidation of Iron has made a discovery on a barren moon designated AT-5. An ocean of blood. Hoping to discover desperately needed resources they immediately launch an expedition. A submarine is crafted and a convict is welded inside. Due to the pressure and depth of the ocean the forward viewport has been encased in metal. If successful, they will earn their freedom. If not, another will follow. This will be the 13th expedition.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/sIwakdbMGS1krtgendTWpxTY9Hw.jpg",
+      "backdrop_path": "/gqGQ0zADV5FIcgMWtWX8FcGQjFp.jpg",
+      "director": "Mark Fischbach",
+      "cast": [
+        "Mark Fischbach",
+        "Caroline Kaplan",
+        "Troy Baker",
+        "Elsie Lovelock",
+        "Elle LaMont"
+      ],
+      "runtime": 125,
+      "tagline": "This is not an expedition. It's an execution.",
+      "tmdb_rating": 7.259,
+      "tmdb_votes": 114,
+      "streaming": [],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/iron-lung/"
+        },
+        {
+          "source": "r/horror",
+          "claim": "fast paced",
+          "url": "https://www.reddit.com/r/horror/comments/1qqyqwp/i_just_got_out_of_iron_lung_2026_i_went_in_with/"
+        },
+        {
+          "source": "r/moviesuggestions",
+          "claim": "fast paced",
+          "url": "https://www.reddit.com/r/MovieSuggestions/comments/1r32qqv/movies_alike_the_lightohouse_and_iron_lung/"
+        }
+      ],
+      "validated": true
+    },
+    {
+      "rank": 44,
+      "taste_match_score": 0.181,
+      "tmdb_id": 55547,
+      "title": "Route 666",
+      "year": 2001,
+      "overview": "Smith, a mob informer hiding out with the Witness Protection Program, decides to make a break for it and hide out in the Arizona desert. The Feds catch up with him and rescue him just before a group of hitmen can manage to silence him for good. In the course of getting Smith away from the mafia thugs, the pair of agents assigned to protect him turn onto an abandoned stretch of highway nicknamed 'Route 666' after the mysterious death of a prison chain gang. As the three continue on their way, they soon discover just what happened to the chain gang, and how the highway earned its name.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/mrTWXADgmrvPmXsC7PX7V7yAIEh.jpg",
+      "backdrop_path": "/fnDwHw8drCBGoJNUoS5dLHKXRlq.jpg",
+      "director": "William Wesley",
+      "cast": [
+        "Lou Diamond Phillips",
+        "Lori Petty",
+        "Steven Williams",
+        "L.Q. Jones",
+        "Dale Midkiff"
+      ],
+      "runtime": 86,
+      "tagline": "One Way In, No Way Out",
+      "tmdb_rating": 5.0,
+      "tmdb_votes": 80,
+      "streaming": [
+        {
+          "name": "Amazon Prime Video",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video with Ads",
+          "url": ""
+        },
+        {
+          "name": "YouTube Free",
+          "url": ""
+        },
+        {
+          "name": "Amazon Prime Video Free with Ads",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 45,
+      "taste_match_score": 0.18,
+      "tmdb_id": 1199869,
+      "title": "Eye for an Eye",
+      "year": 2025,
+      "overview": "Anna, grieving the sudden death of her parents, relocates from New York to a small Florida town to live with the grandmother she has never met. Isolated, vulnerable, and in need of friends, she finds brief solace in the company of two local teens. But when she becomes complicit to their unforgivable act of violence, she finds herself ensnared by Mr. Sandman – the twisted soul of a tormented child who haunts bullies’ dreams before feasting on their eyeballs when they finally wake - Anna must right her wrong before becoming a victim of this gruesome curse.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/lpepbfVziHJLhVoxTEKs8ok00iu.jpg",
+      "backdrop_path": "/tTDfDHqGkRgBTL4Tw8mU0iwkW8T.jpg",
+      "director": "Colin Tilley",
+      "cast": [
+        "Whitney Peak",
+        "Golda Rosheuvel",
+        "Finn Bennett",
+        "Laken Giles",
+        "S. Epatha Merkerson"
+      ],
+      "runtime": 101,
+      "tagline": "You can't escape your dreams.",
+      "tmdb_rating": 5.4,
+      "tmdb_votes": 41,
+      "streaming": [
+        {
+          "name": "Starz Apple TV Channel",
+          "url": ""
+        },
+        {
+          "name": "Starz Roku Premium Channel",
+          "url": ""
+        },
+        {
+          "name": "Starz",
+          "url": ""
+        },
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "Starz Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Kanopy",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/eye-for-an-eye/"
+        },
+        {
+          "source": "r/moviesuggestions",
+          "claim": "fast paced",
+          "url": "https://www.reddit.com/r/MovieSuggestions/comments/1rwte82/im_looking_for_movies_without_any_flashing_strobe/"
+        },
+        {
+          "source": "TMDB Reviews",
+          "claim": "fast paced",
+          "url": "https://www.themoviedb.org/movie/1199869/reviews"
+        }
+      ],
+      "validated": true
+    },
+    {
+      "rank": 46,
+      "taste_match_score": 0.178,
+      "tmdb_id": 1730,
+      "title": "Inland Empire",
+      "year": 2006,
+      "overview": "When actress Nikki Grace gets the lead role in a cursed film, her world becomes more and more surreal, blending realities and ideas of infidelity, reincarnation, and supernatural forces.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/s5f0FbVAABEnJYKaApWORTxhiFC.jpg",
+      "backdrop_path": "/qyePa65qZVnuYWivTBXkHV9aI3A.jpg",
+      "director": "David Lynch",
+      "cast": [
+        "Laura Dern",
+        "Jeremy Irons",
+        "Justin Theroux",
+        "Harry Dean Stanton",
+        "Karolina Gruszka"
+      ],
+      "runtime": 180,
+      "tagline": "A woman in trouble.",
+      "tmdb_rating": 7.005,
+      "tmdb_votes": 1250,
+      "streaming": [
+        {
+          "name": "HBO Max",
+          "url": ""
+        },
+        {
+          "name": "HBO Max Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Criterion Channel",
+          "url": ""
+        },
+        {
+          "name": "Plex",
+          "url": ""
+        },
+        {
+          "name": "Plex Channel",
+          "url": ""
+        },
+        {
+          "name": "Shout! Factory TV",
+          "url": ""
+        },
+        {
+          "name": "Tubi TV",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [
+        {
+          "source": "Letterboxd",
+          "claim": "fast paced",
+          "url": "https://letterboxd.com/film/inland-empire/"
+        }
+      ],
+      "validated": false
+    },
+    {
+      "rank": 47,
+      "taste_match_score": 0.177,
+      "tmdb_id": 520763,
+      "title": "A Quiet Place Part II",
+      "year": 2021,
+      "overview": "Following the events at home, the Abbott family now face the terrors of the outside world. Forced to venture into the unknown, they realize that the creatures that hunt by sound are not the only threats that lurk beyond the sand path.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/4q2hz2m8hubgvijz8Ez0T2Os2Yv.jpg",
+      "backdrop_path": "/uuBYYlbfiYD7ny5VNj46NG14ykR.jpg",
+      "director": "John Krasinski",
+      "cast": [
+        "Emily Blunt",
+        "John Krasinski",
+        "Millicent Simmonds",
+        "Noah Jupe",
+        "Cillian Murphy"
+      ],
+      "runtime": 96,
+      "tagline": "Silence is not enough.",
+      "tmdb_rating": 7.438,
+      "tmdb_votes": 7270,
+      "streaming": [
+        {
+          "name": "Paramount Plus Premium",
+          "url": ""
+        },
+        {
+          "name": "Paramount Plus Essential",
+          "url": ""
+        },
+        {
+          "name": "Paramount+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Paramount+ Roku Premium Channel",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "human hunting"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "human hunting",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 48,
+      "taste_match_score": 0.177,
+      "tmdb_id": 9276,
+      "title": "The Faculty",
+      "year": 1998,
+      "overview": "When some very creepy things start happening around school, the kids at Herrington High make the chilling discovery that confirms their worst suspicions: their teachers really are from another planet!",
+      "poster_url": "https://image.tmdb.org/t/p/w500/5XetJwmAiDC0EtH23NIXaqFn3Wl.jpg",
+      "backdrop_path": "/oJRlYxfG10h4sxk2A7fpeOZnaFi.jpg",
+      "director": "Robert Rodriguez",
+      "cast": [
+        "Josh Hartnett",
+        "Elijah Wood",
+        "Jordana Brewster",
+        "Clea DuVall",
+        "Shawn Hatosy"
+      ],
+      "runtime": 104,
+      "tagline": "These six students are about to discover their teachers really are from another planet.",
+      "tmdb_rating": 6.6,
+      "tmdb_votes": 2201,
+      "streaming": [
+        {
+          "name": "fuboTV",
+          "url": ""
+        },
+        {
+          "name": "MGM+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Paramount Plus Premium",
+          "url": ""
+        },
+        {
+          "name": "Paramount Plus Essential",
+          "url": ""
+        },
+        {
+          "name": "Paramount+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "MGM Plus",
+          "url": ""
+        },
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "Paramount+ Roku Premium Channel",
+          "url": ""
+        }
+      ],
+      "nano_genres": [
+        "cult horror"
+      ],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 49,
+      "taste_match_score": 0.176,
+      "tmdb_id": 1153714,
+      "title": "Death of a Unicorn",
+      "year": 2025,
+      "overview": "A father and daughter accidentally hit and kill a unicorn while en route to a weekend retreat, where his billionaire boss seeks to exploit the creature’s miraculous curative properties.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/xWlF2i51zUq7BUq4iJte1g9NyIM.jpg",
+      "backdrop_path": "/4rLaMBcCJ1pMq72vCulBMPsbAyh.jpg",
+      "director": "Alex Scharfman",
+      "cast": [
+        "Paul Rudd",
+        "Jenna Ortega",
+        "Will Poulter",
+        "Richard E. Grant",
+        "Téa Leoni"
+      ],
+      "runtime": 107,
+      "tagline": "Payback is a beast.",
+      "tmdb_rating": 6.401,
+      "tmdb_votes": 777,
+      "streaming": [
+        {
+          "name": "HBO Max",
+          "url": ""
+        },
+        {
+          "name": "HBO Max Amazon Channel",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    },
+    {
+      "rank": 50,
+      "taste_match_score": 0.176,
+      "tmdb_id": 1476740,
+      "title": "Influencers",
+      "year": 2025,
+      "overview": "In the picturesque landscapes of Southern France, a young woman's chilling fascination with murder and identity theft sends her life into a whirlwind of chaos.",
+      "poster_url": "https://image.tmdb.org/t/p/w500/nRdjGDxBW60OhzjAtikLgQBwt3B.jpg",
+      "backdrop_path": "/m63y5ozkIBpPr3LxjZUFH8vQKlk.jpg",
+      "director": "Kurtis David Harder",
+      "cast": [
+        "Cassandra Naud",
+        "Emily Tennant",
+        "Georgina Campbell",
+        "Lisa Delamar",
+        "Jonathan Whitesell"
+      ],
+      "runtime": 110,
+      "tagline": "We all have to start somewhere.",
+      "tmdb_rating": 6.522,
+      "tmdb_votes": 68,
+      "streaming": [
+        {
+          "name": "AMC Plus Apple TV Channel ",
+          "url": ""
+        },
+        {
+          "name": "AMC+ Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "AMC+",
+          "url": ""
+        },
+        {
+          "name": "Philo",
+          "url": ""
+        },
+        {
+          "name": "Shudder",
+          "url": ""
+        },
+        {
+          "name": "Shudder Amazon Channel",
+          "url": ""
+        },
+        {
+          "name": "Shudder Apple TV Channel",
+          "url": ""
+        }
+      ],
+      "nano_genres": [],
+      "review_1star": "",
+      "review_5star": "",
+      "category": "",
+      "validations": [],
+      "validated": false
+    }
+  ]
+}

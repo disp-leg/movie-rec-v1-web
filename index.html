@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Movie Rec — Ria's Picks</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div id="loading-screen">
+  <div class="spinner"></div>
+  <p>Loading recommendations...</p>
+</div>
+
+<!-- Fullscreen Image Viewer -->
+<div class="fullscreen-viewer" id="fullscreen-viewer">
+  <img id="fullscreen-img" src="" alt="">
+</div>
+
+<!-- App -->
+<div id="app">
+
+  <!-- HOME VIEW -->
+  <div class="view active" id="home-view">
+    <div class="home-title">
+      Ria's Picks
+      <div class="home-subtitle">Horror Recommendations</div>
+    </div>
+    <div class="movie-counter" id="movie-counter"></div>
+
+    <div class="nav-arrow left" id="nav-left">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </div>
+
+    <div class="tile-container" id="tile-container">
+      <div class="tile-3d" id="tile-3d">
+        <div class="tile-ambient-shadow" id="tile-shadow"></div>
+        <div class="tile-front">
+          <img id="tile-poster" src="" alt="">
+        </div>
+        <div class="tile-side-right"></div>
+        <div class="tile-side-bottom"></div>
+      </div>
+    </div>
+
+    <div class="nav-arrow right" id="nav-right">
+      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    </div>
+
+    <div class="chevron-btn" id="chevron-btn">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+
+  <!-- DETAIL VIEW -->
+  <div class="view" id="detail-view"></div>
+
+  <!-- CATEGORIES VIEW -->
+  <div class="view" id="categories-view">
+    <div class="categories-header">Categories</div>
+    <div class="categories-grid" id="categories-grid"></div>
+    <div class="chevron-btn flipped" id="cat-chevron-btn">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+
+  <!-- CATEGORY STACK VIEW -->
+  <div class="view" id="category-stack-view"></div>
+
+</div>
+
+<!-- Scripts: data first, then components, then app -->
+<script src="data.js"></script>
+<script src="components.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
