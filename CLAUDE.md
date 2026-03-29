@@ -150,7 +150,7 @@ When spawning agent teams for short tasks (<15 min), include the content of `~/.
 
 - [VERIFIED] Content engine JSON exists at /tmp/movie-rec-content/output/live_recommendations.json — 50 horror movies with full metadata
 - [VERIFIED] GitHub CLI (gh) available and authenticated as disp-leg
-- [UNVERIFIED] TMDB API allows CORS from browser-side requests
+- [VERIFIED] TMDB API allows CORS from browser-side requests — confirmed working on GitHub Pages
 - [VERIFIED] JSON includes: tmdb_id, poster_url, backdrop_path, cast, streaming, nano_genres, validations, reviews
 
 ## Approval Scope
@@ -180,14 +180,37 @@ When spawning agent teams for short tasks (<15 min), include the content of `~/.
 
 ## Pre-Graduation Self-Review
 
-- [ ] Re-read the original task direction. Does the deliverable match what was asked?
-- [ ] Does the code compile/build without errors?
-- [ ] Were all tests run and passing?
-- [ ] Are there any hardcoded values, TODOs, or placeholder code?
-- [ ] Is the `## Assumptions` section up to date?
-- [ ] Are lessons learned documented in `## Lessons Learned`?
-- [ ] Is the deliverable statement written in `## Deliverable`?
+- [x] Re-read the original task direction. Does the deliverable match what was asked? — YES, all 5 phases complete
+- [x] Does the code compile/build without errors? — YES, tested locally and on Pages
+- [x] Were all tests run and passing? — YES, verified via Playwright: home, nav, detail, categories, category stack
+- [x] Are there any hardcoded values, TODOs, or placeholder code? — TMDB API key is intentional (per spec). Letterboxd/RT ratings are placeholder dashes (no API available). Default review text is hardcoded fallback.
+- [x] Is the `## Assumptions` section up to date? — YES, all verified
+- [x] Are lessons learned documented in `## Lessons Learned`? — YES
+- [x] Is the deliverable statement written in `## Deliverable`? — YES
 
 ## Lessons Learned
 
+- Modular file structure (data.js, components.js, app.js, styles.css) is cleaner than a single index.html for this scope
+- DOM API (createElement/textContent) is verbose but avoids innerHTML security concerns entirely
+- TMDB API does allow CORS from any origin — no proxy needed
+- Content engine JSON at /tmp/ isn't accessible from browser fetch — must copy to project root for serving
+- GitHub Pages workflow-based deployment requires a .github/workflows/deploy.yml
+
 ## Deliverable
+
+**Movie Rec v1 Web** — fully functional web port of Ria's iOS horror movie recommendation app.
+
+**Live URL:** https://disp-leg.github.io/movie-rec-v1-web/
+**Repo:** https://github.com/disp-leg/movie-rec-v1-web
+
+**Features delivered:**
+- Home page with centered 3D movie tile (physical depth, ambient shadow, frosted glass border)
+- Sink & rise navigation through 50 horror movies (arrow keys, swipe, click)
+- Detail view with all 11 components: hero backdrop, floating action card, watch status, streaming, cast avatars, ratings, star rating, Letterboxd reviews, stills gallery, expandable cells, similar movies shelf, action buttons
+- Categories page with 10 genre cards (emoji, count)
+- Category stack view with scoped tile navigation
+- Chevron toggle between home and categories
+- TMDB API integration (details, credits, watch providers, images, similar)
+- Glassmorphism design, responsive layout (mobile/tablet/desktop)
+- Keyboard navigation, touch swipe, 3D tilt on long press
+- GitHub Pages deployment with Actions workflow
