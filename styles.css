@@ -28,7 +28,7 @@
 
 html, body {
   height: 100%;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Text', Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text-primary);
   overflow: hidden;
@@ -79,7 +79,7 @@ html, body {
 .home-title {
   position: absolute; top: calc(16px + var(--safe-top));
   left: 0; right: 0; text-align: center;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 20px; font-weight: 700;
   letter-spacing: -0.3px; z-index: 10;
 }
@@ -265,7 +265,7 @@ html, body {
   z-index: 10;
 }
 .fac-title {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 26px; font-weight: 700;
   letter-spacing: -0.5px; line-height: 1.15;
 }
@@ -277,7 +277,7 @@ html, body {
 .fac-pill {
   display: inline-flex; align-items: center;
   padding: 4px 12px; border-radius: var(--radius-pill);
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', sans-serif;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', Helvetica, Arial, sans-serif;
   font-size: 13px; font-weight: 600;
 }
 .fac-category { background: rgba(0,122,255,0.12); color: var(--accent-blue); }
@@ -304,7 +304,7 @@ html, body {
 
 /* Section Title */
 .section-title {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 17px; font-weight: 700; margin-bottom: 12px;
 }
 
@@ -495,7 +495,7 @@ html, body {
 #categories-view { background: var(--bg); overflow-y: auto; }
 .categories-header {
   padding: calc(20px + var(--safe-top)) 20px 16px;
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 32px; font-weight: 700; letter-spacing: -0.5px;
 }
 .categories-grid {
@@ -529,7 +529,7 @@ html, body {
   left: 0; right: 0; text-align: center; z-index: 10;
 }
 .category-stack-title {
-  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 20px; font-weight: 700; text-transform: capitalize;
 }
 .category-stack-count {
