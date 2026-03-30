@@ -238,17 +238,16 @@ html, body {
   content: '';
   position: fixed; inset: 0;
   background: url('https://images.unsplash.com/photo-1518467166778-b88f373ffec7?w=1200&q=80&auto=format&fit=crop') center/cover no-repeat;
-  z-index: 0;
+  z-index: -2;
   pointer-events: none;
 }
 #grid-view::after {
   content: '';
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.82);
-  z-index: 0;
+  z-index: -1;
   pointer-events: none;
 }
-#grid-view > * { position: relative; z-index: 1; }
 .grid-header {
   display: flex; align-items: center; gap: 12px;
   padding: calc(12px + var(--safe-top)) 16px 12px;
