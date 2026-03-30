@@ -298,6 +298,15 @@ function setupHomeTiles() {
   });
 }
 
+function animateHomeTiles() {
+  var tiles = document.querySelectorAll('.home-tile');
+  tiles.forEach(function(tile, i) {
+    setTimeout(function() {
+      tile.classList.add('visible');
+    }, 80 + i * 90);
+  });
+}
+
 function handleHomeTile(id) {
   if (id === 'latest') {
     openGrid('latest', 'Latest Releases', getLatestReleases());
@@ -319,6 +328,7 @@ async function init() {
   state.categories = data.categories;
 
   setupHomeTiles();
+  animateHomeTiles();
 
   var ls = document.getElementById('loading-screen');
   ls.classList.add('fade-out');
