@@ -99,10 +99,17 @@ function createTile() {
 function updateTilePoster(container, movie) {
   var img = container.querySelector('.tile-front img');
   var shadow = container.querySelector('.tile-ambient-shadow');
-  img.src = movie.poster_url;
   img.alt = movie.title;
   img.crossOrigin = 'anonymous';
-  img.onload = function() { shadow.style.background = extractColor(img); };
+  img.onload = function() { if (shadow) shadow.style.background = extractColor(img); };
+  img.onerror = function() {
+    // Fallback: try w500 path rebuild, or leave gradient background visible
+    if (movie.poster_url && !img.dataset.retried) {
+      img.dataset.retried = '1';
+      img.src = 'https://image.tmdb.org/t/p/w500' + movie.poster_url.split('/').pop();
+    }
+  };
+  img.src = movie.poster_url;
 
   // Update info overlay if present
   var titleEl = container.querySelector('.tile-info-title');

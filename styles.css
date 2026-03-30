@@ -109,7 +109,11 @@ html, body {
 .tile-3d {
   position: relative; width: 100%; height: 100%;
   transform-style: preserve-3d;
+  transform: scale(1) translateZ(0);
+  opacity: 1;
   will-change: transform, opacity;
+  /* No transition — animations only. Prevents snap-back glitch */
+  transition: none !important;
 }
 .tile-front {
   position: absolute; inset: 0;
@@ -125,6 +129,7 @@ html, body {
 .tile-front img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
+  background: linear-gradient(135deg, #2c2c2e 0%, #1c1c1e 50%, #3a3a3c 100%);
 }
 
 /* Subtle inner glow border — like frosted glass edge */
@@ -193,24 +198,25 @@ html, body {
   transition: opacity 0.6s;
 }
 
-/* Sink & Rise — heavier, more physical feel */
+/* Sink & Rise — smooth spring physics */
 .tile-3d.sinking {
-  animation: tileSink 0.5s var(--ease-out-expo) forwards;
+  animation: tileSink 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
   pointer-events: none;
 }
 .tile-3d.rising {
-  animation: tileRise 0.55s var(--spring) forwards;
+  animation: tileRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   pointer-events: none;
 }
 @keyframes tileSink {
-  0% { transform: scale(1) translateZ(0px); opacity: 1; }
-  60% { transform: scale(0.92) translateZ(-80px); opacity: 0.5; }
-  100% { transform: scale(0.85) translateZ(-160px); opacity: 0; }
+  0%   { transform: scale(1) translateY(0); opacity: 1; }
+  100% { transform: scale(0.88) translateY(40px); opacity: 0; }
 }
 @keyframes tileRise {
-  0% { transform: scale(0.85) translateZ(-160px); opacity: 0; }
-  50% { opacity: 0.8; }
-  100% { transform: scale(1) translateZ(0px); opacity: 1; }
+  0%   { transform: scale(0.88) translateY(40px); opacity: 0; }
+  40%  { transform: scale(0.96) translateY(8px); opacity: 0.7; }
+  70%  { transform: scale(1.01) translateY(-4px); opacity: 0.95; }
+  85%  { transform: scale(0.998) translateY(1px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
 /* Tilt on long press */
@@ -526,6 +532,7 @@ html, body {
   width: 100%; aspect-ratio: 2/3; object-fit: cover;
   border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   transition: transform 0.3s var(--spring);
+  background: linear-gradient(135deg, #2c2c2e 0%, #1c1c1e 50%, #3a3a3c 100%);
 }
 .similar-card:active img { transform: scale(0.95); }
 .similar-card .title {
@@ -631,6 +638,7 @@ html, body {
   object-fit: cover; display: block;
   border-radius: 14px;
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #2c2c2e 0%, #1c1c1e 50%, #3a3a3c 100%);
 }
 .collection-card .collection-card-title {
   margin-top: 6px;

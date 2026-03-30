@@ -76,24 +76,30 @@ function navigateTile(direction) {
 
   state.navigating = true;
   var tile = document.querySelector('#tile-container .tile-3d');
+
+  // Listen for sink animation end instead of setTimeout
   tile.classList.add('sinking');
 
-  // Wait for sink to fully finish (450ms), then swap content while invisible
-  setTimeout(function() {
+  function onSinkEnd() {
+    tile.removeEventListener('animationend', onSinkEnd);
+
+    // Swap content while fully invisible
     state.currentIndex = ni;
     showCurrentTile();
 
-    // Force a reflow between removing sink and adding rise
-    // so the browser treats them as separate animations
+    // Force reflow, then rise
     tile.classList.remove('sinking');
     void tile.offsetWidth;
     tile.classList.add('rising');
 
-    setTimeout(function() {
+    function onRiseEnd() {
+      tile.removeEventListener('animationend', onRiseEnd);
       tile.classList.remove('rising');
       state.navigating = false;
-    }, 520);
-  }, 460);
+    }
+    tile.addEventListener('animationend', onRiseEnd);
+  }
+  tile.addEventListener('animationend', onSinkEnd);
 }
 
 function navigateCategoryTile(direction) {
@@ -106,7 +112,8 @@ function navigateCategoryTile(direction) {
   var tile = document.querySelector('#category-stack-view .tile-3d');
   tile.classList.add('sinking');
 
-  setTimeout(function() {
+  function onSinkEnd() {
+    tile.removeEventListener('animationend', onSinkEnd);
     stack.index = ni;
     var movie = stack.movies[ni];
     var container = document.querySelector('#category-stack-view .tile-container');
@@ -116,11 +123,15 @@ function navigateCategoryTile(direction) {
     tile.classList.remove('sinking');
     void tile.offsetWidth;
     tile.classList.add('rising');
-    setTimeout(function() {
+
+    function onRiseEnd() {
+      tile.removeEventListener('animationend', onRiseEnd);
       tile.classList.remove('rising');
       state.navigating = false;
-    }, 520);
-  }, 460);
+    }
+    tile.addEventListener('animationend', onRiseEnd);
+  }
+  tile.addEventListener('animationend', onSinkEnd);
 }
 
 /* ─── 3D Tilt Interaction ─── */
