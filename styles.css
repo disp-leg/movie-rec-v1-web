@@ -25,7 +25,7 @@
 
 html, body {
   height: 100%;
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
   background: var(--bg); color: var(--text-primary);
   overflow: hidden; overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -64,17 +64,6 @@ html, body {
   scroll-behavior: smooth;
   display: block !important;
 }
-.bg-photo {
-  position: fixed; inset: -4px;
-  background: url('https://images.unsplash.com/photo-1630669251343-99759c4b3351?w=1920&q=80&auto=format&fit=crop') center/cover no-repeat;
-  filter: blur(3px);
-  z-index: 0; pointer-events: none;
-}
-.bg-photo::after {
-  content: ''; position: absolute; inset: 0;
-  background: rgba(0,0,0,0.72);
-}
-.home-content { position: relative; z-index: 1; }
 .showcase-header {
   padding: calc(clamp(32px, 8vw, 56px) + var(--safe-top)) clamp(20px, 5vw, 32px) clamp(8px, 2vw, 12px);
 }
@@ -95,12 +84,11 @@ html, body {
 /* Home Tiles Grid — 3 top, 2 bottom, all same size */
 .home-tiles {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: clamp(10px, 2.5vw, 14px);
   padding: 0 clamp(16px, 4vw, 28px) calc(40px + var(--safe-bottom));
 }
 .home-tile {
-  grid-column: span 2;
   border-radius: var(--radius-card);
   padding: clamp(16px, 4vw, 24px) clamp(14px, 3.5vw, 20px);
   cursor: pointer;
@@ -108,8 +96,8 @@ html, body {
   -webkit-tap-highlight-color: transparent;
   opacity: 0;
   transform: translateY(20px);
-  aspect-ratio: 1;
   display: flex; flex-direction: column; justify-content: flex-end;
+  height: clamp(120px, 30vw, 150px);
 }
 .home-tile.visible {
   opacity: 1;
@@ -118,16 +106,14 @@ html, body {
 }
 .home-tile:active { transform: scale(0.95); }
 
-/* Bottom row: 2 tiles centered in a 6-col grid */
-.home-tile:nth-child(4) { grid-column: 1 / 4; }
-.home-tile:nth-child(5) { grid-column: 4 / 7; }
+/* Bottom row: 2 tiles, left-aligned in 3-col grid */
 
-/* Jewel tone backgrounds */
-.home-tile[data-tile-id="latest"]  { background: linear-gradient(135deg, #7f1d1d 0%, #991b1b 100%); } /* burgundy */
-.home-tile[data-tile-id="genres"]  { background: linear-gradient(135deg, #134e4a 0%, #115e59 100%); } /* teal */
-.home-tile[data-tile-id="shuffle"] { background: linear-gradient(135deg, #78350f 0%, #92400e 100%); } /* amber */
-.home-tile[data-tile-id="all"]     { background: linear-gradient(135deg, #312e81 0%, #3730a3 100%); } /* indigo */
-.home-tile[data-tile-id="saved"]   { background: linear-gradient(135deg, #064e3b 0%, #065f46 100%); } /* emerald */
+/* Metallic gray — brushed steel look */
+.home-tile {
+  background: linear-gradient(145deg, #3a3a3c 0%, #2c2c2e 40%, #3a3a3c 100%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 8px rgba(0,0,0,0.3);
+}
 
 .home-tile-icon {
   width: clamp(28px, 7vw, 36px); height: clamp(28px, 7vw, 36px);
