@@ -34,27 +34,26 @@
     </div>
 
     <div class="home-body">
-      <!-- Poster in frosted glass frame -->
+      <!-- Self-contained card: poster + info overlay -->
       <div class="glass-frame" id="tile-dock">
         <div class="tile-container" id="tile-container">
           <div class="tile-3d" id="tile-3d">
             <div class="tile-ambient-shadow" id="tile-shadow"></div>
             <div class="tile-front">
               <img id="tile-poster" src="" alt="">
+              <div class="card-overlay-gradient"></div>
+              <div class="card-overlay">
+                <div class="info-title" id="tile-title"></div>
+                <div class="info-row">
+                  <span class="info-year" id="tile-year"></span>
+                  <span class="info-genre" id="tile-category"></span>
+                  <span class="info-score" id="card-tmdb"></span>
+                </div>
+                <div class="info-streaming" id="streaming-strip"></div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <!-- Movie info below card -->
-      <div class="movie-info">
-        <div class="info-title" id="tile-title"></div>
-        <div class="info-row">
-          <span class="info-year" id="tile-year"></span>
-          <span class="info-genre" id="tile-category"></span>
-          <span class="info-score" id="card-tmdb"></span>
-        </div>
-        <div class="info-streaming" id="streaming-strip"></div>
       </div>
 
       <!-- Action buttons -->

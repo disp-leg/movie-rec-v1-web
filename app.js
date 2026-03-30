@@ -125,16 +125,22 @@ function showCurrentTile() {
 function setupCardDrag() {
   var dock = document.getElementById('tile-dock');
   if (!dock) return;
-  var card = dock; // Move the entire glass frame + poster as one unit
+  var card = dock;
   var isDragging = false;
   var startX = 0, startY = 0, currentX = 0, startTime = 0;
   var THRESHOLD = 80;
+
+  // Prevent tap/click from firing after a swipe
+  var totalMove = 0;
+  dock.addEventListener('click', function(e) {
+    if (totalMove > 10) { e.stopPropagation(); e.preventDefault(); }
+  }, true);
 
   function onStart(e) {
     if (state.navigating) return;
     var pt = e.touches ? e.touches[0] : e;
     startX = pt.clientX; startY = pt.clientY;
-    currentX = 0; startTime = Date.now();
+    currentX = 0; totalMove = 0; startTime = Date.now();
     isDragging = true;
     card.style.transition = 'none';
   }
@@ -143,6 +149,7 @@ function setupCardDrag() {
     var pt = e.touches ? e.touches[0] : e;
     currentX = pt.clientX - startX;
     var dy = Math.abs(pt.clientY - startY);
+    totalMove = Math.abs(currentX) + dy;
     if (dy > Math.abs(currentX) + 20 && Math.abs(currentX) < 20) return;
     var rotate = currentX * 0.05;
     var scale = 1 - Math.abs(currentX) * 0.0003;

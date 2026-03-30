@@ -121,42 +121,55 @@ html, body {
 @keyframes tileRise { 0% { transform: scale(0.92) translateY(24px); opacity:0; } 60% { opacity:0.9; } 100% { transform: scale(1) translateY(0); opacity:1; } }
 .tile-3d.tilting { transition: transform 0.3s var(--spring); }
 
-/* ─── Movie info below card ─── */
-.movie-info { margin-top: clamp(16px, 4vw, 28px); }
+/* ─── Card overlay: info on poster ─── */
+.card-overlay-gradient {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.45) 40%, transparent 100%);
+  pointer-events: none; z-index: 1;
+}
+.card-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: clamp(14px, 3.5vw, 22px);
+  z-index: 2; pointer-events: none;
+}
 .info-title {
-  font-size: clamp(22px, 6vw, 30px); font-weight: 600;
+  font-size: clamp(20px, 5.5vw, 26px); font-weight: 600;
   letter-spacing: -0.02em; line-height: 1.1; color: #f5f5f5;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
 .info-row {
-  display: flex; align-items: center; gap: 10px;
-  margin-top: 8px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 6px; flex-wrap: wrap;
 }
-.info-year { font-size: 14px; font-weight: 400; color: #71717a; }
+.info-year { font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.6); }
 .info-genre {
-  padding: 3px 10px;
-  background: var(--bg-glass);
-  border: 1px solid var(--border-glass);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  padding: 2px 8px;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
   border-radius: var(--radius-pill);
-  font-size: 12px; font-weight: 500; color: #a1a1aa;
+  font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.85);
   text-transform: capitalize;
 }
-.info-score { font-size: 14px; font-weight: 500; color: #d4d4d8; }
+.info-score { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
 
-/* Streaming pills with TMDB logos */
+/* Streaming pills on card overlay */
 .info-streaming {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin-top: 14px;
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 8px;
+  pointer-events: auto;
 }
 .stream-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 12px;
-  background: var(--bg-glass);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--border-glass);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
   border-radius: var(--radius-pill);
-  font-size: 12px; font-weight: 500; color: #d4d4d8;
+  font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.85);
   cursor: pointer;
   transition: transform 0.2s var(--spring), background 0.2s;
   -webkit-tap-highlight-color: transparent;
