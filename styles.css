@@ -32,6 +32,7 @@ html, body {
   background: var(--bg);
   color: var(--text-primary);
   overflow: hidden;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   user-select: none; -webkit-user-select: none;
 }
@@ -559,7 +560,47 @@ html, body {
   object-fit: contain; border-radius: 8px;
 }
 
-/* ─── Responsive ─── */
+/* ─── Responsive: Mobile-first ─── */
+
+/* Small phones (375px and below) */
+@media (max-width: 389px) {
+  .tile-container { width: 70vw; }
+  .nav-arrow { display: none; }
+  .home-title { font-size: 18px; }
+  .movie-counter { top: calc(60px + var(--safe-top)); }
+  .floating-action-card { margin: -50px 12px 0; padding: 14px 16px; }
+  .fac-title { font-size: 22px; }
+  .fac-title.long { font-size: 19px; }
+  .detail-content { padding: 16px 12px calc(32px + var(--safe-bottom)); gap: 16px; }
+  .detail-hero { min-height: 45vh; }
+  .watch-status-btn { font-size: 11px; padding: 8px 0; }
+  .section-title { font-size: 15px; }
+  .categories-header { font-size: 26px; padding-left: 16px; padding-right: 16px; }
+  .categories-grid { gap: 8px; padding: 0 12px 100px; }
+  .category-card { padding: 14px 12px; }
+  .category-card .cat-name { font-size: 14px; }
+  .category-card .cat-emoji { font-size: 24px; }
+  .chevron-btn { bottom: calc(24px + var(--safe-bottom)); }
+}
+
+/* Standard phones (390px - 767px) */
+@media (max-width: 767px) {
+  .nav-arrow { width: 32px; height: 32px; }
+  .nav-arrow.left { left: 8px; }
+  .nav-arrow.right { right: 8px; }
+  .nav-arrow svg { width: 14px; height: 14px; }
+  .floating-action-card { margin: -50px 16px 0; }
+  .detail-content { padding: 16px 16px calc(32px + var(--safe-bottom)); }
+  .detail-hero { min-height: 45vh; }
+  .watch-status-btn { font-size: 12px; padding: 9px 0; }
+  .streaming-chip { padding: 6px 10px; font-size: 12px; }
+  .similar-card { width: 90px; }
+  .similar-card .title { font-size: 11px; }
+  .action-btn .icon-circle { width: 44px; height: 44px; }
+  .chevron-btn { bottom: calc(24px + var(--safe-bottom)); }
+}
+
+/* Tablets */
 @media (min-width: 768px) {
   .tile-container { width: 340px; }
   .detail-content { max-width: 640px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
@@ -567,6 +608,8 @@ html, body {
   .categories-grid { grid-template-columns: repeat(3, 1fr); max-width: 640px; margin: 0 auto; }
   .categories-header { max-width: 640px; margin: 0 auto; }
 }
+
+/* Desktop */
 @media (min-width: 1024px) {
   .tile-container { width: 380px; }
   .detail-hero { min-height: 50vh; }
