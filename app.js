@@ -53,16 +53,22 @@ function navigateTile(direction) {
   var tile = document.querySelector('#tile-container .tile-3d');
   tile.classList.add('sinking');
 
+  // Wait for sink to fully finish (450ms), then swap content while invisible
   setTimeout(function() {
     state.currentIndex = ni;
     showCurrentTile();
+
+    // Force a reflow between removing sink and adding rise
+    // so the browser treats them as separate animations
     tile.classList.remove('sinking');
+    void tile.offsetWidth;
     tile.classList.add('rising');
+
     setTimeout(function() {
       tile.classList.remove('rising');
       state.navigating = false;
-    }, 500);
-  }, 400);
+    }, 520);
+  }, 460);
 }
 
 function navigateCategoryTile(direction) {
@@ -83,12 +89,13 @@ function navigateCategoryTile(direction) {
     var counter = document.querySelector('#category-stack-view .category-stack-count');
     if (counter) counter.textContent = (stack.index + 1) + ' of ' + stack.movies.length;
     tile.classList.remove('sinking');
+    void tile.offsetWidth;
     tile.classList.add('rising');
     setTimeout(function() {
       tile.classList.remove('rising');
       state.navigating = false;
-    }, 500);
-  }, 400);
+    }, 520);
+  }, 460);
 }
 
 /* ─── 3D Tilt Interaction ─── */
