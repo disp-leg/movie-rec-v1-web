@@ -1,0 +1,2 @@
+[   38619ms] [ERROR] Access to image at 'https://image.tmdb.org/t/p/w500/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ http://localhost:8080/:0
+[   38619ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://image.tmdb.org/t/p/w500/5gzzkR7y3hnY8AD1wXjCnVlHba5.jpg:0
