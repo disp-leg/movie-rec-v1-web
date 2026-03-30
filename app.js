@@ -794,74 +794,6 @@ document.getElementById('fullscreen-viewer').addEventListener('click', closeFull
 // Tab bar
 // Tab bar removed — actions are on tile icons only
 
-/* ─── PrismDots Background ─── */
-function initDotsBg() {
-  var canvas = document.getElementById('dots-bg');
-  if (!canvas) return;
-  var ctx = canvas.getContext('2d');
-  var dots = [];
-  var COUNT = 80;
-  var w, h;
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  for (var i = 0; i < COUNT; i++) {
-    dots.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      z: Math.random(), // depth 0-1
-      vx: (Math.random() - 0.5) * 0.15,
-      vy: (Math.random() - 0.5) * 0.1,
-    });
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    for (var i = 0; i < dots.length; i++) {
-      var d = dots[i];
-      d.x += d.vx;
-      d.y += d.vy;
-      if (d.x < 0) d.x = w;
-      if (d.x > w) d.x = 0;
-      if (d.y < 0) d.y = h;
-      if (d.y > h) d.y = 0;
-
-      var size = 1 + d.z * 2;
-      var alpha = 0.08 + d.z * 0.18;
-      ctx.beginPath();
-      ctx.arc(d.x, d.y, size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,255,255,' + alpha + ')';
-      ctx.fill();
-    }
-
-    // Draw faint connections between nearby dots
-    for (var i = 0; i < dots.length; i++) {
-      for (var j = i + 1; j < dots.length; j++) {
-        var dx = dots[i].x - dots[j].x;
-        var dy = dots[i].y - dots[j].y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          var alpha = (1 - dist / 120) * 0.04;
-          ctx.beginPath();
-          ctx.moveTo(dots[i].x, dots[i].y);
-          ctx.lineTo(dots[j].x, dots[j].y);
-          ctx.strokeStyle = 'rgba(255,255,255,' + alpha + ')';
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-
 /* ─── Initialize ─── */
 async function init() {
   var data = await loadMovieData();
@@ -870,7 +802,7 @@ async function init() {
 
   buildShowcase();
   renderCategories();
-  initDotsBg();
+  // Background is CSS-only (sunset photo + dark overlay)
 
   // No tab bar
 
