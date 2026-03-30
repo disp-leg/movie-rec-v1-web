@@ -28,7 +28,7 @@
 
 html, body {
   height: 100%;
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Text', Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Text', Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text-primary);
   overflow: hidden;
@@ -74,141 +74,191 @@ html, body {
 
 /* ─── Home View ─── */
 #home-view {
-  align-items: center; justify-content: center;
-  perspective: 1400px;
-  background: linear-gradient(180deg, #e8e8ed 0%, #f2f2f7 40%, #e8e8ed 100%);
-}
-.home-title {
-  position: absolute; top: calc(20px + var(--safe-top));
-  left: 0; right: 0; text-align: center;
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
-  font-size: 15px; font-weight: 600;
-  letter-spacing: 0.5px; text-transform: uppercase;
-  color: var(--text-tertiary); z-index: 10;
-}
-.home-subtitle {
-  display: none;
-}
-.movie-counter {
-  position: absolute; bottom: calc(120px + var(--safe-bottom));
-  left: 0; right: 0; text-align: center;
-  font-size: 13px; font-weight: 500;
-  color: var(--text-tertiary);
-  letter-spacing: 0.5px; z-index: 10;
+  background: #fafafa;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(80px + var(--safe-bottom));
 }
 
-/* ─── 3D Cylinder Carousel ─── */
-.carousel-scene {
-  position: absolute; inset: 0;
-  perspective: 800px;
-  perspective-origin: 50% 50%;
-  overflow: hidden;
+/* Left-aligned hero header — anti-center bias */
+.home-header {
+  padding: calc(clamp(24px, 6vw, 48px) + var(--safe-top)) clamp(20px, 5vw, 48px) 0;
+  max-width: 600px;
+}
+.home-brand {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(36px, 10vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: #18181b;
+}
+.home-sub {
+  margin-top: clamp(8px, 2vw, 14px);
+  font-size: clamp(14px, 3.5vw, 16px);
+  font-weight: 400;
+  color: #71717a;
+  line-height: 1.5;
+  max-width: 40ch;
+}
+
+/* Card stage */
+.home-stage {
+  padding: clamp(20px, 5vw, 40px) clamp(20px, 5vw, 48px);
+}
+
+/* Swipe card dock */
+.card-dock {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 2/3;
   -webkit-tap-highlight-color: transparent;
 }
-.carousel-scene::before,
-.carousel-scene::after {
-  content: ''; position: absolute;
-  left: 0; right: 0; height: 28%; z-index: 2;
-  pointer-events: none;
-}
-.carousel-scene::before {
-  top: 0;
-  background: linear-gradient(to bottom, #e8e8ed 0%, transparent 100%);
-}
-.carousel-scene::after {
-  bottom: 0;
-  background: linear-gradient(to top, #e8e8ed 0%, transparent 100%);
-}
-.carousel-cylinder {
-  width: 100%; height: 100%;
-  position: relative;
-  transform-style: preserve-3d;
-  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-}
-.cyl-card {
-  position: absolute;
-  left: 50%; top: 50%;
-  backface-visibility: hidden;
-  border-radius: 20px;
+.swipe-card {
+  position: absolute; inset: 0;
+  border-radius: 24px;
   overflow: hidden;
-  cursor: pointer;
-  transition: opacity 0.4s, filter 0.4s;
-  background: #1c1c1e;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 12px 40px rgba(0,0,0,0.08);
+  background: #27272a;
+  cursor: grab;
+  will-change: transform;
+  touch-action: pan-y;
+  box-shadow:
+    0 1px 2px rgba(0,0,0,0.06),
+    0 8px 24px rgba(24,24,27,0.12),
+    0 24px 48px rgba(24,24,27,0.08);
 }
-.cyl-card::after {
+.swipe-card:active { cursor: grabbing; }
+
+/* Inner border — liquid glass edge */
+.swipe-card::after {
   content: ''; position: absolute; inset: 0;
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12);
   pointer-events: none;
+  z-index: 3;
 }
-.cyl-card img {
+.swipe-card img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
-  background: linear-gradient(135deg, #2c2c2e 0%, #1c1c1e 50%, #3a3a3c 100%);
+  background: linear-gradient(135deg, #27272a 0%, #18181b 50%, #3f3f46 100%);
 }
-.cyl-card .cyl-gradient {
-  position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
-  pointer-events: none;
-}
-.cyl-card .cyl-info {
+.card-gradient {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: clamp(8px, 2.5vw, 16px) clamp(10px, 3vw, 18px) clamp(10px, 3vw, 18px);
-  pointer-events: none; z-index: 2;
+  height: 55%;
+  background: linear-gradient(to top, rgba(24,24,27,0.85) 0%, rgba(24,24,27,0.4) 40%, transparent 100%);
+  pointer-events: none; z-index: 1;
 }
-.cyl-card .cyl-title {
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
-  font-size: clamp(12px, 3.5vw, 20px); font-weight: 700;
-  color: #fff; letter-spacing: -0.2px; line-height: 1.15;
-  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+.card-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: clamp(16px, 4vw, 24px);
+  z-index: 2; pointer-events: none;
 }
-.cyl-card .cyl-meta {
-  display: flex; align-items: center; gap: 6px; margin-top: 4px;
+.card-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(20px, 5.5vw, 28px);
+  font-weight: 700;
+  color: #fafafa;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
 }
-.cyl-card .cyl-category {
-  padding: 2px 7px;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+.card-meta {
+  display: flex; align-items: center; gap: 8px;
+  margin-top: 8px; flex-wrap: wrap;
+}
+.card-meta .meta-pill {
+  padding: 3px 10px;
+  background: rgba(250,250,250,0.12);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(255,255,255,0.1);
-  font-size: clamp(8px, 2.2vw, 11px); font-weight: 600;
-  color: rgba(255,255,255,0.85); text-transform: capitalize;
+  border: 1px solid rgba(250,250,250,0.08);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+  font-size: clamp(10px, 2.8vw, 12px);
+  font-weight: 600;
+  color: rgba(250,250,250,0.85);
+  text-transform: capitalize;
 }
-.cyl-card .cyl-year {
-  font-size: clamp(9px, 2.5vw, 12px); font-weight: 500;
-  color: rgba(255,255,255,0.6);
-}
-.cyl-card .cyl-score {
-  font-size: clamp(9px, 2.5vw, 12px); font-weight: 600;
-  color: rgba(255,255,255,0.75);
+.card-meta .meta-text {
+  font-size: clamp(11px, 3vw, 13px);
+  font-weight: 500;
+  color: rgba(250,250,250,0.55);
 }
 
-/* Carousel nav buttons */
-.carousel-nav {
-  position: absolute; right: clamp(8px, 3vw, 20px);
-  top: 50%; transform: translateY(-50%);
-  display: flex; flex-direction: column; gap: 8px;
-  z-index: 10;
+/* Card detail strip — below card */
+.card-detail-strip {
+  margin-top: clamp(14px, 3.5vw, 20px);
+  max-width: 380px;
 }
-.carousel-nav-btn {
-  width: 40px; height: 40px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.55);
+.strip-row {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.strip-counter {
+  font-size: 13px; font-weight: 500;
+  color: #a1a1aa; letter-spacing: 0.3px;
+}
+.strip-score {
+  font-size: 14px; font-weight: 600;
+  color: #18181b;
+}
+.strip-streaming {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 10px;
+}
+.stream-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 12px;
+  background: rgba(255,255,255,0.75);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 50%; cursor: pointer;
-  transition: background 0.2s, transform 0.2s var(--spring);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.04);
+  font-size: 12px; font-weight: 600;
+  color: #3f3f46;
+  cursor: pointer;
+  transition: transform 0.2s var(--spring), background 0.2s;
   -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
-.carousel-nav-btn:active { transform: scale(0.85); }
-.carousel-nav-btn svg {
-  width: 18px; height: 18px; stroke: var(--text-primary);
-  stroke-width: 2.5; fill: none;
-  stroke-linecap: round; stroke-linejoin: round;
+.stream-pill:active { transform: scale(0.95); }
+.stream-pill .stream-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-green);
+  flex-shrink: 0;
 }
+
+/* Home action buttons */
+.home-actions {
+  display: flex; justify-content: center; gap: clamp(16px, 5vw, 32px);
+  padding: 0 clamp(20px, 5vw, 48px);
+  margin-top: clamp(8px, 2vw, 16px);
+}
+.home-action-btn {
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  background: none; border: none; cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.home-action-btn svg {
+  width: 44px; height: 44px;
+  padding: 10px;
+  stroke: #a1a1aa; stroke-width: 2;
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+  background: rgba(0,0,0,0.04);
+  border-radius: 50%;
+  transition: transform 0.2s var(--spring), background 0.2s;
+}
+.home-action-btn:active svg { transform: scale(0.9); }
+.home-action-btn span {
+  font-size: 11px; font-weight: 600; color: #a1a1aa;
+  letter-spacing: 0.3px;
+}
+.home-action-btn.primary svg { stroke: #18181b; background: rgba(24,24,27,0.08); }
+.home-action-btn.primary span { color: #52525b; }
+.home-action-btn.watched svg { stroke: var(--accent-green); background: rgba(52,199,89,0.08); }
+.home-action-btn.watched span { color: var(--accent-green); }
+
+/* ─── (Carousel removed — replaced by swipe card) ─── */
 
 /* Category stack still uses old tile system */
 .tile-container {
@@ -243,26 +293,11 @@ html, body {
 @keyframes tileRise { 0% { transform: scale(0.88) translateY(40px); opacity: 0; } 50% { opacity: 0.8; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
 .tile-3d.tilting { transition: transform 0.3s var(--spring); }
 
-/* ─── Gesture Hint ─── */
-.gesture-hint {
-  position: absolute;
-  bottom: calc(clamp(100px, 16vw, 140px) + var(--safe-bottom));
-  left: 0; right: 0;
-  display: flex; justify-content: space-between;
-  padding: 0 clamp(24px, 8vw, 48px);
-  font-size: 11px; font-weight: 500;
-  color: var(--text-tertiary);
-  letter-spacing: 0.3px;
-  opacity: 0.6; z-index: 10;
-  pointer-events: none; transition: opacity 1s;
-}
-.gesture-hint.hidden { opacity: 0; }
-
 /* ─── Chevron Button ─── */
 .chevron-btn {
   position: absolute; bottom: calc(70px + var(--safe-bottom));
-  left: 50%; transform: translateX(-50%);
-  width: clamp(40px, 10vw, 48px); height: clamp(40px, 10vw, 48px);
+  right: clamp(16px, 4vw, 48px);
+  width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
   background: rgba(255,255,255,0.6);
   backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
@@ -273,7 +308,7 @@ html, body {
   box-shadow: 0 2px 16px rgba(0,0,0,0.06);
 }
 .chevron-btn:hover { background: rgba(255,255,255,0.82); }
-.chevron-btn:active { transform: translateX(-50%) scale(0.88); }
+.chevron-btn:active { transform: scale(0.88); }
 .chevron-btn svg {
   width: 20px; height: 20px; stroke: var(--text-primary);
   stroke-width: 2.5; fill: none;
@@ -754,17 +789,7 @@ html, body {
 
 /* ─── Responsive: Fluid scaling with clamp() ─── */
 
-/* Home header & counter */
-.home-title { font-size: clamp(12px, 3.5vw, 15px); }
-.movie-counter {
-  bottom: calc(clamp(80px, 14vw, 110px) + var(--safe-bottom));
-  font-size: clamp(11px, 3vw, 13px);
-}
-
-/* Carousel nav: hide on small touch devices */
-@media (hover: none) and (max-width: 600px) {
-  .carousel-nav { display: none; }
-}
+/* Home — fluid */
 
 /* Detail view fluid */
 .detail-hero { min-height: clamp(40vh, 50vw, 55vh); }
@@ -808,10 +833,11 @@ html, body {
   width: clamp(40px, 10vw, 48px); height: clamp(40px, 10vw, 48px);
 }
 
-/* Carousel nav: show on hover for pointer devices */
-@media (hover: hover) {
-  .carousel-nav-btn { opacity: 0.6; }
-  .carousel-nav-btn:hover { opacity: 1; background: rgba(255,255,255,0.75); }
+/* Desktop: card dock centered with max-width */
+@media (min-width: 768px) {
+  .home-stage { max-width: 500px; }
+  .home-header { max-width: 500px; }
+  .home-actions { max-width: 500px; margin-left: 0; }
 }
 
 /* Grid columns scale with viewport */

@@ -50,258 +50,203 @@ function switchView(viewName) {
 }
 
 /* ═══════════════════════════════════════════
-   3D CYLINDER CAROUSEL
+   PHYSICAL DRAG CARD SYSTEM
    ═══════════════════════════════════════════ */
-var cyl = {
-  currentAngle: 0,
-  targetAngle: 0,
-  velocity: 0,
-  isDragging: false,
-  isAutoRotating: true,
-  hoverPaused: false,
-  dragStartY: 0,
-  dragStartAngle: 0,
-  lastDragY: 0,
-  lastDragTime: 0,
-  idleTimer: null,
-  slice: 0,
-  radius: 0,
-  cardW: 0,
-  cardH: 0,
-  animId: null,
-};
-var AUTO_SPEED = 0.15;
-var LERP = 0.12;
-var FRICTION = 0.95;
-var IDLE_MS = 3000;
 
-function buildCarousel() {
-  var cylinder = document.getElementById('carousel-cylinder');
-  cylinder.textContent = '';
+function showCurrentCard() {
+  var movie = state.movies[state.currentIndex];
+  if (!movie) return;
 
-  var count = state.movies.length;
-  if (count === 0) return;
-
-  // Card dimensions — fluid based on viewport
-  var vw = window.innerWidth;
-  cyl.cardW = Math.min(vw * 0.72, 340);
-  cyl.cardH = cyl.cardW * 1.5; // 2:3 aspect
-  var gap = 24;
-  cyl.slice = 360 / count;
-  cyl.radius = (count * (cyl.cardH + gap)) / (2 * Math.PI);
-
-  state.movies.forEach(function(movie, i) {
-    var card = document.createElement('div');
-    card.className = 'cyl-card';
-    card.style.width = cyl.cardW + 'px';
-    card.style.height = cyl.cardH + 'px';
-    card.style.marginLeft = (-cyl.cardW / 2) + 'px';
-    card.style.marginTop = (-cyl.cardH / 2) + 'px';
-    card.style.transform = 'rotateX(' + (i * cyl.slice) + 'deg) translateZ(' + (-cyl.radius) + 'px)';
-    card.dataset.index = i;
-
-    var img = document.createElement('img');
-    img.alt = movie.title;
-    img.loading = i < 6 ? 'eager' : 'lazy';
-    img.onerror = function() {
-      if (!img.dataset.retried && movie.tmdb_id) {
-        img.dataset.retried = '1';
-        getMovieDetails(movie.tmdb_id).then(function(d) {
-          if (d && d.poster_path) img.src = 'https://image.tmdb.org/t/p/w500' + d.poster_path;
-        });
-      }
-    };
-    img.src = movie.poster_url;
-    card.appendChild(img);
-
-    var gradient = document.createElement('div');
-    gradient.className = 'cyl-gradient';
-    card.appendChild(gradient);
-
-    var info = document.createElement('div');
-    info.className = 'cyl-info';
-    var title = document.createElement('div');
-    title.className = 'cyl-title';
-    title.textContent = movie.title;
-    info.appendChild(title);
-    var meta = document.createElement('div');
-    meta.className = 'cyl-meta';
-    var cat = movie.category || (movie.nano_genres && movie.nano_genres[0]) || '';
-    if (cat) {
-      var catEl = document.createElement('span');
-      catEl.className = 'cyl-category';
-      catEl.textContent = cat;
-      meta.appendChild(catEl);
+  var poster = document.getElementById('card-poster');
+  poster.alt = movie.title;
+  poster.onerror = function() {
+    if (!poster.dataset.retried && movie.tmdb_id) {
+      poster.dataset.retried = '1';
+      getMovieDetails(movie.tmdb_id).then(function(d) {
+        if (d && d.poster_path) poster.src = 'https://image.tmdb.org/t/p/w500' + d.poster_path;
+      });
     }
-    var yearEl = document.createElement('span');
-    yearEl.className = 'cyl-year';
-    yearEl.textContent = movie.year || '';
-    meta.appendChild(yearEl);
-    if (movie.tmdb_rating) {
-      var scoreEl = document.createElement('span');
-      scoreEl.className = 'cyl-score';
-      scoreEl.textContent = '\u2605 ' + movie.tmdb_rating.toFixed(1);
-      meta.appendChild(scoreEl);
-    }
-    info.appendChild(meta);
-    card.appendChild(info);
+  };
+  poster.dataset.retried = '';
+  poster.src = movie.poster_url;
 
-    card.addEventListener('click', function() {
-      var fi = getFrontCardIndex();
-      if (i === fi) {
-        openDetail(movie);
-      } else {
-        snapToCard(i);
-      }
-    });
+  // Title
+  document.getElementById('card-title').textContent = movie.title;
 
-    cylinder.appendChild(card);
+  // Meta pills
+  var metaEl = document.getElementById('card-meta');
+  metaEl.textContent = '';
+  var cat = movie.category || (movie.nano_genres && movie.nano_genres[0]) || '';
+  if (cat) {
+    var pill = document.createElement('span');
+    pill.className = 'meta-pill';
+    pill.textContent = cat;
+    metaEl.appendChild(pill);
+  }
+  if (movie.year) {
+    var yr = document.createElement('span');
+    yr.className = 'meta-text';
+    yr.textContent = movie.year;
+    metaEl.appendChild(yr);
+  }
+
+  // Counter + score
+  document.getElementById('movie-counter').textContent = (state.currentIndex + 1) + ' / ' + state.movies.length;
+  var scoreEl = document.getElementById('strip-score');
+  scoreEl.textContent = movie.tmdb_rating ? '\u2605 ' + movie.tmdb_rating.toFixed(1) + ' TMDB' : '';
+
+  // Streaming pills
+  var streamEl = document.getElementById('strip-streaming');
+  streamEl.textContent = '';
+  var providers = movie.streaming || [];
+  providers.slice(0, 4).forEach(function(p) {
+    var pill = document.createElement('span');
+    pill.className = 'stream-pill';
+    var dot = document.createElement('span');
+    dot.className = 'stream-dot';
+    pill.appendChild(dot);
+    pill.appendChild(document.createTextNode(p.name || ''));
+    streamEl.appendChild(pill);
   });
-
-  updateCounter();
 }
 
-function snapToCard(index) {
-  var cardAngle = index * cyl.slice;
-  var diff = cardAngle - (cyl.targetAngle % 360);
-  if (diff < -180) diff += 360;
-  if (diff > 180) diff -= 360;
-  cyl.targetAngle += diff;
-  cyl.isAutoRotating = false;
-  cyl.velocity = 0;
-  resetCarouselIdle();
+/* Alias for legacy code */
+function showCurrentTile() { showCurrentCard(); }
+function navigateTile(dir) { advanceCard(dir); }
+
+function advanceCard(dir) {
+  if (state.navigating) return;
+  var ni = state.currentIndex + dir;
+  if (ni < 0) ni = 0;
+  if (ni >= state.movies.length) ni = state.movies.length - 1;
+  if (ni === state.currentIndex) return;
+
+  state.navigating = true;
+  var card = document.getElementById('swipe-card');
+
+  // Sink current card
+  card.style.transition = 'transform 0.35s cubic-bezier(0.4, 0, 1, 1), opacity 0.35s';
+  card.style.transform = 'translateY(30px) scale(0.92)';
+  card.style.opacity = '0';
+
+  setTimeout(function() {
+    state.currentIndex = ni;
+    showCurrentCard();
+
+    // Rise new card
+    card.style.transition = 'none';
+    card.style.transform = 'translateY(30px) scale(0.92)';
+    card.style.opacity = '0';
+    void card.offsetWidth;
+
+    card.style.transition = 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s';
+    card.style.transform = 'translateY(0) scale(1)';
+    card.style.opacity = '1';
+
+    setTimeout(function() {
+      card.style.transition = '';
+      card.style.transform = '';
+      state.navigating = false;
+    }, 520);
+  }, 360);
 }
 
-function getFrontCardIndex() {
-  var n = ((cyl.currentAngle % 360) + 360) % 360;
-  return Math.round(n / cyl.slice) % state.movies.length;
-}
+/* ─── Physical drag: card follows finger ─── */
+function setupCardDrag() {
+  var card = document.getElementById('swipe-card');
+  var dock = document.getElementById('card-dock');
+  var isDragging = false;
+  var startX = 0, startY = 0, currentX = 0;
+  var startTime = 0;
+  var THRESHOLD = 80;
 
-function updateCardVisibility() {
-  var cylinder = document.getElementById('carousel-cylinder');
-  var cards = cylinder.children;
-  for (var i = 0; i < cards.length; i++) {
-    var cardAngle = i * cyl.slice;
-    var diff = ((cyl.currentAngle % 360) - cardAngle + 360) % 360;
-    if (diff > 180) diff -= 360;
-    var absDiff = Math.abs(diff);
-    if (absDiff < 40) {
-      cards[i].style.opacity = '1';
-      cards[i].style.filter = 'blur(0px)';
-    } else if (absDiff < 70) {
-      var t = (absDiff - 40) / 30;
-      cards[i].style.opacity = String(1 - t * 0.8);
-      cards[i].style.filter = 'blur(' + (t * 3) + 'px)';
+  function onStart(e) {
+    if (state.navigating) return;
+    isDragging = true;
+    var pt = e.touches ? e.touches[0] : e;
+    startX = pt.clientX;
+    startY = pt.clientY;
+    currentX = 0;
+    startTime = Date.now();
+    card.style.transition = 'none';
+  }
+
+  function onMove(e) {
+    if (!isDragging) return;
+    var pt = e.touches ? e.touches[0] : e;
+    currentX = pt.clientX - startX;
+    var dy = Math.abs(pt.clientY - startY);
+    // If vertical movement dominates, cancel drag
+    if (dy > Math.abs(currentX) + 20 && Math.abs(currentX) < 20) return;
+
+    // Card follows finger with rotation + slight scale
+    var rotate = currentX * 0.06;
+    var scale = 1 - Math.abs(currentX) * 0.0003;
+    var opacity = 1 - Math.abs(currentX) * 0.003;
+    card.style.transform = 'translateX(' + currentX + 'px) rotate(' + rotate + 'deg) scale(' + Math.max(scale, 0.92) + ')';
+    card.style.opacity = String(Math.max(opacity, 0.3));
+  }
+
+  function onEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    var elapsed = Date.now() - startTime;
+    var velocity = Math.abs(currentX) / Math.max(elapsed, 1) * 1000;
+
+    if (Math.abs(currentX) > THRESHOLD || velocity > 600) {
+      // Swipe completed — animate card off screen
+      var dir = currentX > 0 ? 1 : -1;
+      card.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 1, 1), opacity 0.3s';
+      card.style.transform = 'translateX(' + (dir * 400) + 'px) rotate(' + (dir * 15) + 'deg) scale(0.9)';
+      card.style.opacity = '0';
+
+      var movie = state.movies[state.currentIndex];
+      if (dir > 0 && movie) {
+        // Swipe right = Watched
+        state.watchStatus[movie.tmdb_id] = 2;
+        showToast('Marked as Watched');
+      } else if (dir < 0 && movie) {
+        // Swipe left = Skip/DNF
+        showToast('Skipped');
+      }
+
+      setTimeout(function() {
+        // Advance
+        if (state.currentIndex < state.movies.length - 1) {
+          state.currentIndex++;
+        }
+        showCurrentCard();
+        // Rise from center
+        card.style.transition = 'none';
+        card.style.transform = 'translateY(20px) scale(0.95)';
+        card.style.opacity = '0';
+        void card.offsetWidth;
+        card.style.transition = 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s';
+        card.style.transform = 'translateY(0) scale(1)';
+        card.style.opacity = '1';
+        setTimeout(function() {
+          card.style.transition = '';
+          card.style.transform = '';
+        }, 480);
+      }, 300);
     } else {
-      cards[i].style.opacity = '0.1';
-      cards[i].style.filter = 'blur(4px)';
+      // Spring back — not enough distance
+      card.style.transition = 'transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s';
+      card.style.transform = 'translateX(0) rotate(0deg) scale(1)';
+      card.style.opacity = '1';
+      setTimeout(function() {
+        card.style.transition = '';
+        card.style.transform = '';
+      }, 520);
     }
   }
-}
 
-function updateCounter() {
-  var fi = getFrontCardIndex();
-  var el = document.getElementById('movie-counter');
-  if (el) el.textContent = (fi + 1) + ' of ' + state.movies.length;
-  state.currentIndex = fi;
-}
-
-function carouselAnimate() {
-  if (cyl.isAutoRotating && !cyl.hoverPaused && !cyl.isDragging) {
-    cyl.targetAngle += AUTO_SPEED;
-  }
-  if (!cyl.isDragging && Math.abs(cyl.velocity) > 0.01) {
-    cyl.targetAngle += cyl.velocity;
-    cyl.velocity *= FRICTION;
-  } else if (!cyl.isDragging) {
-    cyl.velocity = 0;
-  }
-  cyl.currentAngle += (cyl.targetAngle - cyl.currentAngle) * LERP;
-  var cylinder = document.getElementById('carousel-cylinder');
-  if (cylinder) cylinder.style.transform = 'rotateX(' + cyl.currentAngle + 'deg)';
-  updateCardVisibility();
-  updateCounter();
-  cyl.animId = requestAnimationFrame(carouselAnimate);
-}
-
-function navigateCarousel(dir) {
-  cyl.isAutoRotating = false;
-  cyl.velocity = 0;
-  var fi = getFrontCardIndex();
-  var next = (fi + dir + state.movies.length) % state.movies.length;
-  snapToCard(next);
-}
-
-/* Keep navigateTile as alias for gesture system */
-function navigateTile(dir) { navigateCarousel(dir); }
-
-function showCurrentTile() { /* no-op for carousel — tiles are always visible */ }
-
-function resetCarouselIdle() {
-  clearTimeout(cyl.idleTimer);
-  cyl.idleTimer = setTimeout(function() {
-    cyl.isAutoRotating = true;
-    cyl.velocity = 0;
-  }, IDLE_MS);
-}
-
-function setupCarouselDrag() {
-  var scene = document.getElementById('carousel-scene');
-
-  function startDrag(e) {
-    cyl.isDragging = true;
-    cyl.isAutoRotating = false;
-    cyl.velocity = 0;
-    var y = e.touches ? e.touches[0].clientY : e.clientY;
-    cyl.dragStartY = y;
-    cyl.lastDragY = y;
-    cyl.lastDragTime = Date.now();
-    cyl.dragStartAngle = cyl.targetAngle;
-    var cylinder = document.getElementById('carousel-cylinder');
-    cylinder.style.transition = 'none';
-  }
-
-  function onDrag(e) {
-    if (!cyl.isDragging) return;
-    var y = e.touches ? e.touches[0].clientY : e.clientY;
-    var delta = y - cyl.dragStartY;
-    cyl.targetAngle = cyl.dragStartAngle - delta * 0.4;
-    var now = Date.now();
-    var dt = now - cyl.lastDragTime;
-    if (dt > 0) {
-      cyl.velocity = -(y - cyl.lastDragY) * 0.4 * (16 / dt);
-    }
-    cyl.lastDragY = y;
-    cyl.lastDragTime = now;
-  }
-
-  function endDrag() {
-    if (!cyl.isDragging) return;
-    cyl.isDragging = false;
-    var cylinder = document.getElementById('carousel-cylinder');
-    cylinder.style.transition = '';
-    resetCarouselIdle();
-  }
-
-  scene.addEventListener('mousedown', startDrag);
-  scene.addEventListener('touchstart', function(e) { startDrag(e); }, { passive: true });
-  window.addEventListener('mousemove', onDrag);
-  window.addEventListener('touchmove', function(e) { onDrag(e); }, { passive: true });
-  window.addEventListener('mouseup', endDrag);
-  window.addEventListener('touchend', endDrag);
-
-  scene.addEventListener('wheel', function(e) {
-    e.preventDefault();
-    cyl.isAutoRotating = false;
-    cyl.targetAngle -= e.deltaY * 0.15;
-    resetCarouselIdle();
-  }, { passive: false });
-
-  scene.addEventListener('mouseenter', function() { cyl.hoverPaused = true; });
-  scene.addEventListener('mouseleave', function() {
-    cyl.hoverPaused = false;
-    if (!cyl.isDragging) resetCarouselIdle();
-  });
+  dock.addEventListener('mousedown', onStart);
+  dock.addEventListener('touchstart', function(e) { onStart(e); }, { passive: true });
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', function(e) { onMove(e); }, { passive: true });
+  window.addEventListener('mouseup', onEnd);
+  window.addEventListener('touchend', onEnd);
 }
 
 function navigateCategoryTile(direction) {
@@ -677,12 +622,12 @@ document.addEventListener('keydown', function(e) {
   }
 
   if (state.currentView === 'home') {
-    if (e.key === 'ArrowUp') { e.preventDefault(); navigateCarousel(-1); }
-    else if (e.key === 'ArrowDown') { e.preventDefault(); navigateCarousel(1); }
-    else if (e.key === 'ArrowLeft') navigateCarousel(-1);
-    else if (e.key === 'ArrowRight') navigateCarousel(1);
+    if (e.key === 'ArrowLeft') advanceCard(-1);
+    else if (e.key === 'ArrowRight') advanceCard(1);
+    else if (e.key === 'ArrowUp') advanceCard(-1);
+    else if (e.key === 'ArrowDown') advanceCard(1);
     else if (e.key === 'Enter') {
-      var m = state.movies[getFrontCardIndex()];
+      var m = state.movies[state.currentIndex];
       if (m) openDetail(m);
     }
   } else if (state.currentView === 'detail') {
@@ -758,8 +703,16 @@ function switchTab(tab) {
 }
 
 /* ─── Event Listeners ─── */
-document.getElementById('nav-up').addEventListener('click', function() { navigateCarousel(-1); });
-document.getElementById('nav-down').addEventListener('click', function() { navigateCarousel(1); });
+document.getElementById('action-skip').addEventListener('click', function() { advanceCard(1); showToast('Skipped'); });
+document.getElementById('action-watched').addEventListener('click', function() {
+  var m = state.movies[state.currentIndex];
+  if (m) { state.watchStatus[m.tmdb_id] = 2; showToast('Marked as Watched'); }
+  advanceCard(1);
+});
+document.getElementById('action-detail').addEventListener('click', function() {
+  var m = state.movies[state.currentIndex];
+  if (m) openDetail(m);
+});
 document.getElementById('chevron-btn').addEventListener('click', toggleCategories);
 document.getElementById('cat-chevron-btn').addEventListener('click', toggleCategories);
 document.getElementById('fullscreen-viewer').addEventListener('click', closeFullscreen);
@@ -775,17 +728,9 @@ async function init() {
   state.movies = data.movies;
   state.categories = data.categories;
 
-  buildCarousel();
-  setupCarouselDrag();
-  carouselAnimate();
+  showCurrentCard();
+  setupCardDrag();
   renderCategories();
-
-  // Gesture system: swipe right=watched, swipe left=DNF, long press=save
-  setupTileGestures(
-    document.getElementById('home-view'),
-    function() { return state.movies[getFrontCardIndex()]; },
-    dnfMovie
-  );
 
   // Show tab bar on home
   document.getElementById('tab-bar').classList.add('visible');

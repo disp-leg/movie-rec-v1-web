@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ria's Cuts</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -25,25 +28,45 @@
 
   <!-- HOME VIEW -->
   <div class="view active" id="home-view">
-    <div class="home-title">Ria's Cuts</div>
-    <div class="movie-counter" id="movie-counter"></div>
-
-    <div class="carousel-scene" id="carousel-scene">
-      <div class="carousel-cylinder" id="carousel-cylinder"></div>
+    <div class="home-header">
+      <div class="home-brand">Ria's Cuts</div>
+      <div class="home-sub">50 horror picks, ranked by taste match</div>
     </div>
 
-    <div class="carousel-nav">
-      <button class="carousel-nav-btn" id="nav-up" aria-label="Previous">
-        <svg viewBox="0 0 24 24"><polyline points="6 15 12 9 18 15"/></svg>
-      </button>
-      <button class="carousel-nav-btn" id="nav-down" aria-label="Next">
-        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-      </button>
+    <div class="home-stage">
+      <div class="card-dock" id="card-dock">
+        <div class="swipe-card" id="swipe-card">
+          <img id="card-poster" src="" alt="">
+          <div class="card-gradient"></div>
+          <div class="card-info" id="card-info">
+            <div class="card-title" id="card-title"></div>
+            <div class="card-meta" id="card-meta"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-detail-strip" id="card-detail-strip">
+        <div class="strip-row">
+          <span class="strip-counter" id="movie-counter"></span>
+          <span class="strip-score" id="strip-score"></span>
+        </div>
+        <div class="strip-streaming" id="strip-streaming"></div>
+      </div>
     </div>
 
-    <div class="gesture-hint" id="gesture-hint">
-      <span>← Skip</span>
-      <span>Watched →</span>
+    <div class="home-actions">
+      <button class="home-action-btn" id="action-skip" aria-label="Skip">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        <span>Skip</span>
+      </button>
+      <button class="home-action-btn primary" id="action-detail" aria-label="Details">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+        <span>Details</span>
+      </button>
+      <button class="home-action-btn watched" id="action-watched" aria-label="Watched">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>Watched</span>
+      </button>
     </div>
 
     <div class="chevron-btn" id="chevron-btn">
