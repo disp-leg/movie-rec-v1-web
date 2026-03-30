@@ -244,7 +244,7 @@ html, body {
 #grid-view::after {
   content: '';
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.55);
+  background: rgba(0,0,0,0.82);
   z-index: 0;
   pointer-events: none;
 }
