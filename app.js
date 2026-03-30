@@ -49,6 +49,22 @@ function switchView(viewName) {
   });
 }
 
+/* ─── Filter ad-tier & duplicate streaming providers ─── */
+function filterProviders(list) {
+  var AD_PATTERNS = /with ads|standard with|premium plus with|free with/i;
+  var seen = {};
+  return list.filter(function(p) {
+    var name = p.provider_name || p.name || '';
+    if (!name) return false;
+    if (AD_PATTERNS.test(name)) return false;
+    // Deduplicate by base service name (e.g. "Netflix basic" -> "netflix")
+    var base = name.toLowerCase().replace(/\s*(basic|standard|premium|plus|free)\s*/gi, '').trim();
+    if (seen[base]) return false;
+    seen[base] = true;
+    return true;
+  });
+}
+
 /* ─── Home Tile Display ─── */
 function showCurrentTile() {
   var movie = state.movies[state.currentIndex];
@@ -75,8 +91,8 @@ function showCurrentTile() {
   var strip = document.getElementById('streaming-strip');
   if (strip) {
     strip.textContent = '';
-    // Show content engine streaming data immediately
-    (movie.streaming || []).slice(0, 4).forEach(function(s) {
+    // Show content engine streaming data immediately (filtered)
+    filterProviders(movie.streaming || []).slice(0, 4).forEach(function(s) {
       var pill = document.createElement('span');
       pill.className = 'stream-pill';
       pill.textContent = s.name || '';
@@ -86,7 +102,7 @@ function showCurrentTile() {
     getWatchProviders(movie.tmdb_id).then(function(data) {
       if (!data || !data.results || !data.results.US) return;
       var us = data.results.US;
-      var providers = us.flatrate || us.ads || us.rent || [];
+      var providers = filterProviders(us.flatrate || us.ads || us.rent || []);
       if (providers.length === 0) return;
       strip.textContent = '';
       providers.slice(0, 5).forEach(function(p) {

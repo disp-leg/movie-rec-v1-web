@@ -261,7 +261,7 @@ async function buildDetailView(movie) {
 
   // Where to Watch
   var usProviders = providers && providers.results && providers.results.US;
-  var streamList = (usProviders && (usProviders.flatrate || usProviders.ads)) || movie.streaming || [];
+  var streamList = filterProviders((usProviders && (usProviders.flatrate || usProviders.ads)) || movie.streaming || []);
   content.appendChild(buildWhereToWatch(streamList));
 
   // Cast
