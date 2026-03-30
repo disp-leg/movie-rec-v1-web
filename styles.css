@@ -28,7 +28,7 @@
 
 html, body {
   height: 100%;
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Text', Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Text', Helvetica, Arial, sans-serif;
   background: var(--bg);
   color: var(--text-primary);
   overflow: hidden;
@@ -74,38 +74,43 @@ html, body {
 
 /* ─── Home View ─── */
 #home-view {
-  align-items: center; justify-content: center;
-  perspective: 1400px;
-  background: linear-gradient(180deg, #e8e8ed 0%, #f2f2f7 40%, #e8e8ed 100%);
+  background: #fafafa;
+  overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(80px + var(--safe-bottom));
 }
-.home-title {
-  position: absolute; top: calc(20px + var(--safe-top));
-  left: 0; right: 0; text-align: center;
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
-  font-size: 15px; font-weight: 600;
-  letter-spacing: 0.5px; text-transform: uppercase;
-  color: var(--text-tertiary); z-index: 10;
+.home-header {
+  padding: calc(clamp(24px, 6vw, 48px) + var(--safe-top)) clamp(20px, 5vw, 40px) 0;
 }
-.home-subtitle {
-  display: none;
+.home-brand {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(36px, 10vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  color: #18181b;
 }
-.movie-counter {
-  position: absolute; bottom: calc(120px + var(--safe-bottom));
-  left: 0; right: 0; text-align: center;
-  font-size: 13px; font-weight: 500;
-  color: var(--text-tertiary);
-  letter-spacing: 0.5px; z-index: 10;
+.home-sub {
+  margin-top: clamp(6px, 1.5vw, 12px);
+  font-size: clamp(13px, 3.5vw, 15px);
+  font-weight: 400;
+  color: #a1a1aa;
+  max-width: 36ch;
+}
+.home-body {
+  padding: clamp(16px, 4vw, 32px) clamp(20px, 5vw, 40px) 0;
 }
 
-/* ─── 3D Tile — Apple Invites style ─── */
+/* ─── 3D Tile ─── */
+.tile-dock { -webkit-tap-highlight-color: transparent; touch-action: pan-y; }
 .tile-container {
   position: relative;
-  width: clamp(300px, calc(100vw - 48px), 400px);
+  width: 100%; max-width: 380px;
   aspect-ratio: 2/3;
   perspective: 1400px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+  cursor: grab;
 }
+.tile-container:active { cursor: grabbing; }
 .tile-3d {
   position: relative; width: 100%; height: 100%;
   transform-style: preserve-3d;
@@ -119,7 +124,7 @@ html, body {
   position: absolute; inset: 0;
   border-radius: 28px; overflow: hidden;
   backface-visibility: hidden;
-  background: #1c1c1e;
+  background: #27272a;
   box-shadow:
     0 2px 4px rgba(0,0,0,0.04),
     0 8px 16px rgba(0,0,0,0.08),
@@ -157,7 +162,7 @@ html, body {
   z-index: 2;
 }
 .tile-info-title {
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 24px; font-weight: 700;
   color: #fff;
   letter-spacing: -0.3px;
@@ -224,55 +229,81 @@ html, body {
   transition: transform 0.3s var(--spring);
 }
 
-/* ─── Nav Arrows — glass circles ─── */
-.nav-arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 44px; height: 44px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 50%;
-  cursor: pointer; z-index: 10;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s var(--spring);
-  -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+/* ─── Below Card Strip ─── */
+.below-card {
+  margin-top: clamp(14px, 3.5vw, 24px);
+  max-width: 380px;
 }
-#home-view:hover .nav-arrow,
-#category-stack-view:hover .nav-arrow { opacity: 0.8; }
-.nav-arrow:hover { opacity: 1 !important; transform: translateY(-50%) scale(1.05); }
-.nav-arrow:active { transform: translateY(-50%) scale(0.88); }
-.nav-arrow.left { left: 16px; }
-.nav-arrow.right { right: 16px; }
-.nav-arrow svg {
-  width: 18px; height: 18px; stroke: var(--text-primary);
-  stroke-width: 2.5; fill: none;
+.below-card-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 10px;
+}
+.card-counter {
+  font-size: 13px; font-weight: 500; color: #a1a1aa;
+}
+.card-tmdb {
+  font-size: 14px; font-weight: 600; color: #18181b;
+}
+.streaming-strip {
+  display: flex; flex-wrap: wrap; gap: 8px;
+}
+.stream-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 12px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius-pill);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.04);
+  font-size: 12px; font-weight: 600; color: #3f3f46;
+  cursor: pointer;
+  transition: transform 0.2s var(--spring);
+  -webkit-tap-highlight-color: transparent;
+}
+.stream-pill:active { transform: scale(0.95); }
+.stream-pill img {
+  width: 20px; height: 20px; border-radius: 4px;
+  object-fit: contain; background: #fff;
+}
+
+/* ─── Home Action Buttons ─── */
+.home-actions {
+  display: flex; justify-content: center; gap: clamp(20px, 6vw, 40px);
+  margin-top: clamp(16px, 4vw, 28px);
+  padding-bottom: 12px;
+}
+.home-act {
+  width: 52px; height: 52px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; border: none; cursor: pointer;
+  transition: transform 0.2s var(--spring), box-shadow 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.home-act:active { transform: scale(0.9); }
+.home-act svg {
+  width: 24px; height: 24px;
+  stroke-width: 2; fill: none;
   stroke-linecap: round; stroke-linejoin: round;
 }
-
-/* ─── Gesture Hint ─── */
-.gesture-hint {
-  position: absolute;
-  bottom: calc(clamp(130px, 20vw, 170px) + var(--safe-bottom));
-  left: 0; right: 0;
-  display: flex; justify-content: space-between;
-  padding: 0 clamp(24px, 8vw, 48px);
-  font-size: 11px; font-weight: 500;
-  color: var(--text-tertiary);
-  letter-spacing: 0.3px;
-  opacity: 0.6;
-  z-index: 10;
-  pointer-events: none;
-  transition: opacity 1s;
+.home-act.skip {
+  background: rgba(0,0,0,0.05);
 }
-.gesture-hint.hidden { opacity: 0; }
+.home-act.skip svg { stroke: #a1a1aa; }
+.home-act.detail {
+  background: #18181b;
+  box-shadow: 0 4px 16px rgba(24,24,27,0.2);
+}
+.home-act.detail svg { stroke: #fafafa; }
+.home-act.watched {
+  background: rgba(52,199,89,0.1);
+}
+.home-act.watched svg { stroke: #34c759; }
 
-/* ─── Chevron Button — floating glass pill ─── */
+/* ─── Chevron Button ─── */
 .chevron-btn {
-  position: absolute; bottom: calc(76px + var(--safe-bottom));
-  left: 50%; transform: translateX(-50%);
-  width: 48px; height: 48px;
+  position: absolute; bottom: calc(70px + var(--safe-bottom));
+  right: clamp(16px, 4vw, 40px);
+  width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
   background: rgba(255,255,255,0.6);
   backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
@@ -284,7 +315,7 @@ html, body {
   box-shadow: 0 2px 16px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04);
 }
 .chevron-btn:hover { background: rgba(255,255,255,0.82); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-.chevron-btn:active { transform: translateX(-50%) scale(0.88); }
+.chevron-btn:active { transform: scale(0.88); }
 .chevron-btn svg {
   width: 20px; height: 20px; stroke: var(--text-primary);
   stroke-width: 2.5; fill: none;
@@ -356,7 +387,7 @@ html, body {
   z-index: 10;
 }
 .fac-title {
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 26px; font-weight: 700;
   letter-spacing: -0.5px; line-height: 1.15;
 }
@@ -368,7 +399,7 @@ html, body {
 .fac-pill {
   display: inline-flex; align-items: center;
   padding: 4px 12px; border-radius: var(--radius-pill);
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Rounded', Helvetica, Arial, sans-serif;
   font-size: 13px; font-weight: 600;
 }
 .fac-category { background: rgba(0,122,255,0.12); color: var(--accent-blue); }
@@ -395,7 +426,7 @@ html, body {
 
 /* Section Title */
 .section-title {
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 17px; font-weight: 700; margin-bottom: 12px;
 }
 
@@ -628,7 +659,7 @@ html, body {
 }
 .collection-header {
   padding: calc(20px + var(--safe-top)) 20px 8px;
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 32px; font-weight: 700; letter-spacing: -0.5px;
 }
 .collection-empty {
@@ -690,7 +721,7 @@ html, body {
 #categories-view { background: var(--bg); overflow-y: auto; }
 .categories-header {
   padding: calc(20px + var(--safe-top)) 20px 16px;
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 32px; font-weight: 700; letter-spacing: -0.5px;
 }
 .categories-grid {
@@ -725,7 +756,7 @@ html, body {
   left: 0; right: 0; text-align: center; z-index: 10;
 }
 .category-stack-title {
-  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
   font-size: 20px; font-weight: 700; text-transform: capitalize;
 }
 .category-stack-count {
@@ -765,18 +796,10 @@ html, body {
 
 /* ─── Responsive: Fluid scaling with clamp() ─── */
 
-/* Tile scales fluidly: 339px at 375px → 350px at 768px → 380px at 1200px */
-.tile-container { width: clamp(300px, calc(100vw - 48px), 400px); }
-.tile-info { padding: clamp(14px, 4vw, 24px) clamp(14px, 4vw, 24px) clamp(16px, 4.5vw, 26px); }
-.tile-info-title { font-size: clamp(18px, 5.5vw, 26px); }
-.tile-info-category { font-size: clamp(11px, 3vw, 13px); }
-
-/* Home header & counter scale */
-.home-title { font-size: clamp(12px, 3.5vw, 15px); }
-.movie-counter {
-  bottom: calc(clamp(80px, 14vw, 120px) + var(--safe-bottom));
-  font-size: clamp(11px, 3vw, 13px);
-}
+/* Tile info fluid */
+.tile-info { padding: clamp(12px, 3.5vw, 22px); }
+.tile-info-title { font-size: clamp(18px, 5vw, 24px); }
+.tile-info-category { font-size: clamp(10px, 2.8vw, 12px); }
 
 /* Detail view fluid */
 .detail-hero { min-height: clamp(40vh, 50vw, 55vh); }
@@ -814,20 +837,12 @@ html, body {
 .category-card .cat-name { font-size: clamp(13px, 3.8vw, 17px); }
 .category-card .cat-emoji { font-size: clamp(22px, 6vw, 30px); }
 
-/* Chevron position */
-.chevron-btn {
-  bottom: calc(clamp(60px, 10vw, 80px) + var(--safe-bottom));
-  width: clamp(40px, 10vw, 48px); height: clamp(40px, 10vw, 48px);
-}
+/* Chevron — already positioned in main section */
 
-/* Nav arrows: hidden on touch, shown on hover for pointer devices */
-@media (hover: none) {
-  .nav-arrow { display: none; }
-}
-@media (hover: hover) {
-  .nav-arrow { opacity: 0; }
-  #home-view:hover .nav-arrow,
-  #category-stack-view:hover .nav-arrow { opacity: 0.8; }
+/* Desktop home layout */
+@media (min-width: 768px) {
+  .home-body { max-width: 440px; }
+  .home-header { max-width: 440px; }
 }
 
 /* Grid columns scale with viewport */

@@ -54,10 +54,14 @@ function showCurrentTile() {
   var movie = state.movies[state.currentIndex];
   if (!movie) return;
   updateTilePoster(document.getElementById('tile-container'), movie);
-  document.getElementById('movie-counter').textContent =
-    (state.currentIndex + 1) + ' of ' + state.movies.length;
 
-  // Update tile info overlay
+  // Counter + TMDB score
+  document.getElementById('movie-counter').textContent =
+    (state.currentIndex + 1) + ' / ' + state.movies.length;
+  var tmdbEl = document.getElementById('card-tmdb');
+  if (tmdbEl) tmdbEl.textContent = movie.tmdb_rating ? '\u2605 ' + movie.tmdb_rating.toFixed(1) + ' TMDB' : '';
+
+  // Tile info overlay
   var titleEl = document.getElementById('tile-title');
   var catEl = document.getElementById('tile-category');
   var yearEl = document.getElementById('tile-year');
@@ -65,7 +69,117 @@ function showCurrentTile() {
   if (titleEl) titleEl.textContent = movie.title;
   if (catEl) catEl.textContent = movie.category || (movie.nano_genres && movie.nano_genres[0]) || '';
   if (yearEl) yearEl.textContent = movie.year;
-  if (scoreEl) scoreEl.textContent = movie.tmdb_rating ? '\u2605 ' + movie.tmdb_rating.toFixed(1) : '';
+  if (scoreEl) scoreEl.textContent = '';
+
+  // Streaming strip — fetch real logos from TMDB
+  var strip = document.getElementById('streaming-strip');
+  if (strip) {
+    strip.textContent = '';
+    // Show content engine streaming data immediately
+    (movie.streaming || []).slice(0, 4).forEach(function(s) {
+      var pill = document.createElement('span');
+      pill.className = 'stream-pill';
+      pill.textContent = s.name || '';
+      strip.appendChild(pill);
+    });
+    // Then fetch TMDB provider logos
+    getWatchProviders(movie.tmdb_id).then(function(data) {
+      if (!data || !data.results || !data.results.US) return;
+      var us = data.results.US;
+      var providers = us.flatrate || us.ads || us.rent || [];
+      if (providers.length === 0) return;
+      strip.textContent = '';
+      providers.slice(0, 5).forEach(function(p) {
+        var pill = document.createElement('span');
+        pill.className = 'stream-pill';
+        if (p.logo_path) {
+          var logo = document.createElement('img');
+          logo.src = 'https://image.tmdb.org/t/p/original' + p.logo_path;
+          logo.alt = p.provider_name || '';
+          pill.appendChild(logo);
+        }
+        pill.appendChild(document.createTextNode(p.provider_name || ''));
+        strip.appendChild(pill);
+      });
+    });
+  }
+}
+
+/* ─── Physical Drag: card follows finger ─── */
+function setupCardDrag() {
+  var dock = document.getElementById('tile-dock');
+  if (!dock) return;
+  var card = document.querySelector('#tile-container .tile-3d');
+  var isDragging = false;
+  var startX = 0, startY = 0, currentX = 0, startTime = 0;
+  var THRESHOLD = 80;
+
+  function onStart(e) {
+    if (state.navigating) return;
+    var pt = e.touches ? e.touches[0] : e;
+    startX = pt.clientX; startY = pt.clientY;
+    currentX = 0; startTime = Date.now();
+    isDragging = true;
+    card.style.transition = 'none';
+  }
+  function onMove(e) {
+    if (!isDragging) return;
+    var pt = e.touches ? e.touches[0] : e;
+    currentX = pt.clientX - startX;
+    var dy = Math.abs(pt.clientY - startY);
+    if (dy > Math.abs(currentX) + 20 && Math.abs(currentX) < 20) return;
+    var rotate = currentX * 0.05;
+    var scale = 1 - Math.abs(currentX) * 0.0003;
+    var opacity = 1 - Math.abs(currentX) * 0.003;
+    card.style.transform = 'translateX(' + currentX + 'px) rotate(' + rotate + 'deg) scale(' + Math.max(scale, 0.93) + ')';
+    card.style.opacity = String(Math.max(opacity, 0.4));
+  }
+  function onEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    var elapsed = Date.now() - startTime;
+    var velocity = Math.abs(currentX) / Math.max(elapsed, 1) * 1000;
+
+    if (Math.abs(currentX) > THRESHOLD || velocity > 600) {
+      var dir = currentX > 0 ? 1 : -1;
+      card.style.transition = 'transform 0.3s cubic-bezier(0.4,0,1,1), opacity 0.3s';
+      card.style.transform = 'translateX(' + (dir * 400) + 'px) rotate(' + (dir * 12) + 'deg) scale(0.9)';
+      card.style.opacity = '0';
+
+      var movie = state.movies[state.currentIndex];
+      if (dir > 0 && movie) {
+        state.watchStatus[movie.tmdb_id] = 2;
+        showToast('Marked as Watched');
+      } else {
+        showToast('Skipped');
+      }
+
+      setTimeout(function() {
+        if (state.currentIndex < state.movies.length - 1) state.currentIndex++;
+        showCurrentTile();
+        card.style.transition = 'none';
+        card.style.transform = 'translateY(20px) scale(0.95)';
+        card.style.opacity = '0';
+        void card.offsetWidth;
+        card.style.transition = 'transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.35s';
+        card.style.transform = 'translateY(0) scale(1)';
+        card.style.opacity = '1';
+        setTimeout(function() { card.style.transition = ''; card.style.transform = ''; }, 480);
+      }, 300);
+    } else {
+      card.style.transition = 'transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275), opacity 0.3s';
+      card.style.transform = 'translateX(0) rotate(0deg) scale(1)';
+      card.style.opacity = '1';
+      setTimeout(function() { card.style.transition = ''; card.style.transform = ''; }, 520);
+    }
+  }
+
+  dock.addEventListener('mousedown', onStart);
+  dock.addEventListener('touchstart', function(e) { onStart(e); }, { passive: true });
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('touchmove', function(e) { onMove(e); }, { passive: true });
+  window.addEventListener('mouseup', onEnd);
+  window.addEventListener('touchend', onEnd);
 }
 
 /* ─── Sink & Rise Navigation ─── */
@@ -555,8 +669,16 @@ function switchTab(tab) {
 }
 
 /* ─── Event Listeners ─── */
-document.getElementById('nav-left').addEventListener('click', function() { navigateTile(-1); });
-document.getElementById('nav-right').addEventListener('click', function() { navigateTile(1); });
+document.getElementById('act-skip').addEventListener('click', function() { showToast('Skipped'); navigateTile(1); });
+document.getElementById('act-detail').addEventListener('click', function() {
+  var m = state.movies[state.currentIndex];
+  if (m) openDetail(m);
+});
+document.getElementById('act-watched').addEventListener('click', function() {
+  var m = state.movies[state.currentIndex];
+  if (m) { state.watchStatus[m.tmdb_id] = 2; showToast('Marked as Watched'); }
+  navigateTile(1);
+});
 document.getElementById('chevron-btn').addEventListener('click', toggleCategories);
 document.getElementById('cat-chevron-btn').addEventListener('click', toggleCategories);
 document.getElementById('fullscreen-viewer').addEventListener('click', closeFullscreen);
@@ -576,13 +698,7 @@ async function init() {
   renderCategories();
 
   setupTiltInteraction(document.getElementById('tile-container'));
-
-  // Gesture system: swipe right=watched, swipe left=DNF, long press=save
-  setupTileGestures(
-    document.getElementById('home-view'),
-    function() { return state.movies[state.currentIndex]; },
-    dnfMovie
-  );
+  setupCardDrag();
 
   // Show tab bar on home
   document.getElementById('tab-bar').classList.add('visible');

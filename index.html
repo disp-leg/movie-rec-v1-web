@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ria's Cuts</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -25,41 +28,51 @@
 
   <!-- HOME VIEW -->
   <div class="view active" id="home-view">
-    <div class="home-title">
-      Ria's Cuts
-      <div class="home-subtitle">Curated Horror</div>
-    </div>
-    <div class="movie-counter" id="movie-counter"></div>
-
-    <div class="nav-arrow left" id="nav-left">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    <div class="home-header">
+      <div class="home-brand">Ria's Cuts</div>
+      <div class="home-sub">50 horror picks, ranked by taste match</div>
     </div>
 
-    <div class="tile-container" id="tile-container">
-      <div class="tile-3d" id="tile-3d">
-        <div class="tile-ambient-shadow" id="tile-shadow"></div>
-        <div class="tile-front">
-          <img id="tile-poster" src="" alt="">
-          <div class="tile-gradient"></div>
-          <div class="tile-info">
-            <div class="tile-info-title" id="tile-title"></div>
-            <div class="tile-info-meta">
-              <span class="tile-info-category" id="tile-category"></span>
-              <span class="tile-info-year" id="tile-year"></span>
-              <span class="tile-info-score" id="tile-score"></span>
+    <div class="home-body">
+      <div class="tile-dock" id="tile-dock">
+        <div class="tile-container" id="tile-container">
+          <div class="tile-3d" id="tile-3d">
+            <div class="tile-ambient-shadow" id="tile-shadow"></div>
+            <div class="tile-front">
+              <img id="tile-poster" src="" alt="">
+              <div class="tile-gradient"></div>
+              <div class="tile-info">
+                <div class="tile-info-title" id="tile-title"></div>
+                <div class="tile-info-meta">
+                  <span class="tile-info-category" id="tile-category"></span>
+                  <span class="tile-info-year" id="tile-year"></span>
+                  <span class="tile-info-score" id="tile-score"></span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="nav-arrow right" id="nav-right">
-      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
-    </div>
+      <div class="below-card">
+        <div class="below-card-row">
+          <span class="card-counter" id="movie-counter"></span>
+          <span class="card-tmdb" id="card-tmdb"></span>
+        </div>
+        <div class="streaming-strip" id="streaming-strip"></div>
+      </div>
 
-    <div class="gesture-hint" id="gesture-hint">
-      <span>← Skip</span>
-      <span>Watched →</span>
+      <div class="home-actions">
+        <button class="home-act skip" id="act-skip" aria-label="Skip">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <button class="home-act detail" id="act-detail" aria-label="Details">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        </button>
+        <button class="home-act watched" id="act-watched" aria-label="Watched">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
     </div>
 
     <div class="chevron-btn" id="chevron-btn">
