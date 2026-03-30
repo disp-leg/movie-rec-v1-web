@@ -28,53 +28,16 @@
 
   <!-- HOME VIEW -->
   <div class="view active" id="home-view">
-    <div class="home-nav">
-      <span class="nav-brand"><span class="nav-ria">RIA'S</span> <span class="nav-cuts">Cuts.</span></span>
-      <span class="nav-counter" id="movie-counter"></span>
+    <div class="showcase-header">
+      <div class="sh-brand">RIA'S</div>
+      <div class="sh-sub">Cuts.</div>
     </div>
 
-    <div class="home-body">
-      <!-- Self-contained card: poster + info overlay -->
-      <div class="glass-frame" id="tile-dock">
-        <div class="tile-container" id="tile-container">
-          <div class="tile-3d" id="tile-3d">
-            <div class="tile-ambient-shadow" id="tile-shadow"></div>
-            <div class="tile-front">
-              <img id="tile-poster" src="" alt="">
-              <div class="card-overlay-gradient"></div>
-              <div class="card-overlay">
-                <div class="info-title" id="tile-title"></div>
-                <div class="info-row">
-                  <span class="info-year" id="tile-year"></span>
-                  <span class="info-genre" id="tile-category"></span>
-                  <span class="info-score" id="card-tmdb"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div class="showcase-feed" id="showcase-feed"></div>
 
-      <!-- Action buttons -->
-      <div class="home-actions">
-        <button class="hact" id="act-skip" aria-label="Skip">
-          <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          <span>Skip</span>
-        </button>
-        <button class="hact primary" id="act-detail" aria-label="Details">
-          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          <span>Details</span>
-        </button>
-        <button class="hact green" id="act-watched" aria-label="Watched">
-          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-          <span>Watched</span>
-        </button>
-        <button class="hact" id="act-surprise" aria-label="Surprise Me">
-          <svg viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-          <span>Shuffle</span>
-        </button>
-      </div>
-    </div>
+    <button class="surprise-fab" id="surprise-fab" aria-label="Surprise Me">
+      <svg viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+    </button>
 
     <div class="chevron-btn" id="chevron-btn">
       <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
