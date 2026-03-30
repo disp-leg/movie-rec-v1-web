@@ -679,6 +679,11 @@ document.getElementById('act-watched').addEventListener('click', function() {
   if (m) { state.watchStatus[m.tmdb_id] = 2; showToast('Marked as Watched'); }
   navigateTile(1);
 });
+document.getElementById('act-surprise').addEventListener('click', function() {
+  state.currentIndex = Math.floor(Math.random() * state.movies.length);
+  showCurrentTile();
+  showToast('Surprise pick');
+});
 document.getElementById('chevron-btn').addEventListener('click', toggleCategories);
 document.getElementById('cat-chevron-btn').addEventListener('click', toggleCategories);
 document.getElementById('fullscreen-viewer').addEventListener('click', closeFullscreen);
