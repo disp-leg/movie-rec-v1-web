@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════
-   styles.css — Ria's Cuts (Dark Theme)
+   styles.css — rias cuts
    ═══════════════════════════════════════════ */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -99,8 +99,8 @@ html, body {
 .showcase-feed {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: clamp(10px, 3vw, 16px);
-  padding: 0 clamp(12px, 3vw, 20px) calc(80px + var(--safe-bottom));
+  gap: clamp(14px, 4vw, 24px);
+  padding: 0 clamp(16px, 4vw, 28px) calc(100px + var(--safe-bottom));
 }
 
 /* Individual showcase card */

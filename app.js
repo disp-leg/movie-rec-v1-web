@@ -23,6 +23,8 @@ var ALL_VIEWS = {
   categories: 'categories-view',
   'category-stack': 'category-stack-view',
   detail: 'detail-view',
+  liked: 'liked-view',
+  saved: 'saved-view',
 };
 // No tab views — tabs removed
 
@@ -35,7 +37,14 @@ function switchView(viewName) {
     document.getElementById('detail-view').scrollTop = 0;
   }
 
-  // No tab bar — actions are on tile icons only
+  // Tab bar visibility
+  var tabBar = document.getElementById('tab-bar');
+  if (tabBar) tabBar.classList.toggle('visible', viewName !== 'detail');
+  var tabMap = { home: 'tab-home', liked: 'tab-liked', saved: 'tab-saved' };
+  Object.entries(tabMap).forEach(function(entry) {
+    var el = document.getElementById(entry[1]);
+    if (el) el.classList.toggle('active', entry[0] === viewName);
+  });
 }
 
 /* ═══ SHOWCASE FEED ═══ */
@@ -84,40 +93,7 @@ function buildShowcase() {
     };
     card.appendChild(img);
 
-    var grad = document.createElement('div');
-    grad.className = 'sc-grad';
-    card.appendChild(grad);
-
-    var info = document.createElement('div');
-    info.className = 'sc-info';
-    var title = document.createElement('div');
-    title.className = 'sc-title';
-    title.textContent = movie.title;
-    info.appendChild(title);
-
-    var meta = document.createElement('div');
-    meta.className = 'sc-meta';
-    var year = document.createElement('span');
-    year.className = 'sc-year';
-    year.textContent = movie.year || '';
-    meta.appendChild(year);
-    var cat = movie.category || (movie.nano_genres && movie.nano_genres[0]) || '';
-    if (cat) {
-      var genre = document.createElement('span');
-      genre.className = 'sc-genre';
-      genre.textContent = cat;
-      meta.appendChild(genre);
-    }
-    if (movie.tmdb_rating) {
-      var score = document.createElement('span');
-      score.className = 'sc-score';
-      score.textContent = '\u2605 ' + movie.tmdb_rating.toFixed(1);
-      meta.appendChild(score);
-    }
-    info.appendChild(meta);
-    card.appendChild(info);
-
-    // Action icons
+    // Action icons (no title overlay — poster speaks for itself)
     var actions = document.createElement('div');
     actions.className = 'sc-actions';
     actions.appendChild(createCardIcon(movie, 'liked', [{type:'path', d:'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'}]));
@@ -792,7 +768,9 @@ document.getElementById('cat-chevron-btn').addEventListener('click', toggleCateg
 document.getElementById('fullscreen-viewer').addEventListener('click', closeFullscreen);
 
 // Tab bar
-// Tab bar removed — actions are on tile icons only
+document.getElementById('tab-home').addEventListener('click', function() { switchTab('home'); });
+document.getElementById('tab-liked').addEventListener('click', function() { switchTab('liked'); });
+document.getElementById('tab-saved').addEventListener('click', function() { switchTab('saved'); });
 
 /* ─── Initialize ─── */
 async function init() {
@@ -804,7 +782,7 @@ async function init() {
   renderCategories();
   // Background is CSS-only (sunset photo + dark overlay)
 
-  // No tab bar
+  document.getElementById('tab-bar').classList.add('visible');
 
   var ls = document.getElementById('loading-screen');
   ls.classList.add('fade-out');
