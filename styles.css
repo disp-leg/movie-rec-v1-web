@@ -228,4 +228,106 @@ html, body {
   overflow-x: hidden;
 }
 
-/* ═══ PLACEHOLDER: Grid, Genre Picker, Mood, Shuffle styles added in later tasks ═══ */
+/* ═══ GRID VIEW ═══ */
+#grid-view {
+  background: var(--bg);
+  display: flex !important; flex-direction: column;
+}
+.grid-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: calc(12px + var(--safe-top)) 16px 12px;
+  flex-shrink: 0;
+}
+.grid-back {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass); border-radius: 50%;
+  cursor: pointer; flex-shrink: 0;
+  transition: transform 0.3s var(--spring);
+  -webkit-tap-highlight-color: transparent;
+}
+.grid-back:active { transform: scale(0.85); }
+.grid-back svg {
+  width: 18px; height: 18px; stroke: #f5f5f5; stroke-width: 2.5;
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+.grid-title {
+  font-size: clamp(18px, 5vw, 24px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary);
+}
+.grid-scroll {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.grid-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(12px, 3vw, 18px);
+  padding: 8px clamp(16px, 4vw, 24px) calc(40px + var(--safe-bottom));
+}
+
+/* Grid Card */
+.grid-card {
+  position: relative;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: #1c1c1e;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.3s var(--spring);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2), 0 16px 40px rgba(0,0,0,0.15);
+}
+.grid-card:active { transform: scale(0.98); }
+.grid-card > img {
+  width: 100%; aspect-ratio: 2/3;
+  object-fit: cover; display: block;
+  background: linear-gradient(135deg, #27272a, #18181b);
+}
+.grid-card::after {
+  content: ''; position: absolute; inset: 0;
+  border-radius: var(--radius-card);
+  border: 1px solid rgba(255,255,255,0.06);
+  pointer-events: none;
+}
+
+/* Card action buttons */
+.grid-card-actions {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  display: flex; gap: 6px;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+}
+.grid-card-btn {
+  flex: 1; padding: 7px 0;
+  border: none; border-radius: 10px;
+  font-family: inherit; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: transform 0.2s var(--spring), background 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.grid-card-btn:active { transform: scale(0.92); }
+
+.grid-card-add {
+  background: var(--accent-blue);
+  color: #fff;
+}
+.grid-card-add.active {
+  background: rgba(59,130,246,0.3);
+  color: var(--accent-blue);
+}
+.grid-card-dnf {
+  background: var(--accent-red);
+  color: #fff;
+}
+
+/* ═══ RESPONSIVE: Grid ═══ */
+@media (min-width: 580px) {
+  .grid-cards { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 900px) {
+  .grid-cards { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* ═══ PLACEHOLDER: Genre Picker, Mood, Shuffle styles added in later tasks ═══ */

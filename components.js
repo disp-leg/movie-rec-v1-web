@@ -75,7 +75,65 @@ function buildHomeTile(tileData) {
 }
 
 /* ═══ STUBS — filled in by later tasks ═══ */
-function buildGridCard(movie) { return document.createElement('div'); }
+function buildGridCard(movie) {
+  var card = document.createElement('div');
+  card.className = 'grid-card';
+  card.dataset.tmdbId = movie.tmdb_id;
+
+  var img = document.createElement('img');
+  img.src = movie.poster_url;
+  img.alt = movie.title;
+  img.loading = 'lazy';
+  img.onerror = function() {
+    if (!img.dataset.retried && movie.tmdb_id) {
+      img.dataset.retried = '1';
+      getMovieDetails(movie.tmdb_id).then(function(d) {
+        if (d && d.poster_path) img.src = 'https://image.tmdb.org/t/p/w500' + d.poster_path;
+      });
+    }
+  };
+  card.appendChild(img);
+
+  card.addEventListener('click', function(e) {
+    if (e.target.closest('.grid-card-btn')) return;
+    openDetailModal(movie, 'grid');
+  });
+
+  var actions = document.createElement('div');
+  actions.className = 'grid-card-actions';
+
+  var addBtn = document.createElement('button');
+  addBtn.className = 'grid-card-btn grid-card-add';
+  if (state.actionStates[movie.tmdb_id] && state.actionStates[movie.tmdb_id].saved) {
+    addBtn.classList.add('active');
+    addBtn.textContent = 'added';
+  } else {
+    addBtn.textContent = 'add';
+  }
+  addBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isSaved = toggleSaved(movie.tmdb_id);
+    addBtn.classList.toggle('active', isSaved);
+    addBtn.textContent = isSaved ? 'added' : 'add';
+  });
+  actions.appendChild(addBtn);
+
+  var dnfBtn = document.createElement('button');
+  dnfBtn.className = 'grid-card-btn grid-card-dnf';
+  dnfBtn.textContent = 'dnf';
+  dnfBtn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    doDNF(movie.tmdb_id);
+    card.style.transition = 'transform 0.3s var(--ease-out), opacity 0.3s';
+    card.style.transform = 'scale(0.9)';
+    card.style.opacity = '0';
+    setTimeout(function() { card.remove(); }, 300);
+  });
+  actions.appendChild(dnfBtn);
+
+  card.appendChild(actions);
+  return card;
+}
 function buildGenreTile(name, count) { return document.createElement('div'); }
 function buildMoodQuestionsContent() { return document.createElement('div'); }
 function buildShuffleCard(movie) { return document.createElement('div'); }
