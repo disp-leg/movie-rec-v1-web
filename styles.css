@@ -69,11 +69,15 @@ html, body {
   content: '';
   position: fixed; inset: 0;
   background: url('https://images.unsplash.com/photo-1518467166778-b88f373ffec7?w=1200&q=80&auto=format&fit=crop') center/cover no-repeat;
-  opacity: 0.4;
   z-index: 0;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 85%);
-  mask-image: linear-gradient(to bottom, black 40%, transparent 85%);
+}
+#home-view::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 0;
+  pointer-events: none;
 }
 #home-view > * { position: relative; z-index: 1; }
 .showcase-header {
