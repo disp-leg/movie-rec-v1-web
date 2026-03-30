@@ -87,38 +87,7 @@ function showCurrentTile() {
   if (yearEl) yearEl.textContent = movie.year;
   if (scoreEl) scoreEl.textContent = '';
 
-  // Streaming strip — fetch real logos from TMDB
-  var strip = document.getElementById('streaming-strip');
-  if (strip) {
-    strip.textContent = '';
-    // Show content engine streaming data immediately (filtered)
-    filterProviders(movie.streaming || []).slice(0, 4).forEach(function(s) {
-      var pill = document.createElement('span');
-      pill.className = 'stream-pill';
-      pill.textContent = s.name || '';
-      strip.appendChild(pill);
-    });
-    // Then fetch TMDB provider logos
-    getWatchProviders(movie.tmdb_id).then(function(data) {
-      if (!data || !data.results || !data.results.US) return;
-      var us = data.results.US;
-      var providers = filterProviders(us.flatrate || us.ads || us.rent || []);
-      if (providers.length === 0) return;
-      strip.textContent = '';
-      providers.slice(0, 5).forEach(function(p) {
-        var pill = document.createElement('span');
-        pill.className = 'stream-pill';
-        if (p.logo_path) {
-          var logo = document.createElement('img');
-          logo.src = 'https://image.tmdb.org/t/p/original' + p.logo_path;
-          logo.alt = p.provider_name || '';
-          pill.appendChild(logo);
-        }
-        pill.appendChild(document.createTextNode(p.provider_name || ''));
-        strip.appendChild(pill);
-      });
-    });
-  }
+  // Streaming logos are in detail view only — not on home tile
 }
 
 /* ─── Physical Drag: card follows finger ─── */
