@@ -100,7 +100,7 @@ html, body {
 /* ─── 3D Tile — Apple Invites style ─── */
 .tile-container {
   position: relative;
-  width: min(350px, calc(100vw - 40px));
+  width: clamp(300px, calc(100vw - 48px), 400px);
   aspect-ratio: 2/3;
   perspective: 1400px;
   cursor: pointer;
@@ -250,6 +250,23 @@ html, body {
   stroke-width: 2.5; fill: none;
   stroke-linecap: round; stroke-linejoin: round;
 }
+
+/* ─── Gesture Hint ─── */
+.gesture-hint {
+  position: absolute;
+  bottom: calc(clamp(130px, 20vw, 170px) + var(--safe-bottom));
+  left: 0; right: 0;
+  display: flex; justify-content: space-between;
+  padding: 0 clamp(24px, 8vw, 48px);
+  font-size: 11px; font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.3px;
+  opacity: 0.6;
+  z-index: 10;
+  pointer-events: none;
+  transition: opacity 1s;
+}
+.gesture-hint.hidden { opacity: 0; }
 
 /* ─── Chevron Button — floating glass pill ─── */
 .chevron-btn {
@@ -746,56 +763,84 @@ html, body {
   object-fit: contain; border-radius: 8px;
 }
 
-/* ─── Responsive: Mobile-first ─── */
+/* ─── Responsive: Fluid scaling with clamp() ─── */
 
-/* All phones */
-@media (max-width: 767px) {
-  .tile-container { width: calc(100vw - 48px); }
-  .tile-info { padding: 16px 16px 18px; }
-  .tile-info-title { font-size: 22px; }
+/* Tile scales fluidly: 339px at 375px → 350px at 768px → 380px at 1200px */
+.tile-container { width: clamp(300px, calc(100vw - 48px), 400px); }
+.tile-info { padding: clamp(14px, 4vw, 24px) clamp(14px, 4vw, 24px) clamp(16px, 4.5vw, 26px); }
+.tile-info-title { font-size: clamp(18px, 5.5vw, 26px); }
+.tile-info-category { font-size: clamp(11px, 3vw, 13px); }
+
+/* Home header & counter scale */
+.home-title { font-size: clamp(12px, 3.5vw, 15px); }
+.movie-counter {
+  bottom: calc(clamp(80px, 14vw, 120px) + var(--safe-bottom));
+  font-size: clamp(11px, 3vw, 13px);
+}
+
+/* Detail view fluid */
+.detail-hero { min-height: clamp(40vh, 50vw, 55vh); }
+.floating-action-card {
+  margin: -60px clamp(12px, 4vw, 20px) 0;
+  max-width: 640px;
+}
+.fac-title { font-size: clamp(20px, 6vw, 28px); }
+.fac-title.long { font-size: clamp(17px, 5vw, 24px); }
+.detail-content {
+  padding: clamp(14px, 4vw, 24px) clamp(12px, 4vw, 24px) calc(40px + var(--safe-bottom));
+  gap: clamp(16px, 4vw, 24px);
+  max-width: 640px;
+  margin: 0 auto;
+}
+.section-title { font-size: clamp(15px, 4vw, 18px); }
+.watch-status-btn { font-size: clamp(11px, 3vw, 13px); padding: clamp(7px, 2vw, 10px) 0; }
+.streaming-chip { padding: clamp(5px, 1.5vw, 8px) clamp(8px, 2.5vw, 14px); font-size: clamp(11px, 3vw, 13px); }
+.similar-card { width: clamp(85px, 22vw, 120px); }
+.similar-card .title { font-size: clamp(10px, 2.8vw, 13px); }
+.action-btn .icon-circle { width: clamp(40px, 10vw, 48px); height: clamp(40px, 10vw, 48px); }
+
+/* Categories fluid */
+.categories-header {
+  font-size: clamp(24px, 7vw, 34px);
+  padding: calc(20px + var(--safe-top)) clamp(16px, 4vw, 24px) 16px;
+  max-width: 800px; margin: 0 auto;
+}
+.categories-grid {
+  gap: clamp(8px, 2.5vw, 14px);
+  padding: 0 clamp(12px, 4vw, 24px) 100px;
+  max-width: 800px; margin: 0 auto;
+}
+.category-card { padding: clamp(14px, 4vw, 22px) clamp(12px, 3vw, 18px); }
+.category-card .cat-name { font-size: clamp(13px, 3.8vw, 17px); }
+.category-card .cat-emoji { font-size: clamp(22px, 6vw, 30px); }
+
+/* Chevron position */
+.chevron-btn {
+  bottom: calc(clamp(60px, 10vw, 80px) + var(--safe-bottom));
+  width: clamp(40px, 10vw, 48px); height: clamp(40px, 10vw, 48px);
+}
+
+/* Nav arrows: hidden on touch, shown on hover for pointer devices */
+@media (hover: none) {
   .nav-arrow { display: none; }
-  .movie-counter { bottom: calc(90px + var(--safe-bottom)); font-size: 12px; }
-  .floating-action-card { margin: -50px 16px 0; }
-  .detail-content { padding: 16px 16px calc(32px + var(--safe-bottom)); }
-  .detail-hero { min-height: 45vh; }
-  .watch-status-btn { font-size: 12px; padding: 9px 0; }
-  .streaming-chip { padding: 6px 10px; font-size: 12px; }
-  .similar-card { width: 90px; }
-  .similar-card .title { font-size: 11px; }
-  .action-btn .icon-circle { width: 44px; height: 44px; }
-  .chevron-btn { bottom: calc(24px + var(--safe-bottom)); width: 44px; height: 44px; }
+}
+@media (hover: hover) {
+  .nav-arrow { opacity: 0; }
+  #home-view:hover .nav-arrow,
+  #category-stack-view:hover .nav-arrow { opacity: 0.8; }
 }
 
-/* Small phones (375px and below) */
-@media (max-width: 389px) {
-  .tile-container { width: calc(100vw - 36px); }
-  .tile-info-title { font-size: 20px; }
-  .tile-info-category { font-size: 11px; }
-  .floating-action-card { margin: -50px 12px 0; padding: 14px 16px; }
-  .fac-title { font-size: 22px; }
-  .fac-title.long { font-size: 19px; }
-  .detail-content { padding: 16px 12px calc(32px + var(--safe-bottom)); gap: 16px; }
-  .watch-status-btn { font-size: 11px; padding: 8px 0; }
-  .section-title { font-size: 15px; }
-  .categories-header { font-size: 26px; padding-left: 16px; padding-right: 16px; }
-  .categories-grid { gap: 8px; padding: 0 12px 100px; }
-  .category-card { padding: 14px 12px; }
-  .category-card .cat-name { font-size: 14px; }
-  .category-card .cat-emoji { font-size: 24px; }
+/* Grid columns scale with viewport */
+@media (min-width: 580px) {
+  .categories-grid { grid-template-columns: repeat(3, 1fr); }
+  .collection-grid { grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width: 900px) {
+  .categories-grid { grid-template-columns: repeat(4, 1fr); }
+  .collection-grid { grid-template-columns: repeat(5, 1fr); }
 }
 
-/* Tablets */
+/* Center detail content on larger screens */
 @media (min-width: 768px) {
-  .tile-container { width: 340px; }
-  .detail-content { max-width: 640px; margin: 0 auto; padding-left: 32px; padding-right: 32px; }
-  .floating-action-card { max-width: 640px; margin-left: auto; margin-right: auto; margin-top: -60px; }
-  .categories-grid { grid-template-columns: repeat(3, 1fr); max-width: 640px; margin: 0 auto; }
-  .categories-header { max-width: 640px; margin: 0 auto; }
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-  .tile-container { width: 380px; }
-  .detail-hero { min-height: 50vh; }
-  .categories-grid { grid-template-columns: repeat(4, 1fr); max-width: 800px; }
+  .floating-action-card { margin-left: auto; margin-right: auto; }
 }

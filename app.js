@@ -196,7 +196,7 @@ function getCurrentTileMovie(container) {
   return state.categoryStack.movies[state.categoryStack.index];
 }
 
-/* ─── Touch Swipe ─── */
+/* ─── Touch Swipe (basic, for non-tile views) ─── */
 function setupSwipe(el, onLeft, onRight) {
   var sx = 0, sy = 0;
   el.addEventListener('touchstart', function(e) {
@@ -210,6 +210,101 @@ function setupSwipe(el, onLeft, onRight) {
       dx < 0 ? onLeft() : onRight();
     }
   }, { passive: true });
+}
+
+/* ─── Tile Gesture System ─── */
+/* Swipe right = Watched, Swipe left = DNF (remove), Long press = Save */
+function setupTileGestures(view, getMovie, onRemove) {
+  var sx = 0, sy = 0, st = 0;
+  var longPressTimer = null;
+  var longPressFired = false;
+  var LONG_PRESS_MS = 500;
+  var SWIPE_THRESHOLD = 70;
+
+  view.addEventListener('touchstart', function(e) {
+    sx = e.touches[0].clientX;
+    sy = e.touches[0].clientY;
+    st = Date.now();
+    longPressFired = false;
+
+    longPressTimer = setTimeout(function() {
+      longPressFired = true;
+      var movie = getMovie();
+      if (!movie) return;
+      // Save for later
+      if (!state.actionStates[movie.tmdb_id]) state.actionStates[movie.tmdb_id] = {};
+      var wasSaved = state.actionStates[movie.tmdb_id].saved;
+      state.actionStates[movie.tmdb_id].saved = !wasSaved;
+      showToast(wasSaved ? 'Removed from Saved' : 'Saved for Later');
+      // Haptic-like feedback via brief scale
+      var tile = view.querySelector('.tile-3d');
+      if (tile) {
+        tile.style.transition = 'transform 0.15s ease';
+        tile.style.transform = 'scale(0.95)';
+        setTimeout(function() {
+          tile.style.transform = 'scale(1)';
+          setTimeout(function() { tile.style.transition = 'none'; }, 200);
+        }, 150);
+      }
+    }, LONG_PRESS_MS);
+  }, { passive: true });
+
+  view.addEventListener('touchmove', function(e) {
+    // Cancel long press if finger moves
+    var dx = Math.abs(e.touches[0].clientX - sx);
+    var dy = Math.abs(e.touches[0].clientY - sy);
+    if (dx > 10 || dy > 10) {
+      clearTimeout(longPressTimer);
+    }
+  }, { passive: true });
+
+  view.addEventListener('touchend', function(e) {
+    clearTimeout(longPressTimer);
+    if (longPressFired) return; // Long press already handled
+
+    var dx = e.changedTouches[0].clientX - sx;
+    var dy = Math.abs(e.changedTouches[0].clientY - sy);
+    var elapsed = Date.now() - st;
+
+    // Only process swipes (not taps, not long press)
+    if (Math.abs(dx) < SWIPE_THRESHOLD || dy > 120 || elapsed > 800) return;
+
+    var movie = getMovie();
+    if (!movie) return;
+
+    // Hide gesture hint after first swipe
+    var hint = document.getElementById('gesture-hint');
+    if (hint) hint.classList.add('hidden');
+
+    if (dx > 0) {
+      // Swipe RIGHT → Mark as Watched
+      state.watchStatus[movie.tmdb_id] = 2;
+      showToast('Marked as Watched');
+      navigateTile(1);
+    } else {
+      // Swipe LEFT → DNF / Remove
+      if (onRemove) {
+        onRemove(movie);
+        showToast('Removed');
+      } else {
+        navigateTile(1);
+        showToast('Skipped');
+      }
+    }
+  }, { passive: true });
+}
+
+/* ─── DNF: remove movie from current list ─── */
+function dnfMovie(movie) {
+  var idx = state.movies.indexOf(movie);
+  if (idx === -1) return;
+  state.movies.splice(idx, 1);
+  if (state.currentIndex >= state.movies.length) {
+    state.currentIndex = Math.max(0, state.movies.length - 1);
+  }
+  if (state.movies.length > 0) {
+    showCurrentTile();
+  }
 }
 
 /* ─── Detail View ─── */
@@ -481,10 +576,12 @@ async function init() {
   renderCategories();
 
   setupTiltInteraction(document.getElementById('tile-container'));
-  setupSwipe(
+
+  // Gesture system: swipe right=watched, swipe left=DNF, long press=save
+  setupTileGestures(
     document.getElementById('home-view'),
-    function() { navigateTile(1); },
-    function() { navigateTile(-1); }
+    function() { return state.movies[state.currentIndex]; },
+    dnfMovie
   );
 
   // Show tab bar on home
