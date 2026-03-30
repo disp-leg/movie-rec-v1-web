@@ -125,7 +125,7 @@ function showCurrentTile() {
 function setupCardDrag() {
   var dock = document.getElementById('tile-dock');
   if (!dock) return;
-  var card = document.querySelector('#tile-container .tile-3d');
+  var card = dock; // Move the entire glass frame + poster as one unit
   var isDragging = false;
   var startX = 0, startY = 0, currentX = 0, startTime = 0;
   var THRESHOLD = 80;
