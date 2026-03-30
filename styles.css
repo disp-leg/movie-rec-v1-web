@@ -75,7 +75,7 @@ html, body {
 }
 #home-view > * { position: relative; z-index: 1; }
 .showcase-header {
-  padding: calc(clamp(32px, 8vw, 56px) + var(--safe-top)) clamp(20px, 5vw, 32px) clamp(8px, 2vw, 12px);
+  padding: calc(clamp(56px, 14vw, 80px) + var(--safe-top)) clamp(20px, 5vw, 32px) clamp(8px, 2vw, 12px);
 }
 .sh-brand {
   font-size: clamp(42px, 12vw, 72px);
@@ -91,12 +91,15 @@ html, body {
   font-weight: 500; color: var(--text-secondary);
 }
 
-/* Home Tiles Grid — 3 top, 2 bottom, all same size */
+/* Home Tiles Grid — mobile-first, 2 cols default, 3 cols on wider */
 .home-tiles {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(10px, 2.5vw, 14px);
-  padding: 0 clamp(16px, 4vw, 28px) calc(40px + var(--safe-bottom));
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 3vw, 14px);
+  padding: 0 clamp(16px, 5vw, 28px) calc(40px + var(--safe-bottom));
+}
+@media (min-width: 580px) {
+  .home-tiles { grid-template-columns: repeat(3, 1fr); }
 }
 .home-tile {
   border-radius: var(--radius-card);
@@ -139,6 +142,8 @@ html, body {
   font-size: clamp(14px, 3.8vw, 17px);
   font-weight: 600; color: #fff;
   margin-bottom: 2px;
+  min-height: 2.4em;
+  display: flex; align-items: flex-end;
 }
 .home-tile-subtitle {
   font-size: clamp(11px, 3vw, 13px);
