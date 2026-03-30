@@ -369,9 +369,13 @@ function buildWhereToWatch(streamList) {
     streamList.slice(0, 6).forEach(function(p) {
       var chip = document.createElement('div');
       chip.className = 'streaming-chip';
-      var dot = document.createElement('span');
-      dot.className = 'dot';
-      chip.appendChild(dot);
+      if (p.logo_path) {
+        var logo = document.createElement('img');
+        logo.src = 'https://image.tmdb.org/t/p/original' + p.logo_path;
+        logo.alt = p.provider_name || p.name || '';
+        logo.className = 'stream-logo';
+        chip.appendChild(logo);
+      }
       chip.appendChild(document.createTextNode(p.provider_name || p.name || ''));
       list.appendChild(chip);
     });

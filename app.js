@@ -23,10 +23,8 @@ var ALL_VIEWS = {
   categories: 'categories-view',
   'category-stack': 'category-stack-view',
   detail: 'detail-view',
-  liked: 'liked-view',
-  saved: 'saved-view',
 };
-var TAB_VIEWS = ['home', 'liked', 'saved', 'categories', 'category-stack'];
+// No tab views — tabs removed
 
 function switchView(viewName) {
   Object.entries(ALL_VIEWS).forEach(function(entry) {
@@ -37,16 +35,7 @@ function switchView(viewName) {
     document.getElementById('detail-view').scrollTop = 0;
   }
 
-  // Tab bar: show on tab views, hide on detail
-  var tabBar = document.getElementById('tab-bar');
-  tabBar.classList.toggle('visible', TAB_VIEWS.indexOf(viewName) !== -1);
-
-  // Update active tab
-  var tabMap = { home: 'tab-home', liked: 'tab-liked', saved: 'tab-saved' };
-  Object.entries(tabMap).forEach(function(entry) {
-    var el = document.getElementById(entry[1]);
-    if (el) el.classList.toggle('active', entry[0] === viewName);
-  });
+  // No tab bar — actions are on tile icons only
 }
 
 /* ═══ SHOWCASE FEED ═══ */
@@ -803,9 +792,7 @@ document.getElementById('cat-chevron-btn').addEventListener('click', toggleCateg
 document.getElementById('fullscreen-viewer').addEventListener('click', closeFullscreen);
 
 // Tab bar
-document.getElementById('tab-home').addEventListener('click', function() { switchTab('home'); });
-document.getElementById('tab-liked').addEventListener('click', function() { switchTab('liked'); });
-document.getElementById('tab-saved').addEventListener('click', function() { switchTab('saved'); });
+// Tab bar removed — actions are on tile icons only
 
 /* ─── PrismDots Background ─── */
 function initDotsBg() {
@@ -885,8 +872,7 @@ async function init() {
   renderCategories();
   initDotsBg();
 
-  // Show tab bar on home
-  document.getElementById('tab-bar').classList.add('visible');
+  // No tab bar
 
   var ls = document.getElementById('loading-screen');
   ls.classList.add('fade-out');

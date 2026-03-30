@@ -104,9 +104,10 @@ html, body {
 
 /* ─── Showcase Feed ─── */
 .showcase-feed {
-  display: flex; flex-direction: column;
-  gap: clamp(16px, 4vw, 24px);
-  padding: 0 clamp(16px, 4vw, 24px) calc(120px + var(--safe-bottom));
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(10px, 3vw, 16px);
+  padding: 0 clamp(12px, 3vw, 20px) calc(80px + var(--safe-bottom));
 }
 
 /* Individual showcase card */
@@ -144,38 +145,40 @@ html, body {
 /* Card info overlay */
 .sc-info {
   position: absolute; bottom: 0; left: 0; right: 0;
-  padding: clamp(16px, 4vw, 24px);
+  padding: clamp(8px, 2.5vw, 14px);
   z-index: 2;
 }
 .sc-title {
-  font-size: clamp(22px, 6vw, 32px);
-  font-weight: 600; letter-spacing: -0.02em;
-  line-height: 1.1; color: #f5f5f5;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  font-size: clamp(13px, 3.8vw, 18px);
+  font-weight: 600; letter-spacing: -0.01em;
+  line-height: 1.15; color: #f5f5f5;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+  overflow: hidden; text-overflow: ellipsis;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
 }
 .sc-meta {
-  display: flex; align-items: center; gap: 8px;
-  margin-top: 8px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 5px;
+  margin-top: 4px; flex-wrap: wrap;
 }
-.sc-year { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.55); }
+.sc-year { font-size: 11px; font-weight: 400; color: rgba(255,255,255,0.5); }
 .sc-genre {
-  padding: 3px 10px;
+  padding: 2px 6px;
   background: rgba(255,255,255,0.12);
   backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius-pill);
-  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.8);
+  font-size: 9px; font-weight: 600; color: rgba(255,255,255,0.75);
   text-transform: capitalize;
 }
-.sc-score { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.6); }
+.sc-score { font-size: 11px; font-weight: 500; color: rgba(255,255,255,0.5); }
 
 /* Card action icons (bottom right) */
 .sc-actions {
-  position: absolute; bottom: clamp(14px, 3.5vw, 22px); right: clamp(14px, 3.5vw, 22px);
-  display: flex; gap: 8px; z-index: 3;
+  position: absolute; bottom: clamp(8px, 2.5vw, 14px); right: clamp(8px, 2.5vw, 14px);
+  display: flex; gap: 5px; z-index: 3;
 }
 .sc-icon {
-  width: 36px; height: 36px;
+  width: 30px; height: 30px;
   display: flex; align-items: center; justify-content: center;
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -187,7 +190,7 @@ html, body {
 }
 .sc-icon:active { transform: scale(0.85); }
 .sc-icon svg {
-  width: 16px; height: 16px;
+  width: 14px; height: 14px;
   stroke: rgba(255,255,255,0.7); stroke-width: 2;
   fill: none; stroke-linecap: round; stroke-linejoin: round;
 }
@@ -364,6 +367,7 @@ html, body {
 .streaming-list { display: flex; flex-wrap: wrap; gap: 10px; }
 .streaming-chip { display: inline-flex; align-items: center; gap: 6px; padding: clamp(6px,1.5vw,8px) clamp(10px,2.5vw,14px); background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-pill); font-size: clamp(11px,3vw,13px); font-weight: 500; color: #d4d4d8; }
 .streaming-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent-green); }
+.streaming-chip .stream-logo { width: 22px; height: 22px; border-radius: 5px; object-fit: contain; background: #fff; flex-shrink: 0; }
 
 /* Cast */
 .cast-stack { display: flex; padding: 4px 0; overflow-x: auto; scrollbar-width: none; }
