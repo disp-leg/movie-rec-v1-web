@@ -110,7 +110,7 @@ html, body {
   opacity: 0;
   transform: translateY(20px);
   display: flex; flex-direction: column; justify-content: flex-end;
-  aspect-ratio: 1;
+  aspect-ratio: 4/3;
 }
 .home-tile.visible {
   opacity: 1;
