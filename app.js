@@ -49,6 +49,135 @@ function switchView(viewName) {
   });
 }
 
+/* ═══ SHOWCASE FEED ═══ */
+function makeSvg(pathD) {
+  var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  pathD.forEach(function(d) {
+    if (d.type === 'path') {
+      var p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      p.setAttribute('d', d.d);
+      svg.appendChild(p);
+    } else if (d.type === 'polyline') {
+      var pl = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+      pl.setAttribute('points', d.points);
+      svg.appendChild(pl);
+    }
+  });
+  return svg;
+}
+
+function buildShowcase() {
+  var feed = document.getElementById('showcase-feed');
+  if (!feed) return;
+  feed.textContent = '';
+
+  state.movies.forEach(function(movie, i) {
+    var card = document.createElement('div');
+    card.className = 'sc-card';
+    card.dataset.index = i;
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('.sc-icon')) return;
+      openDetail(movie);
+    });
+
+    var img = document.createElement('img');
+    img.src = movie.poster_url;
+    img.alt = movie.title;
+    img.loading = i < 3 ? 'eager' : 'lazy';
+    img.onerror = function() {
+      if (!img.dataset.retried && movie.tmdb_id) {
+        img.dataset.retried = '1';
+        getMovieDetails(movie.tmdb_id).then(function(d) {
+          if (d && d.poster_path) img.src = 'https://image.tmdb.org/t/p/w500' + d.poster_path;
+        });
+      }
+    };
+    card.appendChild(img);
+
+    var grad = document.createElement('div');
+    grad.className = 'sc-grad';
+    card.appendChild(grad);
+
+    var info = document.createElement('div');
+    info.className = 'sc-info';
+    var title = document.createElement('div');
+    title.className = 'sc-title';
+    title.textContent = movie.title;
+    info.appendChild(title);
+
+    var meta = document.createElement('div');
+    meta.className = 'sc-meta';
+    var year = document.createElement('span');
+    year.className = 'sc-year';
+    year.textContent = movie.year || '';
+    meta.appendChild(year);
+    var cat = movie.category || (movie.nano_genres && movie.nano_genres[0]) || '';
+    if (cat) {
+      var genre = document.createElement('span');
+      genre.className = 'sc-genre';
+      genre.textContent = cat;
+      meta.appendChild(genre);
+    }
+    if (movie.tmdb_rating) {
+      var score = document.createElement('span');
+      score.className = 'sc-score';
+      score.textContent = '\u2605 ' + movie.tmdb_rating.toFixed(1);
+      meta.appendChild(score);
+    }
+    info.appendChild(meta);
+    card.appendChild(info);
+
+    // Action icons
+    var actions = document.createElement('div');
+    actions.className = 'sc-actions';
+    actions.appendChild(createCardIcon(movie, 'liked', [{type:'path', d:'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z'}]));
+    actions.appendChild(createCardIcon(movie, 'saved', [{type:'path', d:'M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z'}]));
+    actions.appendChild(createWatchedIcon(movie));
+    card.appendChild(actions);
+
+    feed.appendChild(card);
+  });
+}
+
+function createCardIcon(movie, action, paths) {
+  var btn = document.createElement('div');
+  btn.className = 'sc-icon';
+  if (state.actionStates[movie.tmdb_id] && state.actionStates[movie.tmdb_id][action]) btn.classList.add('active');
+  btn.appendChild(makeSvg(paths));
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    if (!state.actionStates[movie.tmdb_id]) state.actionStates[movie.tmdb_id] = {};
+    var was = state.actionStates[movie.tmdb_id][action];
+    state.actionStates[movie.tmdb_id][action] = !was;
+    btn.classList.toggle('active');
+    showToast(was ? 'Removed' : (action === 'liked' ? 'Liked' : 'Saved'));
+    btn.style.transform = 'scale(0.75)';
+    setTimeout(function() { btn.style.transform = ''; }, 200);
+  });
+  return btn;
+}
+
+function createWatchedIcon(movie) {
+  var btn = document.createElement('div');
+  btn.className = 'sc-icon';
+  if (state.watchStatus[movie.tmdb_id] === 2) btn.classList.add('active-green');
+  btn.appendChild(makeSvg([{type:'polyline', points:'20 6 9 17 4 12'}]));
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var was = state.watchStatus[movie.tmdb_id] === 2;
+    state.watchStatus[movie.tmdb_id] = was ? 0 : 2;
+    btn.classList.toggle('active-green');
+    showToast(was ? 'Unmarked' : 'Watched');
+    btn.style.transform = 'scale(0.75)';
+    setTimeout(function() { btn.style.transform = ''; }, 200);
+  });
+  return btn;
+}
+
+function showCurrentTile() {}
+function navigateTile() {}
+
 /* ─── Filter ad-tier & duplicate streaming providers ─── */
 function filterProviders(list) {
   var AD_PATTERNS = /with ads|standard with|premium plus with|free with/i;
@@ -661,20 +790,13 @@ function switchTab(tab) {
 }
 
 /* ─── Event Listeners ─── */
-document.getElementById('act-skip').addEventListener('click', function() { showToast('Skipped'); navigateTile(1); });
-document.getElementById('act-detail').addEventListener('click', function() {
-  var m = state.movies[state.currentIndex];
-  if (m) openDetail(m);
-});
-document.getElementById('act-watched').addEventListener('click', function() {
-  var m = state.movies[state.currentIndex];
-  if (m) { state.watchStatus[m.tmdb_id] = 2; showToast('Marked as Watched'); }
-  navigateTile(1);
-});
-document.getElementById('act-surprise').addEventListener('click', function() {
-  state.currentIndex = Math.floor(Math.random() * state.movies.length);
-  showCurrentTile();
-  showToast('Surprise pick');
+document.getElementById('surprise-fab').addEventListener('click', function() {
+  var idx = Math.floor(Math.random() * state.movies.length);
+  var cards = document.querySelectorAll('.sc-card');
+  if (cards[idx]) {
+    cards[idx].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    showToast('Surprise pick');
+  }
 });
 document.getElementById('chevron-btn').addEventListener('click', toggleCategories);
 document.getElementById('cat-chevron-btn').addEventListener('click', toggleCategories);
@@ -685,17 +807,83 @@ document.getElementById('tab-home').addEventListener('click', function() { switc
 document.getElementById('tab-liked').addEventListener('click', function() { switchTab('liked'); });
 document.getElementById('tab-saved').addEventListener('click', function() { switchTab('saved'); });
 
+/* ─── PrismDots Background ─── */
+function initDotsBg() {
+  var canvas = document.getElementById('dots-bg');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var dots = [];
+  var COUNT = 80;
+  var w, h;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (var i = 0; i < COUNT; i++) {
+    dots.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      z: Math.random(), // depth 0-1
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: (Math.random() - 0.5) * 0.1,
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (var i = 0; i < dots.length; i++) {
+      var d = dots[i];
+      d.x += d.vx;
+      d.y += d.vy;
+      if (d.x < 0) d.x = w;
+      if (d.x > w) d.x = 0;
+      if (d.y < 0) d.y = h;
+      if (d.y > h) d.y = 0;
+
+      var size = 1 + d.z * 2;
+      var alpha = 0.08 + d.z * 0.18;
+      ctx.beginPath();
+      ctx.arc(d.x, d.y, size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,' + alpha + ')';
+      ctx.fill();
+    }
+
+    // Draw faint connections between nearby dots
+    for (var i = 0; i < dots.length; i++) {
+      for (var j = i + 1; j < dots.length; j++) {
+        var dx = dots[i].x - dots[j].x;
+        var dy = dots[i].y - dots[j].y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          var alpha = (1 - dist / 120) * 0.04;
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.strokeStyle = 'rgba(255,255,255,' + alpha + ')';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
 /* ─── Initialize ─── */
 async function init() {
   var data = await loadMovieData();
   state.movies = data.movies;
   state.categories = data.categories;
 
-  showCurrentTile();
+  buildShowcase();
   renderCategories();
-
-  setupTiltInteraction(document.getElementById('tile-container'));
-  setupCardDrag();
+  initDotsBg();
 
   // Show tab bar on home
   document.getElementById('tab-bar').classList.add('visible');
