@@ -25,7 +25,8 @@
 
 html, body {
   height: 100%;
-  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
   background: var(--bg); color: var(--text-primary);
   overflow: hidden; overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
