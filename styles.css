@@ -63,7 +63,17 @@ html, body {
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
   display: block !important;
+  position: relative;
 }
+#home-view::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: url('https://images.unsplash.com/photo-1518467166778-b88f373ffec7?w=1200&q=80&auto=format&fit=crop') center/cover no-repeat;
+  opacity: 0.4;
+  z-index: 0;
+  pointer-events: none;
+}
+#home-view > * { position: relative; z-index: 1; }
 .showcase-header {
   padding: calc(clamp(32px, 8vw, 56px) + var(--safe-top)) clamp(20px, 5vw, 32px) clamp(8px, 2vw, 12px);
 }
@@ -108,11 +118,12 @@ html, body {
 
 /* Bottom row: 2 tiles, left-aligned in 3-col grid */
 
-/* Bright metallic 3D — brushed steel */
+/* Frosted glass — tasteskill.dev style */
 .home-tile {
-  background: linear-gradient(145deg, #b8b8be 0%, #8e8e96 50%, #a0a0a8 100%);
-  border: 1px solid rgba(255,255,255,0.25);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
 }
 
 .home-tile-icon {
@@ -121,17 +132,17 @@ html, body {
 }
 .home-tile-icon svg {
   width: 100%; height: 100%;
-  stroke: rgba(0,0,0,0.7); stroke-width: 1.5;
+  stroke: rgba(255,255,255,0.85); stroke-width: 1.5;
   fill: none; stroke-linecap: round; stroke-linejoin: round;
 }
 .home-tile-title {
   font-size: clamp(14px, 3.8vw, 17px);
-  font-weight: 600; color: rgba(0,0,0,0.85);
+  font-weight: 600; color: #fff;
   margin-bottom: 2px;
 }
 .home-tile-subtitle {
   font-size: clamp(11px, 3vw, 13px);
-  font-weight: 400; color: rgba(0,0,0,0.5);
+  font-weight: 400; color: rgba(255,255,255,0.55);
 }
 
 /* ═══ TOAST ═══ */
