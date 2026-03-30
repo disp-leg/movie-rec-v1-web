@@ -90,7 +90,7 @@ html, body {
   display: none;
 }
 .movie-counter {
-  position: absolute; bottom: calc(100px + var(--safe-bottom));
+  position: absolute; bottom: calc(120px + var(--safe-bottom));
   left: 0; right: 0; text-align: center;
   font-size: 13px; font-weight: 500;
   color: var(--text-tertiary);
@@ -247,7 +247,7 @@ html, body {
 
 /* ─── Chevron Button — floating glass pill ─── */
 .chevron-btn {
-  position: absolute; bottom: calc(36px + var(--safe-bottom));
+  position: absolute; bottom: calc(76px + var(--safe-bottom));
   left: 50%; transform: translateX(-50%);
   width: 48px; height: 48px;
   display: flex; align-items: center; justify-content: center;
@@ -558,6 +558,108 @@ html, body {
 .action-btn .icon-circle.active { background: var(--accent-blue); }
 .action-btn .icon-circle.active svg { stroke: #fff; }
 .action-btn span { font-size: 11px; font-weight: 500; color: var(--text-secondary); }
+
+/* ─── Bottom Tab Bar ─── */
+.tab-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; justify-content: space-around; align-items: center;
+  height: calc(56px + var(--safe-bottom));
+  padding-bottom: var(--safe-bottom);
+  background: rgba(255,255,255,0.72);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border-top: 0.5px solid rgba(0,0,0,0.08);
+  z-index: 500;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.tab-bar.visible { opacity: 1; pointer-events: auto; }
+.tab-item {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: none; border: none; cursor: pointer;
+  padding: 6px 16px;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s var(--spring);
+}
+.tab-item:active { transform: scale(0.88); }
+.tab-item svg {
+  width: 22px; height: 22px;
+  stroke: var(--text-tertiary); stroke-width: 1.8;
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+  transition: stroke 0.2s, fill 0.2s;
+}
+.tab-item span {
+  font-size: 10px; font-weight: 600;
+  color: var(--text-tertiary);
+  transition: color 0.2s;
+}
+.tab-item.active svg { stroke: var(--accent-blue); }
+.tab-item.active span { color: var(--accent-blue); }
+
+/* ─── Collection Views (Liked / Saved) ─── */
+#liked-view, #saved-view {
+  background: var(--bg);
+  overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(70px + var(--safe-bottom));
+}
+.collection-header {
+  padding: calc(20px + var(--safe-top)) 20px 8px;
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  font-size: 32px; font-weight: 700; letter-spacing: -0.5px;
+}
+.collection-empty {
+  padding: 60px 20px;
+  text-align: center;
+  font-size: 15px; font-weight: 500;
+  color: var(--text-tertiary);
+}
+.collection-empty.hidden { display: none; }
+.collection-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 12px 20px;
+}
+.collection-card {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.3s var(--spring);
+}
+.collection-card:active { transform: scale(0.95); }
+.collection-card img {
+  width: 100%; aspect-ratio: 2/3;
+  object-fit: cover; display: block;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+.collection-card .collection-card-title {
+  margin-top: 6px;
+  font-size: 12px; font-weight: 500;
+  color: var(--text-secondary);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+
+/* ─── Toast ─── */
+.toast {
+  position: fixed;
+  top: calc(20px + var(--safe-top));
+  left: 50%; transform: translateX(-50%) translateY(-80px);
+  padding: 10px 20px;
+  background: rgba(28,28,30,0.88);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  color: #fff;
+  font-size: 14px; font-weight: 600;
+  border-radius: var(--radius-pill);
+  z-index: 600;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.4s var(--spring), opacity 0.4s;
+  white-space: nowrap;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
 
 /* ─── Categories View ─── */
 #categories-view { background: var(--bg); overflow-y: auto; }

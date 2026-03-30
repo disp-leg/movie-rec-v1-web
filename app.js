@@ -18,20 +18,35 @@ var state = {
 };
 
 /* ─── View Switching ─── */
+var ALL_VIEWS = {
+  home: 'home-view',
+  categories: 'categories-view',
+  'category-stack': 'category-stack-view',
+  detail: 'detail-view',
+  liked: 'liked-view',
+  saved: 'saved-view',
+};
+var TAB_VIEWS = ['home', 'liked', 'saved', 'categories', 'category-stack'];
+
 function switchView(viewName) {
-  var views = {
-    home: 'home-view',
-    categories: 'categories-view',
-    'category-stack': 'category-stack-view',
-    detail: 'detail-view',
-  };
-  Object.entries(views).forEach(function(entry) {
+  Object.entries(ALL_VIEWS).forEach(function(entry) {
     document.getElementById(entry[1]).classList.toggle('active', entry[0] === viewName);
   });
   state.currentView = viewName;
   if (viewName === 'detail') {
     document.getElementById('detail-view').scrollTop = 0;
   }
+
+  // Tab bar: show on tab views, hide on detail
+  var tabBar = document.getElementById('tab-bar');
+  tabBar.classList.toggle('visible', TAB_VIEWS.indexOf(viewName) !== -1);
+
+  // Update active tab
+  var tabMap = { home: 'tab-home', liked: 'tab-liked', saved: 'tab-saved' };
+  Object.entries(tabMap).forEach(function(entry) {
+    var el = document.getElementById(entry[1]);
+    if (el) el.classList.toggle('active', entry[0] === viewName);
+  });
 }
 
 /* ─── Home Tile Display ─── */
@@ -250,13 +265,33 @@ function setStarRating(movieId, rating) {
 
 function toggleAction(movieId, action, btn) {
   if (!state.actionStates[movieId]) state.actionStates[movieId] = {};
-  state.actionStates[movieId][action] = !state.actionStates[movieId][action];
+  var wasActive = state.actionStates[movieId][action];
+  state.actionStates[movieId][action] = !wasActive;
 
   var circle = btn.querySelector('.icon-circle');
   circle.classList.toggle('active');
   circle.style.transform = 'scale(0.8)';
   setTimeout(function() { circle.style.transform = 'scale(1.1)'; }, 100);
   setTimeout(function() { circle.style.transform = ''; }, 250);
+
+  // Toast confirmation
+  var movie = state.detailMovie;
+  var title = movie ? movie.title : '';
+  if (action === 'liked') {
+    showToast(wasActive ? 'Removed from Liked' : 'Added to Liked');
+  } else if (action === 'saved') {
+    showToast(wasActive ? 'Removed from Saved' : 'Added to Saved');
+  }
+}
+
+/* ─── Toast ─── */
+var toastTimeout = null;
+function showToast(message) {
+  var toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toastTimeout);
+  toastTimeout = setTimeout(function() { toast.classList.remove('show'); }, 1800);
 }
 
 /* ─── Fullscreen Viewer ─── */
@@ -356,12 +391,74 @@ document.addEventListener('keydown', function(e) {
   }
 });
 
+/* ─── Collection Views ─── */
+function renderCollection(type) {
+  var gridId = type + '-grid';
+  var emptyId = type + '-empty';
+  var grid = document.getElementById(gridId);
+  var empty = document.getElementById(emptyId);
+  grid.textContent = '';
+
+  var movieIds = [];
+  Object.entries(state.actionStates).forEach(function(entry) {
+    if (entry[1][type]) movieIds.push(Number(entry[0]));
+  });
+
+  var movies = movieIds.map(function(id) {
+    return state.movies.find(function(m) { return m.tmdb_id === id; });
+  }).filter(Boolean);
+
+  if (movies.length === 0) {
+    empty.classList.remove('hidden');
+    return;
+  }
+  empty.classList.add('hidden');
+
+  movies.forEach(function(movie) {
+    var card = document.createElement('div');
+    card.className = 'collection-card';
+    card.addEventListener('click', function() { openDetail(movie); });
+
+    var img = document.createElement('img');
+    img.src = movie.poster_url;
+    img.alt = movie.title;
+    img.loading = 'lazy';
+    card.appendChild(img);
+
+    var title = document.createElement('div');
+    title.className = 'collection-card-title';
+    title.textContent = movie.title;
+    card.appendChild(title);
+
+    grid.appendChild(card);
+  });
+}
+
+/* ─── Tab Navigation ─── */
+function switchTab(tab) {
+  if (tab === 'home') {
+    document.getElementById('chevron-btn').classList.remove('flipped');
+    switchView('home');
+  } else if (tab === 'liked') {
+    renderCollection('liked');
+    switchView('liked');
+  } else if (tab === 'saved') {
+    renderCollection('saved');
+    switchView('saved');
+  }
+}
+
 /* ─── Event Listeners ─── */
 document.getElementById('nav-left').addEventListener('click', function() { navigateTile(-1); });
 document.getElementById('nav-right').addEventListener('click', function() { navigateTile(1); });
 document.getElementById('chevron-btn').addEventListener('click', toggleCategories);
 document.getElementById('cat-chevron-btn').addEventListener('click', toggleCategories);
 document.getElementById('fullscreen-viewer').addEventListener('click', closeFullscreen);
+
+// Tab bar
+document.getElementById('tab-home').addEventListener('click', function() { switchTab('home'); });
+document.getElementById('tab-liked').addEventListener('click', function() { switchTab('liked'); });
+document.getElementById('tab-saved').addEventListener('click', function() { switchTab('saved'); });
 
 /* ─── Initialize ─── */
 async function init() {
@@ -378,6 +475,9 @@ async function init() {
     function() { navigateTile(1); },
     function() { navigateTile(-1); }
   );
+
+  // Show tab bar on home
+  document.getElementById('tab-bar').classList.add('visible');
 
   var ls = document.getElementById('loading-screen');
   ls.classList.add('fade-out');
