@@ -41,6 +41,16 @@ function showCurrentTile() {
   updateTilePoster(document.getElementById('tile-container'), movie);
   document.getElementById('movie-counter').textContent =
     (state.currentIndex + 1) + ' of ' + state.movies.length;
+
+  // Update tile info overlay
+  var titleEl = document.getElementById('tile-title');
+  var catEl = document.getElementById('tile-category');
+  var yearEl = document.getElementById('tile-year');
+  var scoreEl = document.getElementById('tile-score');
+  if (titleEl) titleEl.textContent = movie.title;
+  if (catEl) catEl.textContent = movie.category || (movie.nano_genres && movie.nano_genres[0]) || '';
+  if (yearEl) yearEl.textContent = movie.year;
+  if (scoreEl) scoreEl.textContent = movie.tmdb_rating ? '\u2605 ' + movie.tmdb_rating.toFixed(1) : '';
 }
 
 /* ─── Sink & Rise Navigation ─── */

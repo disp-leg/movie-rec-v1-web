@@ -65,21 +65,37 @@ function createTile() {
   var img = document.createElement('img');
   img.alt = '';
   front.appendChild(img);
+
+  var gradient = document.createElement('div');
+  gradient.className = 'tile-gradient';
+  front.appendChild(gradient);
+
+  var info = document.createElement('div');
+  info.className = 'tile-info';
+  var infoTitle = document.createElement('div');
+  infoTitle.className = 'tile-info-title';
+  info.appendChild(infoTitle);
+  var infoMeta = document.createElement('div');
+  infoMeta.className = 'tile-info-meta';
+  var infoCat = document.createElement('span');
+  infoCat.className = 'tile-info-category';
+  infoMeta.appendChild(infoCat);
+  var infoYear = document.createElement('span');
+  infoYear.className = 'tile-info-year';
+  infoMeta.appendChild(infoYear);
+  var infoScore = document.createElement('span');
+  infoScore.className = 'tile-info-score';
+  infoMeta.appendChild(infoScore);
+  info.appendChild(infoMeta);
+  front.appendChild(info);
+
   tile3d.appendChild(front);
-
-  var sideR = document.createElement('div');
-  sideR.className = 'tile-side-right';
-  tile3d.appendChild(sideR);
-
-  var sideB = document.createElement('div');
-  sideB.className = 'tile-side-bottom';
-  tile3d.appendChild(sideB);
 
   container.appendChild(tile3d);
   return container;
 }
 
-/* ─── Update a tile's poster ─── */
+/* ─── Update a tile's poster and info ─── */
 function updateTilePoster(container, movie) {
   var img = container.querySelector('.tile-front img');
   var shadow = container.querySelector('.tile-ambient-shadow');
@@ -87,6 +103,16 @@ function updateTilePoster(container, movie) {
   img.alt = movie.title;
   img.crossOrigin = 'anonymous';
   img.onload = function() { shadow.style.background = extractColor(img); };
+
+  // Update info overlay if present
+  var titleEl = container.querySelector('.tile-info-title');
+  var catEl = container.querySelector('.tile-info-category');
+  var yearEl = container.querySelector('.tile-info-year');
+  var scoreEl = container.querySelector('.tile-info-score');
+  if (titleEl) titleEl.textContent = movie.title;
+  if (catEl) catEl.textContent = movie.category || (movie.nano_genres && movie.nano_genres[0]) || '';
+  if (yearEl) yearEl.textContent = movie.year || '';
+  if (scoreEl) scoreEl.textContent = movie.tmdb_rating ? '\u2605 ' + movie.tmdb_rating.toFixed(1) : '';
 }
 
 /* ─── Build the full detail view ─── */

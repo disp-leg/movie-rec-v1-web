@@ -75,32 +75,36 @@ html, body {
 /* ─── Home View ─── */
 #home-view {
   align-items: center; justify-content: center;
-  perspective: 1200px; background: var(--bg);
+  perspective: 1400px;
+  background: linear-gradient(180deg, #e8e8ed 0%, #f2f2f7 40%, #e8e8ed 100%);
 }
 .home-title {
-  position: absolute; top: calc(16px + var(--safe-top));
+  position: absolute; top: calc(20px + var(--safe-top));
   left: 0; right: 0; text-align: center;
   font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
-  font-size: 20px; font-weight: 700;
-  letter-spacing: -0.3px; z-index: 10;
+  font-size: 15px; font-weight: 600;
+  letter-spacing: 0.5px; text-transform: uppercase;
+  color: var(--text-tertiary); z-index: 10;
 }
 .home-subtitle {
-  font-size: 13px; font-weight: 500;
-  color: var(--text-secondary); margin-top: 2px;
+  display: none;
 }
 .movie-counter {
-  position: absolute; top: calc(70px + var(--safe-top));
+  position: absolute; bottom: calc(100px + var(--safe-bottom));
   left: 0; right: 0; text-align: center;
-  font-size: 12px; font-weight: 600;
+  font-size: 13px; font-weight: 500;
   color: var(--text-tertiary);
-  letter-spacing: 1px; text-transform: uppercase; z-index: 10;
+  letter-spacing: 0.5px; z-index: 10;
 }
 
-/* ─── 3D Tile ─── */
+/* ─── 3D Tile — Apple Invites style ─── */
 .tile-container {
-  position: relative; width: min(320px, 75vw);
-  aspect-ratio: 2/3; perspective: 1200px;
-  cursor: pointer; -webkit-tap-highlight-color: transparent;
+  position: relative;
+  width: min(350px, calc(100vw - 40px));
+  aspect-ratio: 2/3;
+  perspective: 1400px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 .tile-3d {
   position: relative; width: 100%; height: 100%;
@@ -109,69 +113,130 @@ html, body {
 }
 .tile-front {
   position: absolute; inset: 0;
-  border-radius: var(--radius-tile); overflow: hidden;
-  backface-visibility: hidden; background: #1c1c1e;
+  border-radius: 28px; overflow: hidden;
+  backface-visibility: hidden;
+  background: #1c1c1e;
   box-shadow:
-    0 1px 3px rgba(0,0,0,0.1),
-    0 8px 24px rgba(0,0,0,0.14),
-    0 20px 60px rgba(0,0,0,0.12);
+    0 2px 4px rgba(0,0,0,0.04),
+    0 8px 16px rgba(0,0,0,0.08),
+    0 20px 40px rgba(0,0,0,0.12),
+    0 40px 80px rgba(0,0,0,0.08);
 }
 .tile-front img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
 }
+
+/* Subtle inner glow border — like frosted glass edge */
 .tile-front::after {
   content: ''; position: absolute; inset: 0;
-  border-radius: var(--radius-tile);
-  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 28px;
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   pointer-events: none;
 }
-.tile-side-right,
-.tile-side-bottom { display: none; }
-.tile-ambient-shadow {
-  position: absolute; inset: 20% 10% -10% 10%;
-  border-radius: var(--radius-tile);
-  filter: blur(40px); opacity: 0.4; z-index: -1;
-  transition: opacity 0.4s;
+
+/* Bottom gradient for text readability */
+.tile-gradient {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
+  pointer-events: none;
 }
 
-/* Sink & Rise animations */
+/* Glassmorphism info overlay on tile */
+.tile-info {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 20px 20px 22px;
+  pointer-events: none;
+  z-index: 2;
+}
+.tile-info-title {
+  font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
+  font-size: 24px; font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.3px;
+  line-height: 1.15;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+}
+.tile-info-meta {
+  display: flex; align-items: center; gap: 10px;
+  margin-top: 8px;
+}
+.tile-info-category {
+  padding: 3px 10px;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255,255,255,0.15);
+  font-size: 12px; font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  text-transform: capitalize;
+}
+.tile-info-year {
+  font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,0.7);
+}
+.tile-info-score {
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,0.85);
+}
+
+.tile-side-right,
+.tile-side-bottom { display: none; }
+
+/* Ambient poster-colored shadow */
+.tile-ambient-shadow {
+  position: absolute; inset: 25% 8% -15% 8%;
+  border-radius: 28px;
+  filter: blur(50px); opacity: 0.5; z-index: -1;
+  transition: opacity 0.6s;
+}
+
+/* Sink & Rise — heavier, more physical feel */
 .tile-3d.sinking {
-  animation: tileSink 0.45s var(--ease-out-expo) forwards;
+  animation: tileSink 0.5s var(--ease-out-expo) forwards;
   pointer-events: none;
 }
 .tile-3d.rising {
-  animation: tileRise 0.5s var(--ease-out-expo) forwards;
+  animation: tileRise 0.55s var(--spring) forwards;
   pointer-events: none;
 }
 @keyframes tileSink {
   0% { transform: scale(1) translateZ(0px); opacity: 1; }
-  100% { transform: scale(0.85) translateZ(-150px); opacity: 0; }
+  60% { transform: scale(0.92) translateZ(-80px); opacity: 0.5; }
+  100% { transform: scale(0.85) translateZ(-160px); opacity: 0; }
 }
 @keyframes tileRise {
-  0% { transform: scale(0.85) translateZ(-150px); opacity: 0; }
+  0% { transform: scale(0.85) translateZ(-160px); opacity: 0; }
+  50% { opacity: 0.8; }
   100% { transform: scale(1) translateZ(0px); opacity: 1; }
 }
 
-/* Tilt only gets a transition — not applied during sink/rise */
+/* Tilt on long press */
 .tile-3d.tilting {
   transition: transform 0.3s var(--spring);
 }
 
-/* ─── Nav Arrows ─── */
+/* ─── Nav Arrows — glass circles ─── */
 .nav-arrow {
   position: absolute; top: 50%; transform: translateY(-50%);
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
-  background: var(--glass-bg);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid var(--glass-border); border-radius: 50%;
-  cursor: pointer; z-index: 10; opacity: 0.7;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 50%;
+  cursor: pointer; z-index: 10;
+  opacity: 0;
   transition: opacity 0.3s, transform 0.3s var(--spring);
   -webkit-tap-highlight-color: transparent;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
-.nav-arrow:hover { opacity: 1; }
-.nav-arrow:active { transform: translateY(-50%) scale(0.85); }
+#home-view:hover .nav-arrow,
+#category-stack-view:hover .nav-arrow { opacity: 0.8; }
+.nav-arrow:hover { opacity: 1 !important; transform: translateY(-50%) scale(1.05); }
+.nav-arrow:active { transform: translateY(-50%) scale(0.88); }
 .nav-arrow.left { left: 16px; }
 .nav-arrow.right { right: 16px; }
 .nav-arrow svg {
@@ -180,22 +245,23 @@ html, body {
   stroke-linecap: round; stroke-linejoin: round;
 }
 
-/* ─── Chevron Button ─── */
+/* ─── Chevron Button — floating glass pill ─── */
 .chevron-btn {
-  position: absolute; bottom: calc(40px + var(--safe-bottom));
+  position: absolute; bottom: calc(36px + var(--safe-bottom));
   left: 50%; transform: translateX(-50%);
-  width: 44px; height: 44px;
+  width: 48px; height: 48px;
   display: flex; align-items: center; justify-content: center;
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border); border-radius: 12px;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255,255,255,0.35);
+  border-radius: 50%;
   cursor: pointer; z-index: 100;
-  transition: transform 0.4s var(--spring), background 0.3s;
+  transition: transform 0.4s var(--spring), background 0.3s, box-shadow 0.3s;
   -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04);
 }
-.chevron-btn:hover { background: rgba(255,255,255,0.85); }
-.chevron-btn:active { transform: translateX(-50%) scale(0.9); }
+.chevron-btn:hover { background: rgba(255,255,255,0.82); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.chevron-btn:active { transform: translateX(-50%) scale(0.88); }
 .chevron-btn svg {
   width: 20px; height: 20px; stroke: var(--text-primary);
   stroke-width: 2.5; fill: none;
@@ -523,8 +589,9 @@ html, body {
 
 /* ─── Category Stack View ─── */
 #category-stack-view {
-  background: var(--bg); align-items: center;
-  justify-content: center; perspective: 1200px;
+  background: linear-gradient(180deg, #e8e8ed 0%, #f2f2f7 40%, #e8e8ed 100%);
+  align-items: center;
+  justify-content: center; perspective: 1400px;
 }
 .category-stack-header {
   position: absolute; top: calc(16px + var(--safe-top));
@@ -571,33 +638,13 @@ html, body {
 
 /* ─── Responsive: Mobile-first ─── */
 
-/* Small phones (375px and below) */
-@media (max-width: 389px) {
-  .tile-container { width: 70vw; }
-  .nav-arrow { display: none; }
-  .home-title { font-size: 18px; }
-  .movie-counter { top: calc(60px + var(--safe-top)); }
-  .floating-action-card { margin: -50px 12px 0; padding: 14px 16px; }
-  .fac-title { font-size: 22px; }
-  .fac-title.long { font-size: 19px; }
-  .detail-content { padding: 16px 12px calc(32px + var(--safe-bottom)); gap: 16px; }
-  .detail-hero { min-height: 45vh; }
-  .watch-status-btn { font-size: 11px; padding: 8px 0; }
-  .section-title { font-size: 15px; }
-  .categories-header { font-size: 26px; padding-left: 16px; padding-right: 16px; }
-  .categories-grid { gap: 8px; padding: 0 12px 100px; }
-  .category-card { padding: 14px 12px; }
-  .category-card .cat-name { font-size: 14px; }
-  .category-card .cat-emoji { font-size: 24px; }
-  .chevron-btn { bottom: calc(24px + var(--safe-bottom)); }
-}
-
-/* Standard phones (390px - 767px) */
+/* All phones */
 @media (max-width: 767px) {
-  .nav-arrow { width: 32px; height: 32px; }
-  .nav-arrow.left { left: 8px; }
-  .nav-arrow.right { right: 8px; }
-  .nav-arrow svg { width: 14px; height: 14px; }
+  .tile-container { width: calc(100vw - 48px); }
+  .tile-info { padding: 16px 16px 18px; }
+  .tile-info-title { font-size: 22px; }
+  .nav-arrow { display: none; }
+  .movie-counter { bottom: calc(90px + var(--safe-bottom)); font-size: 12px; }
   .floating-action-card { margin: -50px 16px 0; }
   .detail-content { padding: 16px 16px calc(32px + var(--safe-bottom)); }
   .detail-hero { min-height: 45vh; }
@@ -606,7 +653,25 @@ html, body {
   .similar-card { width: 90px; }
   .similar-card .title { font-size: 11px; }
   .action-btn .icon-circle { width: 44px; height: 44px; }
-  .chevron-btn { bottom: calc(24px + var(--safe-bottom)); }
+  .chevron-btn { bottom: calc(24px + var(--safe-bottom)); width: 44px; height: 44px; }
+}
+
+/* Small phones (375px and below) */
+@media (max-width: 389px) {
+  .tile-container { width: calc(100vw - 36px); }
+  .tile-info-title { font-size: 20px; }
+  .tile-info-category { font-size: 11px; }
+  .floating-action-card { margin: -50px 12px 0; padding: 14px 16px; }
+  .fac-title { font-size: 22px; }
+  .fac-title.long { font-size: 19px; }
+  .detail-content { padding: 16px 12px calc(32px + var(--safe-bottom)); gap: 16px; }
+  .watch-status-btn { font-size: 11px; padding: 8px 0; }
+  .section-title { font-size: 15px; }
+  .categories-header { font-size: 26px; padding-left: 16px; padding-right: 16px; }
+  .categories-grid { gap: 8px; padding: 0 12px 100px; }
+  .category-card { padding: 14px 12px; }
+  .category-card .cat-name { font-size: 14px; }
+  .category-card .cat-emoji { font-size: 24px; }
 }
 
 /* Tablets */
