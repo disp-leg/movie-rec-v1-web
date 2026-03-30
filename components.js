@@ -100,16 +100,57 @@ function updateTilePoster(container, movie) {
   var img = container.querySelector('.tile-front img');
   var shadow = container.querySelector('.tile-ambient-shadow');
   img.alt = movie.title;
-  img.crossOrigin = 'anonymous';
-  img.onload = function() { if (shadow) shadow.style.background = extractColor(img); };
-  img.onerror = function() {
-    // Fallback: try w500 path rebuild, or leave gradient background visible
-    if (movie.poster_url && !img.dataset.retried) {
-      img.dataset.retried = '1';
-      img.src = 'https://image.tmdb.org/t/p/w500' + movie.poster_url.split('/').pop();
+  img.removeAttribute('crossorigin');
+  img.dataset.retried = '';
+
+  img.onload = function() {
+    // Try color extraction with crossOrigin (may fail due to CORS, that's ok)
+    if (shadow) {
+      try {
+        var tmp = new Image();
+        tmp.crossOrigin = 'anonymous';
+        tmp.onload = function() { shadow.style.background = extractColor(tmp); };
+        tmp.onerror = function() { shadow.style.background = 'rgba(0,0,0,0.3)'; };
+        tmp.src = img.src;
+      } catch (e) { shadow.style.background = 'rgba(0,0,0,0.3)'; }
     }
   };
-  img.src = movie.poster_url;
+
+  img.onerror = function() {
+    if (img.dataset.retried === 'api') return; // Already tried everything
+
+    if (!img.dataset.retried && movie.poster_url) {
+      // Retry 1: rebuild URL from path component
+      img.dataset.retried = 'rebuild';
+      var path = movie.poster_url.split('/t/p/')[1];
+      if (path) {
+        img.src = 'https://image.tmdb.org/t/p/w500/' + path.split('/').pop();
+        return;
+      }
+    }
+
+    if (img.dataset.retried !== 'api' && movie.tmdb_id) {
+      // Retry 2: fetch poster path from TMDB API
+      img.dataset.retried = 'api';
+      getMovieDetails(movie.tmdb_id).then(function(details) {
+        if (details && details.poster_path) {
+          img.src = 'https://image.tmdb.org/t/p/w500' + details.poster_path;
+        }
+      });
+    }
+  };
+
+  // Set src — prefer poster_url, fall back to constructed TMDB URL
+  if (movie.poster_url) {
+    img.src = movie.poster_url;
+  } else if (movie.tmdb_id) {
+    // No poster_url at all — fetch from API
+    getMovieDetails(movie.tmdb_id).then(function(details) {
+      if (details && details.poster_path) {
+        img.src = 'https://image.tmdb.org/t/p/w500' + details.poster_path;
+      }
+    });
+  }
 
   // Update info overlay if present
   var titleEl = container.querySelector('.tile-info-title');
