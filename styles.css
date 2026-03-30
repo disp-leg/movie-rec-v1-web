@@ -232,7 +232,23 @@ html, body {
 #grid-view {
   background: var(--bg);
   display: flex !important; flex-direction: column;
+  position: relative;
 }
+#grid-view::before {
+  content: '';
+  position: fixed; inset: 0;
+  background: url('https://images.unsplash.com/photo-1518467166778-b88f373ffec7?w=1200&q=80&auto=format&fit=crop') center/cover no-repeat;
+  z-index: 0;
+  pointer-events: none;
+}
+#grid-view::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 0;
+  pointer-events: none;
+}
+#grid-view > * { position: relative; z-index: 1; }
 .grid-header {
   display: flex; align-items: center; gap: 12px;
   padding: calc(12px + var(--safe-top)) 16px 12px;
@@ -293,12 +309,9 @@ html, body {
   pointer-events: none;
 }
 
-/* Card action buttons */
+/* Card action buttons — hidden, Add/DNF moved to detail modal */
 .grid-card-actions {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  display: flex; gap: 6px;
-  padding: 10px;
-  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
+  display: none;
 }
 .grid-card-btn {
   flex: 1; padding: 7px 0;
