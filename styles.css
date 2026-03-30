@@ -97,7 +97,7 @@ html, body {
   opacity: 0;
   transform: translateY(20px);
   display: flex; flex-direction: column; justify-content: flex-end;
-  height: clamp(120px, 30vw, 150px);
+  aspect-ratio: 1;
 }
 .home-tile.visible {
   opacity: 1;
@@ -108,11 +108,11 @@ html, body {
 
 /* Bottom row: 2 tiles, left-aligned in 3-col grid */
 
-/* Metallic gray — brushed steel look */
+/* Bright metallic 3D — brushed steel */
 .home-tile {
-  background: linear-gradient(145deg, #3a3a3c 0%, #2c2c2e 40%, #3a3a3c 100%);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 8px rgba(0,0,0,0.3);
+  background: linear-gradient(145deg, #b8b8be 0%, #8e8e96 50%, #a0a0a8 100%);
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), inset 0 -1px 0 rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .home-tile-icon {
@@ -121,17 +121,17 @@ html, body {
 }
 .home-tile-icon svg {
   width: 100%; height: 100%;
-  stroke: rgba(255,255,255,0.85); stroke-width: 1.5;
+  stroke: rgba(0,0,0,0.7); stroke-width: 1.5;
   fill: none; stroke-linecap: round; stroke-linejoin: round;
 }
 .home-tile-title {
   font-size: clamp(14px, 3.8vw, 17px);
-  font-weight: 600; color: #fff;
+  font-weight: 600; color: rgba(0,0,0,0.85);
   margin-bottom: 2px;
 }
 .home-tile-subtitle {
   font-size: clamp(11px, 3vw, 13px);
-  font-weight: 400; color: rgba(255,255,255,0.55);
+  font-weight: 400; color: rgba(0,0,0,0.5);
 }
 
 /* ═══ TOAST ═══ */
