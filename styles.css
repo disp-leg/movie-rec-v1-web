@@ -97,193 +97,182 @@ html, body {
   letter-spacing: 0.5px; z-index: 10;
 }
 
-/* ─── 3D Tile — Apple Invites style ─── */
-.tile-container {
-  position: relative;
-  width: clamp(300px, calc(100vw - 48px), 400px);
-  aspect-ratio: 2/3;
-  perspective: 1400px;
-  cursor: pointer;
+/* ─── 3D Cylinder Carousel ─── */
+.carousel-scene {
+  position: absolute; inset: 0;
+  perspective: 800px;
+  perspective-origin: 50% 50%;
+  overflow: hidden;
   -webkit-tap-highlight-color: transparent;
 }
-.tile-3d {
-  position: relative; width: 100%; height: 100%;
+.carousel-scene::before,
+.carousel-scene::after {
+  content: ''; position: absolute;
+  left: 0; right: 0; height: 28%; z-index: 2;
+  pointer-events: none;
+}
+.carousel-scene::before {
+  top: 0;
+  background: linear-gradient(to bottom, #e8e8ed 0%, transparent 100%);
+}
+.carousel-scene::after {
+  bottom: 0;
+  background: linear-gradient(to top, #e8e8ed 0%, transparent 100%);
+}
+.carousel-cylinder {
+  width: 100%; height: 100%;
+  position: relative;
   transform-style: preserve-3d;
-  transform: scale(1) translateZ(0);
-  opacity: 1;
-  will-change: transform, opacity;
-  /* No transition — animations only. Prevents snap-back glitch */
-  transition: none !important;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.tile-front {
-  position: absolute; inset: 0;
-  border-radius: 28px; overflow: hidden;
+.cyl-card {
+  position: absolute;
+  left: 50%; top: 50%;
   backface-visibility: hidden;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity 0.4s, filter 0.4s;
   background: #1c1c1e;
-  box-shadow:
-    0 2px 4px rgba(0,0,0,0.04),
-    0 8px 16px rgba(0,0,0,0.08),
-    0 20px 40px rgba(0,0,0,0.12),
-    0 40px 80px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12), 0 12px 40px rgba(0,0,0,0.08);
 }
-.tile-front img {
+.cyl-card::after {
+  content: ''; position: absolute; inset: 0;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.1);
+  pointer-events: none;
+}
+.cyl-card img {
   width: 100%; height: 100%;
   object-fit: cover; display: block;
   background: linear-gradient(135deg, #2c2c2e 0%, #1c1c1e 50%, #3a3a3c 100%);
 }
-
-/* Subtle inner glow border — like frosted glass edge */
-.tile-front::after {
-  content: ''; position: absolute; inset: 0;
-  border-radius: 28px;
-  border: 1px solid rgba(255,255,255,0.15);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
+.cyl-card .cyl-gradient {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
   pointer-events: none;
 }
-
-/* Bottom gradient for text readability */
-.tile-gradient {
+.cyl-card .cyl-info {
   position: absolute; bottom: 0; left: 0; right: 0;
-  height: 50%;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
-  pointer-events: none;
+  padding: clamp(8px, 2.5vw, 16px) clamp(10px, 3vw, 18px) clamp(10px, 3vw, 18px);
+  pointer-events: none; z-index: 2;
 }
-
-/* Glassmorphism info overlay on tile */
-.tile-info {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 20px 20px 22px;
-  pointer-events: none;
-  z-index: 2;
-}
-.tile-info-title {
+.cyl-card .cyl-title {
   font-family: 'Helvetica Neue', -apple-system, BlinkMacSystemFont, 'SF Pro Display', Helvetica, Arial, sans-serif;
-  font-size: 24px; font-weight: 700;
-  color: #fff;
-  letter-spacing: -0.3px;
-  line-height: 1.15;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+  font-size: clamp(12px, 3.5vw, 20px); font-weight: 700;
+  color: #fff; letter-spacing: -0.2px; line-height: 1.15;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
 }
-.tile-info-meta {
-  display: flex; align-items: center; gap: 10px;
-  margin-top: 8px;
+.cyl-card .cyl-meta {
+  display: flex; align-items: center; gap: 6px; margin-top: 4px;
 }
-.tile-info-category {
-  padding: 3px 10px;
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+.cyl-card .cyl-category {
+  padding: 2px 7px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border-radius: var(--radius-pill);
-  border: 1px solid rgba(255,255,255,0.15);
-  font-size: 12px; font-weight: 600;
-  color: rgba(255,255,255,0.9);
-  text-transform: capitalize;
+  border: 1px solid rgba(255,255,255,0.1);
+  font-size: clamp(8px, 2.2vw, 11px); font-weight: 600;
+  color: rgba(255,255,255,0.85); text-transform: capitalize;
 }
-.tile-info-year {
-  font-size: 13px; font-weight: 500;
-  color: rgba(255,255,255,0.7);
+.cyl-card .cyl-year {
+  font-size: clamp(9px, 2.5vw, 12px); font-weight: 500;
+  color: rgba(255,255,255,0.6);
 }
-.tile-info-score {
-  font-size: 13px; font-weight: 600;
-  color: rgba(255,255,255,0.85);
-}
-
-.tile-side-right,
-.tile-side-bottom { display: none; }
-
-/* Ambient poster-colored shadow */
-.tile-ambient-shadow {
-  position: absolute; inset: 25% 8% -15% 8%;
-  border-radius: 28px;
-  filter: blur(50px); opacity: 0.5; z-index: -1;
-  transition: opacity 0.6s;
+.cyl-card .cyl-score {
+  font-size: clamp(9px, 2.5vw, 12px); font-weight: 600;
+  color: rgba(255,255,255,0.75);
 }
 
-/* Sink & Rise — smooth spring physics */
-.tile-3d.sinking {
-  animation: tileSink 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
-  pointer-events: none;
+/* Carousel nav buttons */
+.carousel-nav {
+  position: absolute; right: clamp(8px, 3vw, 20px);
+  top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 8px;
+  z-index: 10;
 }
-.tile-3d.rising {
-  animation: tileRise 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  pointer-events: none;
-}
-@keyframes tileSink {
-  0%   { transform: scale(1) translateY(0); opacity: 1; }
-  100% { transform: scale(0.88) translateY(40px); opacity: 0; }
-}
-@keyframes tileRise {
-  0%   { transform: scale(0.88) translateY(40px); opacity: 0; }
-  40%  { transform: scale(0.96) translateY(8px); opacity: 0.7; }
-  70%  { transform: scale(1.01) translateY(-4px); opacity: 0.95; }
-  85%  { transform: scale(0.998) translateY(1px); opacity: 1; }
-  100% { transform: scale(1) translateY(0); opacity: 1; }
-}
-
-/* Tilt on long press */
-.tile-3d.tilting {
-  transition: transform 0.3s var(--spring);
-}
-
-/* ─── Nav Arrows — glass circles ─── */
-.nav-arrow {
-  position: absolute; top: 50%; transform: translateY(-50%);
-  width: 44px; height: 44px;
+.carousel-nav-btn {
+  width: 40px; height: 40px;
   display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.65);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 50%;
-  cursor: pointer; z-index: 10;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s var(--spring);
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50%; cursor: pointer;
+  transition: background 0.2s, transform 0.2s var(--spring);
   -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
-#home-view:hover .nav-arrow,
-#category-stack-view:hover .nav-arrow { opacity: 0.8; }
-.nav-arrow:hover { opacity: 1 !important; transform: translateY(-50%) scale(1.05); }
-.nav-arrow:active { transform: translateY(-50%) scale(0.88); }
-.nav-arrow.left { left: 16px; }
-.nav-arrow.right { right: 16px; }
-.nav-arrow svg {
+.carousel-nav-btn:active { transform: scale(0.85); }
+.carousel-nav-btn svg {
   width: 18px; height: 18px; stroke: var(--text-primary);
   stroke-width: 2.5; fill: none;
   stroke-linecap: round; stroke-linejoin: round;
 }
 
+/* Category stack still uses old tile system */
+.tile-container {
+  position: relative; width: clamp(300px, calc(100vw - 48px), 400px);
+  aspect-ratio: 2/3; perspective: 1400px;
+  cursor: pointer; -webkit-tap-highlight-color: transparent;
+}
+.tile-3d {
+  position: relative; width: 100%; height: 100%;
+  transform-style: preserve-3d; transform: scale(1) translateY(0); opacity: 1;
+  will-change: transform, opacity; transition: none !important;
+}
+.tile-front {
+  position: absolute; inset: 0; border-radius: 28px; overflow: hidden;
+  backface-visibility: hidden; background: #1c1c1e;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1), 0 16px 48px rgba(0,0,0,0.08);
+}
+.tile-front img { width: 100%; height: 100%; object-fit: cover; display: block; background: linear-gradient(135deg, #2c2c2e 0%, #1c1c1e 50%, #3a3a3c 100%); }
+.tile-front::after { content: ''; position: absolute; inset: 0; border-radius: 28px; border: 1px solid rgba(255,255,255,0.15); pointer-events: none; }
+.tile-front .tile-gradient { position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%); pointer-events: none; }
+.tile-front .tile-info { position: absolute; bottom: 0; left: 0; right: 0; padding: clamp(14px, 4vw, 22px); pointer-events: none; z-index: 2; }
+.tile-front .tile-info-title { font-family: 'Helvetica Neue', sans-serif; font-size: clamp(18px, 5.5vw, 26px); font-weight: 700; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,0.3); }
+.tile-front .tile-info-meta { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+.tile-front .tile-info-category { padding: 3px 10px; background: rgba(255,255,255,0.2); border-radius: var(--radius-pill); font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.9); text-transform: capitalize; }
+.tile-front .tile-info-year { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); }
+.tile-front .tile-info-score { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.85); }
+.tile-side-right, .tile-side-bottom { display: none; }
+.tile-ambient-shadow { position: absolute; inset: 25% 8% -15% 8%; border-radius: 28px; filter: blur(50px); opacity: 0.5; z-index: -1; }
+.tile-3d.sinking { animation: tileSink 0.4s cubic-bezier(0.4,0,1,1) forwards; pointer-events: none; }
+.tile-3d.rising { animation: tileRise 0.6s cubic-bezier(0.22,1,0.36,1) forwards; pointer-events: none; }
+@keyframes tileSink { 0% { transform: scale(1) translateY(0); opacity: 1; } 100% { transform: scale(0.88) translateY(40px); opacity: 0; } }
+@keyframes tileRise { 0% { transform: scale(0.88) translateY(40px); opacity: 0; } 50% { opacity: 0.8; } 100% { transform: scale(1) translateY(0); opacity: 1; } }
+.tile-3d.tilting { transition: transform 0.3s var(--spring); }
+
 /* ─── Gesture Hint ─── */
 .gesture-hint {
   position: absolute;
-  bottom: calc(clamp(130px, 20vw, 170px) + var(--safe-bottom));
+  bottom: calc(clamp(100px, 16vw, 140px) + var(--safe-bottom));
   left: 0; right: 0;
   display: flex; justify-content: space-between;
   padding: 0 clamp(24px, 8vw, 48px);
   font-size: 11px; font-weight: 500;
   color: var(--text-tertiary);
   letter-spacing: 0.3px;
-  opacity: 0.6;
-  z-index: 10;
-  pointer-events: none;
-  transition: opacity 1s;
+  opacity: 0.6; z-index: 10;
+  pointer-events: none; transition: opacity 1s;
 }
 .gesture-hint.hidden { opacity: 0; }
 
-/* ─── Chevron Button — floating glass pill ─── */
+/* ─── Chevron Button ─── */
 .chevron-btn {
-  position: absolute; bottom: calc(76px + var(--safe-bottom));
+  position: absolute; bottom: calc(70px + var(--safe-bottom));
   left: 50%; transform: translateX(-50%);
-  width: 48px; height: 48px;
+  width: clamp(40px, 10vw, 48px); height: clamp(40px, 10vw, 48px);
   display: flex; align-items: center; justify-content: center;
   background: rgba(255,255,255,0.6);
   backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255,255,255,0.35);
-  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.35); border-radius: 50%;
   cursor: pointer; z-index: 100;
-  transition: transform 0.4s var(--spring), background 0.3s, box-shadow 0.3s;
+  transition: transform 0.4s var(--spring), background 0.3s;
   -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.06), 0 0 0 0.5px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
 }
-.chevron-btn:hover { background: rgba(255,255,255,0.82); box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+.chevron-btn:hover { background: rgba(255,255,255,0.82); }
 .chevron-btn:active { transform: translateX(-50%) scale(0.88); }
 .chevron-btn svg {
   width: 20px; height: 20px; stroke: var(--text-primary);
@@ -765,17 +754,16 @@ html, body {
 
 /* ─── Responsive: Fluid scaling with clamp() ─── */
 
-/* Tile scales fluidly: 339px at 375px → 350px at 768px → 380px at 1200px */
-.tile-container { width: clamp(300px, calc(100vw - 48px), 400px); }
-.tile-info { padding: clamp(14px, 4vw, 24px) clamp(14px, 4vw, 24px) clamp(16px, 4.5vw, 26px); }
-.tile-info-title { font-size: clamp(18px, 5.5vw, 26px); }
-.tile-info-category { font-size: clamp(11px, 3vw, 13px); }
-
-/* Home header & counter scale */
+/* Home header & counter */
 .home-title { font-size: clamp(12px, 3.5vw, 15px); }
 .movie-counter {
-  bottom: calc(clamp(80px, 14vw, 120px) + var(--safe-bottom));
+  bottom: calc(clamp(80px, 14vw, 110px) + var(--safe-bottom));
   font-size: clamp(11px, 3vw, 13px);
+}
+
+/* Carousel nav: hide on small touch devices */
+@media (hover: none) and (max-width: 600px) {
+  .carousel-nav { display: none; }
 }
 
 /* Detail view fluid */
@@ -820,14 +808,10 @@ html, body {
   width: clamp(40px, 10vw, 48px); height: clamp(40px, 10vw, 48px);
 }
 
-/* Nav arrows: hidden on touch, shown on hover for pointer devices */
-@media (hover: none) {
-  .nav-arrow { display: none; }
-}
+/* Carousel nav: show on hover for pointer devices */
 @media (hover: hover) {
-  .nav-arrow { opacity: 0; }
-  #home-view:hover .nav-arrow,
-  #category-stack-view:hover .nav-arrow { opacity: 0.8; }
+  .carousel-nav-btn { opacity: 0.6; }
+  .carousel-nav-btn:hover { opacity: 1; background: rgba(255,255,255,0.75); }
 }
 
 /* Grid columns scale with viewport */

@@ -25,36 +25,20 @@
 
   <!-- HOME VIEW -->
   <div class="view active" id="home-view">
-    <div class="home-title">
-      Ria's Cuts
-      <div class="home-subtitle">Curated Horror</div>
-    </div>
+    <div class="home-title">Ria's Cuts</div>
     <div class="movie-counter" id="movie-counter"></div>
 
-    <div class="nav-arrow left" id="nav-left">
-      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    <div class="carousel-scene" id="carousel-scene">
+      <div class="carousel-cylinder" id="carousel-cylinder"></div>
     </div>
 
-    <div class="tile-container" id="tile-container">
-      <div class="tile-3d" id="tile-3d">
-        <div class="tile-ambient-shadow" id="tile-shadow"></div>
-        <div class="tile-front">
-          <img id="tile-poster" src="" alt="">
-          <div class="tile-gradient"></div>
-          <div class="tile-info">
-            <div class="tile-info-title" id="tile-title"></div>
-            <div class="tile-info-meta">
-              <span class="tile-info-category" id="tile-category"></span>
-              <span class="tile-info-year" id="tile-year"></span>
-              <span class="tile-info-score" id="tile-score"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="nav-arrow right" id="nav-right">
-      <svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg>
+    <div class="carousel-nav">
+      <button class="carousel-nav-btn" id="nav-up" aria-label="Previous">
+        <svg viewBox="0 0 24 24"><polyline points="6 15 12 9 18 15"/></svg>
+      </button>
+      <button class="carousel-nav-btn" id="nav-down" aria-label="Next">
+        <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
     </div>
 
     <div class="gesture-hint" id="gesture-hint">
