@@ -134,7 +134,26 @@ function buildGridCard(movie) {
   card.appendChild(actions);
   return card;
 }
-function buildGenreTile(name, count) { return document.createElement('div'); }
+/* ═══ GENRE TILE ═══ */
+function buildGenreTile(genreName, movieCount) {
+  var card = document.createElement('div');
+  card.className = 'genre-tile';
+  card.addEventListener('click', function() {
+    openMoodQuestions(genreName);
+  });
+
+  var name = document.createElement('div');
+  name.className = 'genre-tile-name';
+  name.textContent = genreName;
+  card.appendChild(name);
+
+  var count = document.createElement('div');
+  count.className = 'genre-tile-count';
+  count.textContent = movieCount + ' movie' + (movieCount !== 1 ? 's' : '');
+  card.appendChild(count);
+
+  return card;
+}
 function buildMoodQuestionsContent() { return document.createElement('div'); }
 function buildShuffleCard(movie) { return document.createElement('div'); }
 /* ═══ DETAIL MODAL CONTENT ═══ */

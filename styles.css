@@ -464,4 +464,74 @@ html, body {
   .grid-cards { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* ═══ PLACEHOLDER: Genre Picker, Mood, Shuffle styles added in later tasks ═══ */
+/* ═══ GENRE PICKER VIEW ═══ */
+#genre-picker-view {
+  background: transparent;
+  display: flex !important; flex-direction: column;
+}
+#genre-picker-view > .genre-header,
+#genre-picker-view > .genre-scroll { position: relative; z-index: 1; }
+.genre-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: calc(12px + var(--safe-top)) 16px 12px;
+  flex-shrink: 0;
+}
+.genre-back {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass); border-radius: 50%;
+  cursor: pointer; flex-shrink: 0;
+  transition: transform 0.3s var(--spring);
+  -webkit-tap-highlight-color: transparent;
+}
+.genre-back:active { transform: scale(0.85); }
+.genre-back svg {
+  width: 18px; height: 18px; stroke: #f5f5f5; stroke-width: 2.5;
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+.genre-heading {
+  font-size: clamp(18px, 5vw, 24px);
+  font-weight: 600; letter-spacing: -0.02em; color: var(--text-primary);
+}
+.genre-scroll {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.genre-tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(12px, 3vw, 18px);
+  padding: 8px clamp(16px, 4vw, 24px) calc(40px + var(--safe-bottom));
+}
+.genre-tile {
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(50px) saturate(1.6); -webkit-backdrop-filter: blur(50px) saturate(1.6);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+  border-radius: var(--radius-card);
+  padding: clamp(18px, 4.5vw, 26px) clamp(16px, 4vw, 22px);
+  cursor: pointer;
+  transition: transform 0.4s var(--spring), box-shadow 0.3s ease, background 0.3s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.genre-tile:active {
+  transform: scale(0.92) translateY(2px);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+  background: rgba(0,0,0,0.55);
+}
+.genre-tile-name {
+  font-size: clamp(14px, 3.8vw, 17px);
+  font-weight: 600; text-transform: capitalize; color: #d4d4d8;
+}
+.genre-tile-count {
+  font-size: 13px; font-weight: 400; color: #52525b; margin-top: 4px;
+}
+
+@media (min-width: 580px) {
+  .genre-tiles { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ═══ PLACEHOLDER: Mood, Shuffle styles added in later tasks ═══ */
