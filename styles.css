@@ -596,9 +596,10 @@ html, body {
 }
 .mood-option:active { transform: scale(0.97); }
 .mood-option.active {
-  background: rgba(59,130,246,0.12);
-  border-color: var(--accent-blue);
-  color: var(--accent-blue);
+  background: rgba(59,130,246,0.85);
+  border-color: rgba(59,130,246,0.95);
+  color: #fff;
+  backdrop-filter: none; -webkit-backdrop-filter: none;
 }
 
 .mood-submit-wrap { padding-top: 8px; }
