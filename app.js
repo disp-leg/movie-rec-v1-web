@@ -110,9 +110,17 @@ function openMoodQuestions(genreName) {
 }
 
 function submitMood() {
-  var movies = getMoviesByGenre(state.currentGenre);
+  var movies;
+  var title;
+  if (state.currentGenre) {
+    movies = getMoviesByGenre(state.currentGenre);
+    title = state.currentGenre;
+  } else {
+    movies = excludeDNF(state.movies);
+    title = 'mood picks';
+  }
   var filtered = filterByMood(movies, state.moodAnswers);
-  openGrid('genre', state.currentGenre, filtered);
+  openGrid(state.currentGenre ? 'genre' : 'mood', title, filtered);
 }
 
 function openShuffle() {
@@ -267,7 +275,7 @@ document.addEventListener('keydown', function(e) {
 /* ─── Event Listeners ─── */
 document.getElementById('grid-back').addEventListener('click', goHome);
 document.getElementById('genre-back').addEventListener('click', goHome);
-document.getElementById('mood-back').addEventListener('click', function() { switchView('genre-picker'); });
+document.getElementById('mood-back').addEventListener('click', goHome);
 document.getElementById('shuffle-exit').addEventListener('click', goHome);
 document.getElementById('fullscreen-viewer').addEventListener('click', closeFullscreen);
 
@@ -291,6 +299,7 @@ function setupHomeTiles() {
     { id: 'shuffle', title: 'shuffle', subtitle: 'random pick', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' },
     { id: 'all', title: 'all', subtitle: state.movies.length + ' movies', icon: 'M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z' },
     { id: 'saved', title: 'saved', subtitle: 'your watchlist', icon: 'M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z' },
+    { id: 'mood', title: 'mood', subtitle: 'filter by vibe', icon: 'M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-3m0-4V3M2 14h4M10 8h4M18 16h4' },
   ];
 
   tiles.forEach(function(t) {
@@ -307,6 +316,16 @@ function animateHomeTiles() {
   });
 }
 
+function openMoodStandalone() {
+  state.currentGenre = '';
+  state.moodAnswers = { intensity: 1, gore: 1, grounding: 1 };
+  document.getElementById('mood-heading').textContent = 'mood';
+  var container = document.getElementById('mood-questions');
+  container.textContent = '';
+  container.appendChild(buildMoodQuestionsContent());
+  switchView('mood');
+}
+
 function handleHomeTile(id) {
   if (id === 'latest') {
     openGrid('latest', 'Latest Releases', getLatestReleases());
@@ -318,6 +337,8 @@ function handleHomeTile(id) {
     openGrid('all', 'All', excludeDNF(state.movies));
   } else if (id === 'saved') {
     openGrid('saved', 'Saved', getSavedMovies());
+  } else if (id === 'mood') {
+    openMoodStandalone();
   }
 }
 

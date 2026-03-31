@@ -139,7 +139,8 @@ function buildGenreTile(genreName, movieCount) {
   var card = document.createElement('div');
   card.className = 'genre-tile';
   card.addEventListener('click', function() {
-    openMoodQuestions(genreName);
+    var movies = getMoviesByGenre(genreName);
+    openGrid('genre', genreName, movies);
   });
 
   var name = document.createElement('div');
