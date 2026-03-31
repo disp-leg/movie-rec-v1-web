@@ -23,9 +23,11 @@
 <!-- App -->
 <div id="app">
 
+  <!-- SHARED AURA BACKGROUND -->
+  <canvas id="aura-canvas"></canvas>
+
   <!-- HOME VIEW -->
   <div class="view active" id="home-view">
-    <iframe class="aura-bg" src="liquid-aura-light.html" frameborder="0" scrolling="no" aria-hidden="true"></iframe>
     <div class="home-content">
       <div class="showcase-header">
         <div class="sh-brand">rias</div>
@@ -38,7 +40,6 @@
 
   <!-- GRID VIEW -->
   <div class="view" id="grid-view">
-    <iframe class="aura-bg" src="liquid-aura-light.html" frameborder="0" scrolling="no" aria-hidden="true"></iframe>
     <div class="grid-header">
       <div class="grid-back" id="grid-back">
         <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
@@ -99,7 +100,8 @@
 
 </div>
 
-<!-- Scripts: data first, then filters, then components, then app -->
+<!-- Scripts: aura bg first, then data, filters, components, app -->
+<script src="aura.js"></script>
 <script src="data.js"></script>
 <script src="filters.js"></script>
 <script src="components.js"></script>
