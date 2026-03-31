@@ -535,3 +535,80 @@ html, body {
 }
 
 /* ═══ PLACEHOLDER: Mood, Shuffle styles added in later tasks ═══ */
+
+/* ═══ MOOD QUESTIONS VIEW ═══ */
+#mood-view {
+  background: transparent;
+  display: flex !important; flex-direction: column;
+}
+#mood-view > .mood-header,
+#mood-view > .mood-scroll { position: relative; z-index: 1; }
+.mood-header {
+  display: flex; align-items: center; gap: 12px;
+  padding: calc(12px + var(--safe-top)) 16px 12px;
+  flex-shrink: 0;
+}
+.mood-back {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-glass);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-glass); border-radius: 50%;
+  cursor: pointer; flex-shrink: 0;
+  transition: transform 0.3s var(--spring);
+  -webkit-tap-highlight-color: transparent;
+}
+.mood-back:active { transform: scale(0.85); }
+.mood-back svg {
+  width: 18px; height: 18px; stroke: #f5f5f5; stroke-width: 2.5;
+  fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+.mood-heading {
+  font-size: clamp(18px, 5vw, 24px);
+  font-weight: 600; letter-spacing: -0.02em;
+  color: var(--text-primary); text-transform: capitalize;
+}
+.mood-scroll {
+  flex: 1; overflow-y: auto; overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.mood-questions {
+  padding: 16px clamp(16px, 4vw, 24px) calc(40px + var(--safe-bottom));
+  display: flex; flex-direction: column; gap: 28px;
+}
+.mood-question-label {
+  font-size: clamp(18px, 5vw, 22px);
+  font-weight: 600; color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.mood-options { display: flex; flex-direction: column; gap: 8px; }
+.mood-option {
+  width: 100%; padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  font-family: inherit; font-size: 14px; font-weight: 500;
+  color: var(--text-secondary); text-align: left;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s var(--spring);
+  -webkit-tap-highlight-color: transparent;
+}
+.mood-option:active { transform: scale(0.97); }
+.mood-option.active {
+  background: rgba(59,130,246,0.12);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+.mood-submit-wrap { padding-top: 8px; }
+.mood-submit {
+  width: 100%; padding: 14px 0;
+  background: var(--accent-blue);
+  border: none; border-radius: 14px;
+  font-family: inherit; font-size: 16px; font-weight: 600;
+  color: #fff; cursor: pointer;
+  transition: transform 0.2s var(--spring), opacity 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.mood-submit:active { transform: scale(0.97); opacity: 0.85; }

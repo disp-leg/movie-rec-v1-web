@@ -154,7 +154,84 @@ function buildGenreTile(genreName, movieCount) {
 
   return card;
 }
-function buildMoodQuestionsContent() { return document.createElement('div'); }
+/* ═══ MOOD QUESTIONS ═══ */
+function buildMoodQuestionsContent() {
+  var frag = document.createDocumentFragment();
+
+  var questions = [
+    {
+      key: 'intensity',
+      label: 'how demented?',
+      options: [
+        { value: 0, text: 'keep it chill' },
+        { value: 1, text: 'twisted is fine' },
+        { value: 2, text: 'fully unhinged' },
+      ],
+    },
+    {
+      key: 'gore',
+      label: 'gore level?',
+      options: [
+        { value: 0, text: 'suggest, don\'t show' },
+        { value: 1, text: 'some blood is fine' },
+        { value: 2, text: 'paint the walls' },
+      ],
+    },
+    {
+      key: 'grounding',
+      label: 'real or supernatural?',
+      options: [
+        { value: 0, text: 'grounded in reality' },
+        { value: 1, text: 'either works' },
+        { value: 2, text: 'give me ghosts' },
+      ],
+    },
+  ];
+
+  questions.forEach(function(q) {
+    var block = document.createElement('div');
+    block.className = 'mood-question';
+
+    var label = document.createElement('div');
+    label.className = 'mood-question-label';
+    label.textContent = q.label;
+    block.appendChild(label);
+
+    var optionsRow = document.createElement('div');
+    optionsRow.className = 'mood-options';
+
+    q.options.forEach(function(opt) {
+      var btn = document.createElement('button');
+      btn.className = 'mood-option';
+      if (opt.value === 1) btn.classList.add('active');
+      btn.textContent = opt.text;
+      btn.addEventListener('click', function() {
+        state.moodAnswers[q.key] = opt.value;
+        optionsRow.querySelectorAll('.mood-option').forEach(function(b) {
+          b.classList.remove('active');
+        });
+        btn.classList.add('active');
+      });
+      optionsRow.appendChild(btn);
+    });
+
+    block.appendChild(optionsRow);
+    frag.appendChild(block);
+  });
+
+  var submitWrap = document.createElement('div');
+  submitWrap.className = 'mood-submit-wrap';
+  var submitBtn = document.createElement('button');
+  submitBtn.className = 'mood-submit';
+  submitBtn.textContent = 'show me movies';
+  submitBtn.addEventListener('click', function() {
+    submitMood();
+  });
+  submitWrap.appendChild(submitBtn);
+  frag.appendChild(submitWrap);
+
+  return frag;
+}
 function buildShuffleCard(movie) { return document.createElement('div'); }
 /* ═══ DETAIL MODAL CONTENT ═══ */
 async function buildDetailModalContent(movie) {
