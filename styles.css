@@ -617,11 +617,9 @@ html, body {
 /* ═══ DISCOVER VIEW (was Shuffle) ═══ */
 #shuffle-view {
   background: transparent;
-  display: flex !important; flex-direction: column;
-  align-items: center; justify-content: center;
-  position: relative;
+  display: block !important;
+  position: absolute; inset: 0;
 }
-#shuffle-view > * { position: relative; z-index: 1; }
 .shuffle-exit {
   position: fixed; top: calc(16px + var(--safe-top)); right: 16px;
   width: 36px; height: 36px;
@@ -629,7 +627,7 @@ html, body {
   background: rgba(255,255,255,0.08);
   backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 50%; cursor: pointer; z-index: 50;
+  border-radius: 50%; cursor: pointer; z-index: 50; position: relative;
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.2s var(--spring);
 }
@@ -640,15 +638,18 @@ html, body {
 }
 
 .shuffle-card-area {
-  display: flex; align-items: center; justify-content: center;
-  width: 100%; flex: 1;
-  position: relative;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
 }
 
 /* Discover card */
 .discover-card {
-  width: calc(100vw - 48px); max-width: 380px;
-  aspect-ratio: 2/3;
+  width: calc(100vw - 48px); max-width: 340px;
+  height: calc(100vh - 180px); max-height: 560px;
   border-radius: 24px; overflow: hidden;
   position: relative;
   cursor: grab;

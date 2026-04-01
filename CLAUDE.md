@@ -8,6 +8,15 @@
 
 Web version of Ria's iOS movie recommendation app. Port the full design and functionality to a web app deployable to GitHub Pages. All operator communication goes through Yuna (hub) via your liaison agent. Do NOT access Telegram directly.
 
+## MOBILE-FIRST RULE (MANDATORY)
+
+- ALL screens MUST be designed and tested at 375x812 (iPhone SE) and 390x844 (iPhone 14) FIRST
+- Use viewport-relative units (vh, vw, dvh) for sizing, not fixed px that only work on desktop
+- Cards/content must be vertically centered and fill most of the mobile viewport
+- Test on mobile viewport BEFORE committing — take a screenshot at 390px width
+- Never use aspect-ratio alone for card height on mobile — combine with vh-based height
+- This is a MOBILE WEB APP. Desktop is secondary.
+
 ## Design Language
 
 - **References:** Apple Invites app, Apple Home app, iOS App Store tiles, Apple HIG
