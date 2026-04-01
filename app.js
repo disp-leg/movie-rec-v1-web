@@ -139,6 +139,7 @@ function openShuffle() {
   state.shuffleIndex = 0;
   renderShuffleCard();
   switchView('shuffle');
+  setupDiscoverGestures();
 }
 
 function reshuffleNext() {
@@ -168,6 +169,149 @@ function renderShuffleCard() {
   var area = document.getElementById('shuffle-card-area');
   area.textContent = '';
   area.appendChild(buildShuffleCard(movie));
+}
+
+function setupDiscoverGestures() {
+  var area = document.getElementById('shuffle-card-area');
+  var isDragging = false;
+  var startX = 0, startY = 0, currentDX = 0, currentDY = 0, totalMove = 0;
+  var THRESHOLD_H = 80, THRESHOLD_V = 60;
+  var card = null;
+
+  function handleSwipeEnd() {
+    if (!isDragging || !card) return;
+    isDragging = false;
+
+    // Reset overlays
+    var redOv = card.querySelector('.discover-overlay-red');
+    var greenOv = card.querySelector('.discover-overlay-green');
+
+    var movie = state.shufflePool[state.shuffleIndex];
+
+    // Check thresholds — horizontal wins over vertical
+    if (currentDX < -THRESHOLD_H) {
+      // SWIPE LEFT = DNF
+      if (redOv) redOv.style.opacity = '0.5';
+      card.style.transition = 'transform 0.3s cubic-bezier(0.4,0,1,1), opacity 0.3s';
+      card.style.transform = 'translateX(-500px) rotate(-15deg) scale(0.8)';
+      card.style.opacity = '0';
+      if (movie) doDNF(movie.tmdb_id);
+      setTimeout(function() { advanceDiscover(); }, 300);
+
+    } else if (currentDX > THRESHOLD_H) {
+      // SWIPE RIGHT = Add to watchlist
+      if (greenOv) greenOv.style.opacity = '0.3';
+      card.style.transition = 'transform 0.3s cubic-bezier(0.4,0,1,1), opacity 0.3s';
+      card.style.transform = 'translateX(500px) rotate(8deg) scale(1)';
+      card.style.opacity = '0';
+      card.style.boxShadow = '0 0 30px rgba(34,197,94,0.4)';
+      if (movie) toggleSaved(movie.tmdb_id);
+      setTimeout(function() { advanceDiscover(); }, 300);
+
+    } else if (currentDY < -THRESHOLD_V) {
+      // SWIPE UP = Skip
+      card.style.transition = 'transform 0.3s cubic-bezier(0.4,0,1,1), opacity 0.3s ease-out';
+      card.style.transform = 'translateY(-400px) scale(0.95)';
+      card.style.opacity = '0';
+      setTimeout(function() { advanceDiscover(); }, 300);
+
+    } else if (totalMove < 5 && movie) {
+      // TAP = detail modal
+      card.style.transition = 'transform 0.1s ease';
+      card.style.transform = 'scale(0.97)';
+      setTimeout(function() {
+        card.style.transition = 'transform 0.2s ease';
+        card.style.transform = 'scale(1)';
+        openDetailModal(movie, 'shuffle');
+      }, 100);
+
+    } else {
+      // Spring back
+      if (redOv) redOv.style.opacity = '0';
+      if (greenOv) greenOv.style.opacity = '0';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.175,0.885,0.32,1.275), opacity 0.3s';
+      card.style.transform = 'translateX(0) translateY(0) rotate(0deg) scale(1)';
+      card.style.opacity = '1';
+    }
+  }
+
+  function handleDragMove(clientX, clientY) {
+    if (!isDragging || !card) return;
+    currentDX = clientX - startX;
+    currentDY = clientY - startY;
+    totalMove = Math.sqrt(currentDX * currentDX + currentDY * currentDY);
+
+    var rotate = currentDX * 0.08;
+    var scale = Math.max(1 - totalMove * 0.0002, 0.92);
+    var opacity = Math.max(1 - totalMove * 0.002, 0.5);
+    card.style.transform = 'translateX(' + currentDX + 'px) translateY(' + currentDY + 'px) rotate(' + rotate + 'deg) scale(' + scale + ')';
+    card.style.opacity = String(opacity);
+
+    // Color overlays
+    var redOv = card.querySelector('.discover-overlay-red');
+    var greenOv = card.querySelector('.discover-overlay-green');
+    if (redOv) redOv.style.opacity = currentDX < 0 ? String(Math.min(Math.abs(currentDX) / 160, 1) * 0.3) : '0';
+    if (greenOv) greenOv.style.opacity = currentDX > 0 ? String(Math.min(currentDX / 160, 1) * 0.3) : '0';
+  }
+
+  area.addEventListener('touchstart', function(e) {
+    card = area.querySelector('.discover-card');
+    if (!card) return;
+    isDragging = true;
+    var pt = e.touches[0];
+    startX = pt.clientX; startY = pt.clientY;
+    currentDX = 0; currentDY = 0; totalMove = 0;
+    card.style.transition = 'none';
+  }, { passive: true });
+
+  area.addEventListener('touchmove', function(e) {
+    if (!isDragging || !card) return;
+    var pt = e.touches[0];
+    handleDragMove(pt.clientX, pt.clientY);
+  }, { passive: true });
+
+  area.addEventListener('touchend', function() {
+    handleSwipeEnd();
+  }, { passive: true });
+
+  // Mouse support
+  area.addEventListener('mousedown', function(e) {
+    card = area.querySelector('.discover-card');
+    if (!card) return;
+    isDragging = true;
+    startX = e.clientX; startY = e.clientY;
+    currentDX = 0; currentDY = 0; totalMove = 0;
+    card.style.transition = 'none';
+  });
+  window.addEventListener('mousemove', function(e) {
+    if (!isDragging || !card) return;
+    handleDragMove(e.clientX, e.clientY);
+  });
+  window.addEventListener('mouseup', function() {
+    handleSwipeEnd();
+  });
+}
+
+function advanceDiscover() {
+  state.shuffleIndex++;
+  if (state.shuffleIndex >= state.shufflePool.length) {
+    // End state
+    var area = document.getElementById('shuffle-card-area');
+    area.textContent = '';
+    var end = document.createElement('div');
+    end.className = 'discover-end';
+    var msg = document.createElement('div');
+    msg.className = 'discover-end-msg';
+    msg.textContent = "you've seen them all";
+    end.appendChild(msg);
+    var sub = document.createElement('div');
+    sub.className = 'discover-end-sub';
+    sub.textContent = 'check back for new recs';
+    end.appendChild(sub);
+    area.appendChild(end);
+    return;
+  }
+  renderShuffleCard();
 }
 
 /* ─── Actions ─── */
@@ -296,7 +440,7 @@ function setupHomeTiles() {
   var tiles = [
     { id: 'latest', title: 'latest releases', subtitle: 'new and recent', icon: 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z' },
     { id: 'genres', title: 'nano genres', subtitle: 'browse by genre', icon: 'M4 6h16M4 10h16M4 14h16M4 18h16' },
-    { id: 'shuffle', title: 'shuffle', subtitle: 'random pick', icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' },
+    { id: 'shuffle', title: 'discover', subtitle: 'swipe to explore', icon: 'M21 12a9 9 0 11-18 0 9 9 0 0118 0zM9 10a1 1 0 11-2 0 1 1 0 012 0zm4 0a1 1 0 11-2 0 1 1 0 012 0zm4 0a1 1 0 11-2 0 1 1 0 012 0z' },
     { id: 'all', title: 'all', subtitle: state.movies.length + ' movies', icon: 'M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zm10 0a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z' },
     { id: 'saved', title: 'saved', subtitle: 'your watchlist', icon: 'M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z' },
     { id: 'mood', title: 'mood', subtitle: 'filter by vibe', icon: 'M4 21v-7m0-4V3m8 18v-9m0-4V3m8 18v-3m0-4V3M2 14h4M10 8h4M18 16h4' },

@@ -233,7 +233,47 @@ function buildMoodQuestionsContent() {
 
   return frag;
 }
-function buildShuffleCard(movie) { return document.createElement('div'); }
+/* ═══ DISCOVER CARD ═══ */
+function buildShuffleCard(movie) {
+  var card = document.createElement('div');
+  card.className = 'discover-card';
+
+  var img = document.createElement('img');
+  img.className = 'discover-poster';
+  img.src = movie.poster_url;
+  img.alt = movie.title;
+  img.loading = 'eager';
+  img.onerror = function() {
+    if (!img.dataset.retried && movie.tmdb_id) {
+      img.dataset.retried = '1';
+      getMovieDetails(movie.tmdb_id).then(function(d) {
+        if (d && d.poster_path) img.src = 'https://image.tmdb.org/t/p/w500' + d.poster_path;
+      });
+    }
+  };
+  card.appendChild(img);
+
+  // Color feedback overlays
+  var redOverlay = document.createElement('div');
+  redOverlay.className = 'discover-overlay discover-overlay-red';
+  card.appendChild(redOverlay);
+
+  var greenOverlay = document.createElement('div');
+  greenOverlay.className = 'discover-overlay discover-overlay-green';
+  card.appendChild(greenOverlay);
+
+  return card;
+}
+
+function animateShuffleOut(callback) {
+  var area = document.getElementById('shuffle-card-area');
+  var card = area.querySelector('.discover-card');
+  if (!card) { callback(); return; }
+  card.style.transition = 'transform 0.3s cubic-bezier(0.4,0,1,1), opacity 0.3s';
+  card.style.transform = 'translateY(-400px) scale(0.95)';
+  card.style.opacity = '0';
+  setTimeout(callback, 300);
+}
 /* ═══ DETAIL MODAL CONTENT ═══ */
 async function buildDetailModalContent(movie) {
   var frag = document.createDocumentFragment();

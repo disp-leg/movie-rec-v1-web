@@ -613,3 +613,88 @@ html, body {
   -webkit-tap-highlight-color: transparent;
 }
 .mood-submit:active { transform: scale(0.97); opacity: 0.85; }
+
+/* ═══ DISCOVER VIEW (was Shuffle) ═══ */
+#shuffle-view {
+  background: transparent;
+  display: flex !important; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative;
+}
+#shuffle-view > * { position: relative; z-index: 1; }
+.shuffle-exit {
+  position: fixed; top: calc(16px + var(--safe-top)); right: 16px;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50%; cursor: pointer; z-index: 50;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s var(--spring);
+}
+.shuffle-exit:active { transform: scale(0.85); }
+.shuffle-exit svg {
+  width: 16px; height: 16px; stroke: rgba(255,255,255,0.6);
+  stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round;
+}
+
+.shuffle-card-area {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%; flex: 1;
+  position: relative;
+}
+
+/* Discover card */
+.discover-card {
+  width: calc(100vw - 48px); max-width: 380px;
+  aspect-ratio: 2/3;
+  border-radius: 24px; overflow: hidden;
+  position: relative;
+  cursor: grab;
+  will-change: transform, opacity;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.06);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: none;
+}
+.discover-card:active { cursor: grabbing; }
+.discover-poster {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  background: linear-gradient(135deg, #27272a, #18181b);
+}
+.discover-overlay {
+  position: absolute; inset: 0;
+  border-radius: 24px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+.discover-overlay-red { background: rgba(239,68,68,0.3); }
+.discover-overlay-green { background: rgba(34,197,94,0.3); }
+
+/* Discover counter */
+.discover-counter {
+  position: fixed; bottom: calc(40px + var(--safe-bottom));
+  left: 50%; transform: translateX(-50%);
+  font-size: 13px; font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.02em;
+  z-index: 10;
+}
+
+/* End state */
+.discover-end {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 8px; padding: 40px;
+}
+.discover-end-msg {
+  font-size: 18px; font-weight: 500;
+  color: #a1a1aa;
+}
+.discover-end-sub {
+  font-size: 14px; font-weight: 400;
+  color: #71717a;
+}
